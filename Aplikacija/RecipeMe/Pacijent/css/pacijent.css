@@ -1,0 +1,111 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-image: url('https://images7.alphacoders.com/697/697207.jpg');
+
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+
+}
+#parent{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.container{
+    margin-top: 100px;
+height: 100%;
+align-content: center;
+}
+label{
+    color:white;
+}
+.card{
+height: 540px;
+margin-top: auto;
+margin-bottom: auto;
+width: 450px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+
+.card-header h3{
+color: white;
+}
+
+
+
+.input-group-prepend span{
+width: 180px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 90px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+.buttons{
+    display:flex;
+    flex-direction: column;
+    
+}
+i{
+    margin-right: 2px;
+    margin-left: 2px;
+}
+#i1{
+    margin-right: 30px;
+}
+
+ul{
+    display:flex;
+    flex-direction: row;
+}
+a.nav-link{
+    color: white;
+    margin-right: 10px;
+    margin-left: 0px;
+    
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background-color: #FFC312;
+}
+#logOut{
+    
+   margin-left: 100px;
+   font-size: 18px;
+}
+#navigacija>li{
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
