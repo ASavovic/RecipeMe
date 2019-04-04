@@ -12,8 +12,12 @@ include_once 'Pacijent.php';
  * @author Emma
  */
 class ListaPacijenata {
-  public $pacijenti=array();
+  public $pacijenti;
+  
+  function __construct() {
+      $this->pacijenti=array();
+  }
   public function dodajPacijenta(Pacijent $p){
-      $this->pacijenti.push($p);
+      $this->pacijenti[]=$p;
   }
 }

@@ -1,18 +1,13 @@
 const pacijent=null;
 document.body.onload = myFunction();
 
-
-
-
-
-
-    function myFunction(){
+function myFunction(){
         
     var url_string =window.location.href;
     var url = new URL(url_string);
     var name = url.searchParams.get("name");
     console.log(name);
-            fetch("indexPacijent.php?name="+name)
+            fetch("../php/indexPacijent.php?name="+name)
             .then(response =>
             {
         if(!response.ok)
@@ -31,12 +26,18 @@ function prikaziPacijenta(pacijent){
     const prezime=document.getElementById("prezime");
     const jmbg=document.getElementById("jmbg");
     const hronicni=document.getElementById("hronicni");
+    const email=document.querySelector("input[name='email']");
+    const telefon=document.querySelector("input[name='telefon']");
     ime.value=pacijent.ime;
     ime.readOnly=true;
     prezime.value=pacijent.prezime;
     prezime.readOnly=true;
     jmbg.value=pacijent.jmbg;
     jmbg.readOnly=true;
+    email.value=pacijent.email;
+    email.readOnly=true;
+    telefon.value=pacijent.telefon;
+    telefon.readOnly=true;
     let bolesnik="";
     if(pacijent.hronicniBolesnik==0)
         bolesnik="No";

@@ -7,7 +7,7 @@
  */
 include_once 'IPacijentService.php';
 include_once 'Pacijent.php';
-
+include_once 'ListaPacijenata.php';
 class PacijentService implements IPacijentService
 {
     const db_host="localhost";
@@ -79,7 +79,7 @@ class PacijentService implements IPacijentService
     }
     else {
         // $res je rezultat izvrsenja upita
-        $res = $con->query("select * from pacijent where jmbg='$id'");
+        $res = $con->query("select * from pacijent where korisnicko_ime='$id'");
         if ($res) {
             $pacijent = null;
             // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
@@ -87,7 +87,7 @@ class PacijentService implements IPacijentService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -150,7 +150,7 @@ class PacijentService implements IPacijentService
 				
 		$pacijent=new Pacijent($row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
                                        $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
-		$niz.dodajPacijenta($pacijent);
+		$niz->dodajPacijenta($pacijent);
 
             }
             // zatvaranje objekta koji cuva rezultat

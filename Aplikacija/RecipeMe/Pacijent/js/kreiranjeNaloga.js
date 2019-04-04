@@ -1,5 +1,5 @@
 let users=[];
-fetch("../php/indexProveraUsername.php?name='svi'")
+fetch("../php/indexProveraUsername.php")
             .then(response => 
             {
                 
@@ -13,8 +13,6 @@ fetch("../php/indexProveraUsername.php?name='svi'")
             .catch(error => console.log(error));
 console.log(users);
 
-
-var postojiKorisnik=1;
 let korisnik = {
     ime:"",
     prezime:"",
@@ -31,6 +29,15 @@ const el=document.getElementById("alert");
 //podesavanje event-a
 dugme.onclick = (ev) => kreirajNalog();
 
+function postojiKorisnik(){
+    
+    let indikator=1;
+    let pom=users.pacijenti.filter(x => x.korisnickoIme==korisnik.korisnickoIme);
+    if(pom.length!=0)
+        indikator=0;
+    return indikator;
+        
+}
 
 function kreirajNalog()
 {
@@ -57,10 +64,10 @@ function kreirajNalog()
     formData.append("sifra",korisnik.sifra);
     
     
-    postojiUsername();
+    let pom=postojiKorisnik();
    
   
-    if(postojiKorisnik!=1)
+    if(pom!=1)
     {
          let innerHtml="<div class='alert alert-danger' role='alert'><strong>Username already exists!</strong></div>";
           el.innerHTML=innerHtml;
@@ -93,18 +100,12 @@ function kreirajNalog()
 }
 function postojiUsername(formData){
 
-
- 
-     const fetchData =
+    const fetchData =
             {
                 method:"POST",
                 body: formData
             }
    
-
-
-            
- 
     fetch("../php/indexProveraUsername.php",fetchData)
             .then(response => 
             {
