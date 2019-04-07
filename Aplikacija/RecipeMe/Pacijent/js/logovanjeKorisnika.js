@@ -63,7 +63,7 @@ function otvoriNovuStranicu(pacijent)
     {
     let myu=document.querySelector("input[name='username']").value;
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("../html/pacijent.html?name="+ url_safe_username ,"_self");
+    window.open("../../HomePage/dentacare/index.html?name="+ url_safe_username ,"_self");
     }
 }
 

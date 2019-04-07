@@ -37,7 +37,7 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: #FFC312;
+background-color: #007bff;
 color: black;
 border:0 !important;
 }
@@ -62,7 +62,7 @@ margin-right: 5px;
 
 .login_btn{
 color: black;
-background-color: #FFC312;
+background-color: #007bff;
 width: 100px;
 }
 

@@ -13,6 +13,7 @@ fetch("../php/indexProveraUsername.php")
             .catch(error => console.log(error));
 console.log(users);
 
+
 let korisnik = {
     ime:"",
     prezime:"",
@@ -36,6 +37,7 @@ function postojiKorisnik(){
     if(pom.length!=0)
         indikator=0;
     return indikator;
+ 
         
 }
 
@@ -64,7 +66,7 @@ function kreirajNalog()
     formData.append("sifra",korisnik.sifra);
     
     
-    let pom=postojiKorisnik();
+   let pom=postojiKorisnik();
    
   
     if(pom!=1)
@@ -100,6 +102,7 @@ function kreirajNalog()
 }
 function postojiUsername(formData){
 
+    let pom;
     const fetchData =
             {
                 method:"POST",
@@ -116,8 +119,11 @@ function postojiUsername(formData){
                         return response.json();
                
  
-            }).then((korisnici) => proveriObjekat(korisnici))
-            .catch(error => console.log(error));
+            }).then((korisnici) => {
+             users=korisnici;
+             postojiKorisnik();}
+                 )
+             // .catch(error => console.log(error));
    
     
 }
