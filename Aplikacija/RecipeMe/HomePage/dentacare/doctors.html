@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DentaCare - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Doctors</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -28,22 +28,55 @@
   </head>
   <body>
     
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	  <nav class=" navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html" style="font-size:24px"><span>Recipe</span>Me</a>
+	      <a class="navbar-brand" href="index.html" style="font-size:36px"><span>Recipe</span>Me</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	          <li class="nav-item active"><a href="doctors.html" class="nav-link">Doctors</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Make an Appointment</span></a></li>
+                    <li class="nav-item active"><a href="index.html" class="nav-link font-weight-bold"  style="font-size:18px">Home</a></li>
+	          <li class="nav-item"><a href="about.html" class="nav-link font-weight-bold"  style="font-size:18px">About</a></li>
+	          <li class="nav-item"><a href="services.html" class="nav-link font-weight-bold"  style="font-size:18px">Services</a></li>
+	          <li class="nav-item"><a href="doctors.html" class="nav-link font-weight-bold"  style="font-size:18px">Doctors</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold"  style="font-size:18px">Contact</a></li>
+			  
+			  <li class="nav-item border" style=" border-radius: 25px;" >
+			  <div class="dropdown nav-link">
+			  <span id="id1" onclick="myFunction()"  class=" dropdown-toggle font-weight-bold " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px">Log in</span>
+			  <div id="nav-tabs-wrapper" class="dropdown-menu  ">
+			  <a class="dropdown-item" style="font-size:14px" href="#">As Doctor</a>
+			  <a class="dropdown-item" style="font-size:14px"  href="../../Pacijent/html/logovanjeKorisnika.html">As Patient</a>
+                          </div>
+                          
+		</div>
+		</li>
+             
+			
+			<script>
+			function myFunction() {
+				document.getElementById("myDropdown").classList.toggle("show");
+				}
+
+
+			window.onclick = function(event) {
+			if (!event.target.matches('.dropdown-toggle')) {
+			var dropdowns = document.getElementsByClassName("nav nav-tabs nav-tabs-horizontal");
+			var i;
+			for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+      }
+    }
+  }
+} 
+});
+</script>
+			
+			
 	        </ul>
 	      </div>
 	    </div>
@@ -56,7 +89,7 @@
         <div class="container" data-scrollax-parent="true">
           <div class="row slider-text align-items-end">
             <div class="col-md-7 col-sm-12 ftco-animate mb-5">
-              <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span class="mr-2"><a href="index.html">Home</a></span> <span>Services</span></p>
+              <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}">
               <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Well Experienced Doctors</h1>
             </div>
           </div>
@@ -82,11 +115,7 @@
       					<div class="text">
 	        				<p>After completing college and practice abroad, he is willing to share his knowledge and experience with you!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			            </ul>
+			              </ul>
 	        			</div>
       				</div>
         		</div>
@@ -100,11 +129,7 @@
       					<div class="text">
 	        				<p>Huge experience in working with children and great love for them. Your child is in safe hands!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			            </ul>
+			              </ul>
 	        			</div>
       				</div>
         		</div>
@@ -118,11 +143,7 @@
       					<div class="text">
 	        				<p>With her great patience, it will be her pleasure to do her best to help in absolutely all cases!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			            </ul>
+			              </ul>
 	        			</div>
       				</div>
         		</div>
@@ -136,11 +157,7 @@
       					<div class="text">
 	        				<p>After countless successful operations, every venture for him is a challenge of satisfaction!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			            </ul>
+			              </ul>
 	        			</div>
       				</div>
         		</div>
@@ -154,11 +171,7 @@
       					<div class="text">
 	        				<p>Your smile will shine after visit!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			            </ul>
+			              </ul>
 	        			</div>
       				</div>
         		</div>
@@ -172,11 +185,7 @@
       					<div class="text">
 	        				<p>There's no worries while you're in his hands!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			            </ul>
+			              </ul>
 	        			</div>
       				</div>
         		</div>
@@ -190,11 +199,7 @@
       					<div class="text">
 	        				<p>Years of experience will explain willing results!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			            </ul>
+			              </ul>
 	        			</div>
       				</div>
         		</div>
@@ -208,10 +213,7 @@
       					<div class="text">
 	        				<p>Our popular team member, with his skills, it's our pleasure to have him!</p>
 	        				<ul class="ftco-social">
-			              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+			              
 			            </ul>
 	        			</div>
       				</div>
@@ -294,7 +296,7 @@
 								<li>Prescription online</li>
                                                                 <li>Support 24/7</li>
         			</ul>
-        			<p class="button text-center"><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">Order now</a></p>
+      
         		</div>
         	</div>
         	<div class="col-md-3 ftco-animate">
@@ -311,8 +313,7 @@
 								<li>Prescription online</li>
                                                                 <li>Support 24/7</li>
         			</ul>
-        			<p class="button text-center"><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">Order now</a></p>
-        		</div>
+              		</div>
         	</div>
         	<div class="col-md-3 ftco-animate">
         		<div class="pricing-entry active pb-5 text-center">
@@ -328,7 +329,7 @@
 								<li>Prescription online</li>
                                                                 <li>Support 24/7</li>
         			</ul>
-        			<p class="button text-center"><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">Order now</a></p>
+        			
         		</div>
         	</div>
         	<div class="col-md-3 ftco-animate">
@@ -345,7 +346,7 @@
 								<li>Prescription online</li>
                                                                 <li>Support 24/7</li>
         			</ul>
-        			<p class="button text-center"><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">Order now</a></p>
+        			
         		</div>
         	</div>
         </div>
@@ -367,43 +368,11 @@
             </ul>
           </div>
           <div class="col-md-2">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Quick Links</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Features</a></li>
-                <li><a href="#" class="py-2 d-block">Projects</a></li>
-                <li><a href="#" class="py-2 d-block">Blog</a></li>
-                <li><a href="#" class="py-2 d-block">Contact</a></li>
-              </ul>
-            </div>
+            
           </div>
           <div class="col-md-4 pr-md-4">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Recent Blog</h2>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">I feel like a goddess after the operation!</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Apr. 3, 2019</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 3</a></div>
-                  </div>
-                </div>
               </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">My kids are now smiling, so do I!</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Sep. 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 5</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="col-md-3">
             <div class="ftco-footer-widget mb-4">
