@@ -17,6 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../../Pacijent/css/kreiranjeNaloga.css" rel="stylesheet">
 
 </head>
 
@@ -120,7 +121,7 @@
                 </button>
               </div>
             </div>
-          </form>
+          </form
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -167,57 +168,85 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Dashboard</h1>
+          <h1 class="h3 mb-2 text-gray-800">New Account</h1>
           
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+          <div class="card shadow mb-4" style="background-color: white !important; width: 700px;">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">List of Doctors</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Add Doctor</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
-        
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
+             
+				
+                                  
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Name" name="ime">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Surname" name="prezime">
+					</div>
+                                       <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-mobile" ></i></span>
+						</div>
+						<input  class="form-control" pattern="[0-9]{9,10}" placeholder="Phone number" name="telefon">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-key"></i></span>
+						</div>
+						<input  class="form-control" pattern="[0-9]{13}" placeholder="SSN" name="jmbg">
+					</div>
+                                  <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+						</div>
+						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" name="email">
+					</div>
+                                         <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" pattern="[A-Za-z0-9._%+-]{4,}" placeholder="Username" name="korisnickoIme">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Password" name="sifra">
+					</div>
+                               
+                                    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Confirm password" name="sifra">
+					</div>
+                
+                                    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-graduation-cap"></i></span>
+						</div>
+						<input type="password" class="form-control" pattern="[A-Za-z0-9._%+-]$" placeholder="Vocation" name="titula">
+					</div>
+						
+ 							
+					<div class="form-group">
+                                            <input type="button" value="Confirm" id="register" class="btn float-right login_btn">
+					
+                                        </div>
+				
       </div>
+          </div>
                   
       <!-- End of Main Content -->
 
@@ -225,7 +254,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span style="color: white;">Copyright &copy; RecipeMe 2019</span>
+            <span style="color: white">Copyright &copy; RecipeMe 2019</span>
           </div>
         </div>
       </footer>
