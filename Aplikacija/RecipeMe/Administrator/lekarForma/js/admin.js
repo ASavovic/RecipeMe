@@ -18,12 +18,12 @@ function prikaziPodatke(listaLekara)
     
     
     
-    let innerHTMLTabele = "<thead><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Rank</th><th>Email</th><th>Shift</th><th>Change Shift</th></tr></thead><tbody>";
+    let innerHTMLTabele = "<thead><tr><th>Name<th>Rank</th><th>Shift</th><th>Change Shift</th></tr></thead><tbody>";
     
     listaLekara.lekari.forEach((lekar) =>  {       
-        innerHTMLTabele += "<tr><td>"+ lekar.ime + "</td><td>"+ lekar.prezime 
-                + "</td><td>"+ lekar.jmbg + "</td><td>"+ lekar.zvanje 
-                + "</td><td>"+ lekar.email + "</td><td>"+ lekar.smena + "</td><td>"
+        innerHTMLTabele += "<tr><td>"+ lekar.ime + " "+ lekar.prezime 
+                + "</td><td>"+ lekar.zvanje 
+                + "</td><td>"+ lekar.smena + "</td><td>"
                 +"<input type='radio' name='"+lekar.korisnickoIme+"' value='1'>1</input><input type='radio' name='"+lekar.korisnickoIme+"' value='2'></input>2<input type='radio' name='"+lekar.korisnickoIme+"' value='3'>3</input></td></tr>";})
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
