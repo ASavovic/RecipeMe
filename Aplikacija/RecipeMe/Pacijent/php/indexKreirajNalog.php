@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 require_once '../../PHPMailer/PHPMailer.php';
 require_once '../../PHPMailer/SMTP.php';
 require_once '../../PHPMailer/Exception.php';
-include_once 'PacijentServiceImpl.php';
+include_once 'lib.php';
 $baza=new PacijentService();
 if(isset($_POST["jmbg"]))
 {

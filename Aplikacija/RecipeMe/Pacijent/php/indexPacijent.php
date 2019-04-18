@@ -1,6 +1,6 @@
 <?php
 
-include_once 'PacijentServiceImpl.php';
+include_once 'lib.php';
 $baza=new PacijentService();
 $pacijent=null;
 if(isset($_GET["name"]))
