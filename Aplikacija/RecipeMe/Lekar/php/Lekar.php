@@ -1,6 +1,7 @@
 <?php
 
 class Lekar {
+   public $id;
    public $jmbg;
    public $ime;
    public $prezime;
@@ -11,8 +12,9 @@ class Lekar {
    public $smena;
    public $listaSlobodnihTermina;
    
-   function  __construct($ime,$prezime,$jmbg,$zvanje,$email,$korisnickoIme,$sifra,$smena)
+   function  __construct($id,$ime,$prezime,$jmbg,$zvanje,$email,$korisnickoIme,$sifra,$smena)
    {
+       $this->id=$id;
        $this->jmbg=$jmbg;
        $this->ime=$ime;
        $this->prezime=$prezime;

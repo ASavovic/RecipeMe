@@ -181,7 +181,7 @@ class PacijentService implements IBolnicaService
 			// u redosledu u kom ga je vratio db server
             while ($row = $res->fetch_assoc()) {
 				
-		$lekar=new Lekar($row['ime'],$row['prezime'], $row['jmbg'],$row['zvanje'],
+		$lekar=new Lekar($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['zvanje'],
                                        $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['smena']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 		$niz->dodajLekara($lekar);
 
@@ -194,8 +194,58 @@ class PacijentService implements IBolnicaService
         {
             print ("Query failed");
         }
-    }
+    
+        
+        
 
 }
 }
+public function promeniSmenuLekara($id,$smena)
+{
+       $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update doktor set smena=$smena where id = $id");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+    
+    public function obrisiLekara($id)
+    {
+        
+         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("delete from doktor where id = $id");
+          if($res) 
+          {
+              
+          }
+        
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+        
+
+}
+
 

@@ -9,4 +9,6 @@ interface IBolnicaService {
     function vratiPacijentaUsername($username);
     function vratiSvePacijente();
     function vratiSveLekare();
+    function promeniSmenuLekara($id,$smena);
+    function obrisiLekara($id);
 }
