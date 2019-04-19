@@ -2,6 +2,7 @@
 
 
 class Pacijent {
+   public $id;
    public $jmbg;
    public $ime;
    public $prezime;
@@ -12,8 +13,9 @@ class Pacijent {
    public $hronicniBolesnik;
    public $bolest;
    
-   function  __construct($ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$bolest)
+   function  __construct($id,$ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$bolest)
    {
+       $this->id=$id;
        $this->jmbg=$jmbg;
        $this->ime=$ime;
        $this->prezime=$prezime;

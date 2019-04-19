@@ -3,15 +3,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 require_once '../../PHPMailer/PHPMailer.php';
 require_once '../../PHPMailer/SMTP.php';
 require_once '../../PHPMailer/Exception.php';
-include_once '../../Pacijent/php/lib.php';
-$baza=new PacijentService();
-if (isset($_POST["id"])) {
-        $baza->promeniSmenuLekara($_POST["id"],$_POST["smena"]);
-        $lekari=$baza->vratiSveLekare();  
-    }
- 
-echo json_encode($lekari);
-
+//include_once 'lib.php';
+//$baza=new PacijentService();
+if(isset($_POST["ime"]))
+{
+    
+    
  $mail=new PHPMailer();
  $mail->isSMTP();
  $mail->Host="smtp.gmail.com";
@@ -26,12 +23,14 @@ echo json_encode($lekari);
  $mail->addAddress($_POST["email"]);
  $mail->Subject="Nortification";
  $mail->Body="Postovani dr. ".$_POST["ime"]." ".$_POST["prezime"]."<br><br>"
-          ."Od sutra radite u ".$_POST["smena"].". "."smeni.".
+          .$_POST["txtPoruke"].
           "<br><br>"
          . "Pozdrav,<br>"
          . "3SGroup.";
  
  if($mail->send())
- {}
+     echo "Email sent!";
  else
      echo "Wrong!".$mail->ErrorInfo;
+ 
+}

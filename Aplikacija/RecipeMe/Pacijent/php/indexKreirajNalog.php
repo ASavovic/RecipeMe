@@ -7,7 +7,7 @@ include_once 'lib.php';
 $baza=new PacijentService();
 if(isset($_POST["jmbg"]))
 {
-    $pacijent= new Pacijent($_POST["ime"],$_POST["prezime"],$_POST["jmbg"],
+    $pacijent= new Pacijent(0,$_POST["ime"],$_POST["prezime"],$_POST["jmbg"],
             $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"");
     
     $baza->dodajPacijenta($pacijent);

@@ -15,11 +15,11 @@ function prikaziLekare(){
     }
 function prikaziPodatke(listaLekara)
 {
-    let innerHTMLTabele = "<thead><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Username</th><th>Password</th><th>Email</th><th>Shift</th><th>Delete</th></tr></thead><tbody>";
+    let innerHTMLTabele = "<thead><tr><th>Name</th><th>SSN</th><th>Vocation</th><th>Username</th><th>Password</th><th>Email</th><th>Shift</th><th>Delete</th></tr></thead><tbody>";
     nizLekara=[];
     listaLekara.lekari.forEach((lekar) =>  { 
         nizLekara[lekar.id]=lekar.korisnickoIme;
-        innerHTMLTabele += "<tr><td>"+ lekar.ime + "</td><td>"+ lekar.prezime 
+        innerHTMLTabele += "<tr><td>"+ lekar.ime + " "+ lekar.prezime  
                 + "</td><td>"+ lekar.jmbg + "</td><td>"+ lekar.zvanje +"</td><td>"+lekar.korisnickoIme+"</td><td>"+lekar.sifra
                 + "</td><td>"+ lekar.email + "</td><td>"+ Smena(lekar.smena) + "</td><td>"
                 +"<input type='checkbox' name='"+lekar.id+"' value='"+lekar.id+"'>  Check to delete</input></td></tr>";})
@@ -34,7 +34,7 @@ function izbrisiLekare(dugme)
 {
     let element;
     for(const key in nizLekara){
-        console.log(nizLekara);
+        //console.log(nizLekara);
      element=document.querySelector("input[name='"+key+"']")
      //console.log(lekar);
      if(element.checked==true)

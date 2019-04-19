@@ -3,6 +3,7 @@ const confirmDugme=document.getElementById("confirm");
 confirmDugme.onclick=(ev)=>{azurirajSmeneLekara(ev.target);}
 //console.log(1);
 var nizLekara=[];
+var listaLekaraPod=[];
 //tabela.innerHTML="";
 prikaziLekare();
 function prikaziLekare(){
@@ -22,6 +23,7 @@ function prikaziPodatke(listaLekara)
     
     listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar.smena;
+        listaLekaraPod[lekar.id]=lekar;
         innerHTMLTabele += "<tr><td>"+ lekar.ime + " "+ lekar.prezime 
                 + "</td><td>"+ lekar.zvanje 
                 + "</td><td>"+Smena(lekar.smena) +"</td><td>"
@@ -48,18 +50,28 @@ function azurirajSmeneLekara(rod)
     {
         pom=document.querySelector("input[name='"+key+"']:checked").value
         if(nizLekara[key]!=pom)
-            promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,pom);
+            promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,pom,listaLekaraPod[key]);
     }
         
 }
-function promeniSmenuLekara(id,smena)
+function promeniSmenuLekara(id,smena,lekar)
 {
-    fetch("../php/promeniSmenuLekara.php?id="+id+"&smena="+smena).then(response=>
+    const formData = new FormData();
+    formData.append("id",id);
+    formData.append("ime", lekar.ime);
+    formData.append("prezime", lekar.prezime);
+    formData.append("email", lekar.email);
+    formData.append("smena",smena);
+     const fetchData = {
+        method: "post",
+        body: formData
+    }
+    fetch("../php/promeniSmenuLekara.php",fetchData).then(response=>
     {
         if(!response.ok)
             throw new Error(response.statusText);
         else return response.json();
-    }).then(listaL=>prikaziLekare())
+    }).then(listaL=>prikaziPodatke(listaL))
             .catch(error=>console.log(error));
 
 }
