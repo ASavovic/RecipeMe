@@ -188,7 +188,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 						</div>
-						<input type="text" class="form-control"  placeholder="Monday - Friday" name="petak">
+						<input type="text" class="form-control"  placeholder="Monday - Friday" name="rdan">
 						
 					</div>
 					<div class="input-group form-group">
@@ -207,7 +207,7 @@
                
  							
 					<div class="form-group">
-                                            <input type="button" value="Confirm" id="register" class="btn float-right login_btn">
+                                            <input type="button" value="Update" id="register" class="btn float-right login_btn">
 					
                                         </div>
 				
@@ -254,9 +254,30 @@
         </div>
       </div>
     </div>
+      
   </div>
+  <div class="modal fade" id="okModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully updated opening hours!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Bootstrap core JavaScript-->
+  <script src="js/radnoVreme.js" type="module"></script>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

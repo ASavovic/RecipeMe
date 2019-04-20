@@ -10,6 +10,8 @@ include_once 'Pacijent.php';
 include_once 'ListaPacijenata.php';
 include_once '../../Lekar/php/ListaLekara.php';
 include_once '../../Lekar/php/Lekar.php';
+include_once '../../Administrator/php/radnoVreme.php';
+
 class PacijentService implements IBolnicaService
 {
     const db_host="localhost";
@@ -291,6 +293,59 @@ public function dodajLekara($lekar)
         }
     }
 }
+
+    public function vratiRadnoVreme() {
+        
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from radno_vreme where id=1;");
+        if ($res) {
+            $radnoVreme = null;
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            if ($row = $res->fetch_assoc()) {
+				
+				$radnoVreme=new RadnoVreme($row['radni_dan'],$row['subota'], $row['nedelja']);
+            }
+            // zatvaranje objekta koji cuva rezultat
+            
+            return $radnoVreme;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
+    public function azurirajRadnoVreme($radni_dan,$subota,$nedelja) {
+       
+     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update radno_vreme set radni_dan='$radni_dan', subota='$subota', nedelja='$nedelja' where id = 1");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    
+    }
+
 }
 
 

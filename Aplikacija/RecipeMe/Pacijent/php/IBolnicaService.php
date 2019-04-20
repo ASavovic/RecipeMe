@@ -13,4 +13,6 @@ interface IBolnicaService {
     function obrisiLekara($id);
     function obrisiPacijenta($id);
     function dodajLekara($lekar);
+    function vratiRadnoVreme();
+    function azurirajRadnoVreme($radni_dan,$subota,$nedelja);
 }
