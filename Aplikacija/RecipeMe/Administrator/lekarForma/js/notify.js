@@ -18,11 +18,12 @@ function prikaziLekare(){
     
 function prikaziPodatke(listaLekara)
 {
-    let innerHTMLTabele = "<thead><tr><th>Name<th>Vocation</th><th>email</th><th>Change Shift</th></tr></thead><tbody>";
+    let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>Vocation</th><th>Email</th><th>Check Doctor</th></tr></thead>\n\
+<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>Vocation</th><th>Email</th><th>Check Doctor</th></tr></tfoot><tbody>";
     
     listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar;
-        innerHTMLTabele += "<tr><td>"+ lekar.ime + " "+ lekar.prezime 
+        innerHTMLTabele += "<tr><td>"+ lekar.ime + "</td><td> "+ lekar.prezime 
                 + "</td><td>"+ lekar.zvanje 
                 + "</td><td>"+lekar.email +"</td><td>"
                 +"<input type='checkbox' name='"+lekar.id+"'id='"+lekar.ime+"' value='"+lekar.email+"'> Send email</td></tr>";})
@@ -34,18 +35,28 @@ function prikaziPodatke(listaLekara)
 
 function posaljiPoruku(dugme)
 {
-        let element;
+    let element;
+    let brojac=0;
     for(const key in nizLekara){
         //console.log(nizLekara);
      element=document.querySelector("input[name='"+key+"']")
      //console.log(lekar);
      if(element.checked==true)
-         posaljiPorukuLekaru(nizLekara[key]);   
+     {
+         posaljiPorukuLekaru(nizLekara[key]);
+         brojac++;
+     }   
+    }
+    if(brojac==0)
+    {
+        $('#notifyModel').modal('hide');
+        $('#warningModal').modal('show');
     }
 }
 function posaljiPorukuLekaru(lekar)
 {
     //console.log(lekar);
+    $("#notifyModel").modal('hide');
     const formData = new FormData();
     formData.append("ime", lekar.ime);
     formData.append("prezime", lekar.prezime);
@@ -63,6 +74,7 @@ function posaljiPorukuLekaru(lekar)
     })
     .then(lekari => ocistiCheckboxove())
     .catch(error => console.log(error));  
+     $('#okModal').modal('show');
 
 }
 function ocistiCheckboxove()
@@ -73,6 +85,7 @@ function ocistiCheckboxove()
      element=document.querySelector("input[name='"+key+"']")
      element.checked=false;
      document.getElementById("poruka").value="";
+    
  }
     
 }

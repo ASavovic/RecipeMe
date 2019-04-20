@@ -182,41 +182,33 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                  <input type="button" value="Confirm Changes" id="confirm"  >
+                  
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Surname</th>
+                      <th>SSN</th>
+                      <th>Vocation</th>
+                      <th>Shift</th>
+                      <th>Change Shift</th>
                     </tr>
                   </thead>
                   <tfoot>
-                    <tr>
+                   <tr>
                       <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Surname</th>
+                      <th>SSN</th>
+                      <th>Vocation</th>
+                      <th>Shift</th>
+                      <th>Change Shift</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
+
         
                   </tbody>
                 </table>
-                  
               </div>
             </div>
           </div>
@@ -225,7 +217,13 @@
         <!-- /.container-fluid -->
 
       </div>
-                  
+            
+
+        <div class="form-group">
+               <input type="button" value="Confirm Changes" class="btn float-right login_btn" style="background-color: #4e73df; color:black; margin: 5px; margin-right: 20px; color:white;" data-toggle="modal" data-target="#changeModal" >
+					
+               </div>
+             
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -267,6 +265,48 @@
       </div>
     </div>
   </div>
+    <!-- Logout Modal-->
+ 
+  
+    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Change Shift?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+       Select "Change" below if you are ready to change shift/s.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="confirm">Change</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="modal fade" id="okModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully changed shift\s!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 <script src="js/admin.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -19,15 +19,15 @@ function prikaziLekare(){
     
 function prikaziPodatke(listaLekara)
 {
-    let innerHTMLTabele = "<thead><tr><th>Name<th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></thead><tbody>";
-    
-    listaLekara.lekari.forEach((lekar) =>  {  
+    let innerHTMLTabele = "<thead  class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></thead>\n\
+<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></tfoot><tbody>";
+listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar.smena;
         listaLekaraPod[lekar.id]=lekar;
-        innerHTMLTabele += "<tr><td>"+ lekar.ime + " "+ lekar.prezime 
-                + "</td><td>"+ lekar.zvanje 
+        innerHTMLTabele += "<tr><td>"+ lekar.ime +"</td><td>"+ lekar.prezime 
+                + "</td><td>"+lekar.jmbg+"</td><td>"+ lekar.zvanje 
                 + "</td><td>"+Smena(lekar.smena) +"</td><td>"
-                +"<input type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='1'> first </input><input type='radio' name='"+lekar.id+"' id='"+lekar.id+"' value='2'></input> second <input type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='3'> night </input></td></tr>";})
+                +"<form><label class='radio-inline mr-2'><input  type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='1'> first</label><label class='radio-inline  mr-2'><input  type='radio' name='"+lekar.id+"' id='"+lekar.id+"' value='2'> second</label><label class='radio-inline  mr-2'><input type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='3'> night</label></form> </td></tr>";})
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
     //tabela.innerHTML="";
@@ -56,6 +56,7 @@ function azurirajSmeneLekara(rod)
 }
 function promeniSmenuLekara(id,smena,lekar)
 {
+    $('#changeModal').modal('hide');
     const formData = new FormData();
     formData.append("id",id);
     formData.append("ime", lekar.ime);
@@ -73,6 +74,7 @@ function promeniSmenuLekara(id,smena,lekar)
         else return response.json();
     }).then(listaL=>prikaziPodatke(listaL))
             .catch(error=>console.log(error));
+    $('#okModal').modal('show');
 
 }
 function Smena(s)

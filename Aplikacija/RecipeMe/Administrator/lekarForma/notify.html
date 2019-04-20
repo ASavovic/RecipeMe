@@ -221,11 +221,11 @@
               
           </div>
     
-                      <textarea cols="40" rows="5" id="poruka" placeholder="Enter the email here.." ></textarea>
+                      <textarea class="form-control" cols="40" rows="5" id="poruka" placeholder="Enter the email here.." ></textarea>
 		</div>
               </div>
               <div class="form-group">
-                                            <input type="button" value="Send" id="register" class="btn float-right login_btn" style="background-color: #007bff; color:black; margin: 5px; margin-right: 20px;">
+                                            <input type="button" value="Send" data-toggle="modal" data-target="#notifyModel" class="btn float-right login_btn" style="background-color: #007bff; color:black; margin: 5px; margin-right: 20px;">
 					
                </div>
           
@@ -247,10 +247,7 @@
       </footer>
       <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
+ 
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
@@ -276,6 +273,65 @@
       </div>
     </div>
   </div>
+   <div class="modal fade" id="notifyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Notify Doctor/s?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+       Select "Notify" below if you are ready to notify doctor/s.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="register">Notify</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="modal fade" id="okModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully notify doctor/s!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+  
+   <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:red">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You need to select a doctor/s!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: red" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

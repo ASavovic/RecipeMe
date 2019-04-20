@@ -183,38 +183,36 @@
             <div class="card-body">
                
               <div class="table-responsive">
-               <input type="button" value="Confirm Changes" id="confirm"  >
+               
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Surname</th>
+                      <th>SSN</th>
+                      <th>Vocation</th>
+                      <th>Username</th>
+                      <th>Password</th>
+                       <th>Email</th>
+                        <th>Shift</th>
+                         <th>Delete</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Surname</th>
+                      <th>SSN</th>
+                      <th>Vocation</th>
+                      <th>Username</th>
+                      <th>Password</th>
+                       <th>Email</th>
+                       <th>Shift</th>
+                       <th>Delete</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
-        
+
                   </tbody>
                 </table>
               </div>
@@ -225,7 +223,10 @@
         <!-- /.container-fluid -->
 
       </div>
-                  
+              <div class="form-group">
+               <input type="button" value="Confirm Changes"  class="btn float-right login_btn" style="background-color: #4e73df; color:black; margin: 5px; margin-right: 20px; color:white;"  data-toggle="modal" data-target="#deleteModal">
+					
+               </div>   
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -267,6 +268,66 @@
       </div>
     </div>
   </div>
+  
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Delete Doctor/s?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+       Select "Delete" below if you are ready to delete doctor account.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="confirm">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="modal fade" id="okModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully deleted account/s!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:red">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You need to select a doctor/s!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: red" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
