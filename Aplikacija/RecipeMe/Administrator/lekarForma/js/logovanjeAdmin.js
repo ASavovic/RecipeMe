@@ -18,9 +18,9 @@ function ucitajKorisnika()
         tmp.innerHTML=innerHtml;
         tmp.style.visibility="inherit";
         tmp.style.textAlign="center";
-    }
         
-        const formData = new FormData();
+    }
+       const formData = new FormData();
         formData.append("username",korisnik.username);
         formData.append("password",korisnik.password);
    
@@ -38,10 +38,10 @@ function ucitajKorisnika()
         else
             return response.json();
 
-    }).then(window.open("index.html"))
+    }).then((admin)=>otvoriNovuStranicu(admin))
             .catch(error => console.log(error));
     
-  
+     
          
     
 }
@@ -60,10 +60,11 @@ function otvoriNovuStranicu(admin)
     }
     else
     {
-    /*let myu=document.querySelector("input[name='username']").value;
+    let myu=document.querySelector("input[name='username']").value;
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html?name="+ url_safe_username ,"_self");*/
-        window.open("index.html");
+    window.open("index.html?name="+ url_safe_username,"_self");
+ //window.location.href="index.html";
+        /*window.open("index.html");*/
     }
 }
 

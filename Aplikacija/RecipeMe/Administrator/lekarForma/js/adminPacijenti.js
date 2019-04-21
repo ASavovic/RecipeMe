@@ -20,12 +20,14 @@ function prikaziPodatke(listaPacijenata)
     nizPacijenata=[];
     listaPacijenata.pacijenti.forEach((pacijent) =>  { 
         nizPacijenata[pacijent.id]=pacijent.korisnickoIme;
-        innerHTMLTabele += "<tr><td>"+ pacijent.ime + " "+ pacijent.prezime  
+        let id=1;
+        innerHTMLTabele += "<tr id='"+id+"'><td>"+ pacijent.ime + " "+ pacijent.prezime  
                 + "</td><td>"+ pacijent.jmbg + "</td><td>"+ pacijent.telefon +"</td><td>"+pacijent.korisnickoIme+"</td><td>"+pacijent.sifra
                 + "</td><td>"+ pacijent.email + "</td><td>"+ Hronicni(pacijent.hronicni) + "</td><td>"+pacijent.bolest + "</td><td>"
                 +"<input  type='checkbox' name='"+pacijent.id+"' value='"+pacijent.id+"'>  Check to delete</td></tr>";})
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
+    id++;
     //tabela.innerHTML=""
 }
 const confirmDugme=document.getElementById("confirm");

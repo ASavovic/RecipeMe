@@ -23,12 +23,14 @@ function prikaziPodatke(listaLekara)
     
     listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar;
-        innerHTMLTabele += "<tr><td>"+ lekar.ime + "</td><td> "+ lekar.prezime 
+        let id=1;
+        innerHTMLTabele += "<tr id='"+id+"'><td>"+ lekar.ime + "</td><td> "+ lekar.prezime 
                 + "</td><td>"+ lekar.zvanje 
                 + "</td><td>"+lekar.email +"</td><td>"
                 +"<input type='checkbox' name='"+lekar.id+"'id='"+lekar.ime+"' value='"+lekar.email+"'> Send email</td></tr>";})
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
+    id++;
     //tabela.innerHTML="";
     
 }
