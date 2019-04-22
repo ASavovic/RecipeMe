@@ -17,7 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link rel="stylesheet"  type="text/css" href="css/admin.css">
+
 </head>
 
 <body id="page-top">
@@ -39,7 +39,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a  id="dashboard" class="nav-link" href="#">
+        <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span style="font-size:16px">Dashboard</span></a>
       </li>
@@ -60,33 +60,28 @@
 
       <!-- Nav Item - Tables -->
                <li class="nav-item">
-        <a id="profile" class="nav-link" href="#">
+        <a class="nav-link" href="profile.html">
           <i class="fa fa-user-circle"></i>
           <span style="font-size:14px">Profile</span></a>
       </li> 
       <li class="nav-item">
-        <a id="patients" class="nav-link" href="#">
+        <a class="nav-link" href="patients.html">
           <i class="fas fa-fw fa-table"></i>
           <span style="font-size:14px">Patients</span></a>
-      </li>
-      <li class="nav-item">
-        <a id="notifications" class="nav-link" href="#">
-          <i class="fa fa-bell"></i>
-          <span style="font-size:14px">Notifications</span>
-        </a>
-        </li>
 
- 
-       
-      
+         <li class="nav-item">
+        <a class="nav-link" href="notifications.html">
+          <i class="fa fa-bell"></i>
+          <span style="font-size:14px">Notifications</span></a>
+      </li>
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a id="notify" class="nav-link" href="#">
-          <i class="fa fa-envelope""></i>
+        <a class="nav-link" href="notify.html">
+          <i class="fa fa-envelope"></i>
           <span style="font-size:14px">Notify</span></a>
       </li>
       
-
+   
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -169,7 +164,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Dashboard</h1>
+          <h1 class="h3 mb-2 text-gray-800">Patients</h1>
           
 
           <!-- DataTales Example -->
@@ -179,30 +174,37 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                  
+                 
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Surname</th>
-                      <th>SSN</th>
-                      <th>Vocation</th>
-                      <th>Shift</th>
-                      <th>Change Shift</th>
+                      <th>Position</th>
+                      <th>Office</th>
+                      <th>Age</th>
+                      <th>Start date</th>
+                      <th>Salary</th>
                     </tr>
                   </thead>
                   <tfoot>
-                   <tr>
+                    <tr>
                       <th>Name</th>
-                      <th>Surname</th>
-                      <th>SSN</th>
-                      <th>Vocation</th>
-                      <th>Shift</th>
-                      <th>Change Shift</th>
+                      <th>Position</th>
+                      <th>Office</th>
+                      <th>Age</th>
+                      <th>Start date</th>
+                      <th>Salary</th>
                     </tr>
                   </tfoot>
                   <tbody>
-
+                    <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                      <td>61</td>
+                      <td>2011/04/25</td>
+                      <td>$320,800</td>
+                    </tr>
         
                   </tbody>
                 </table>
@@ -214,13 +216,12 @@
         <!-- /.container-fluid -->
 
       </div>
-            
-
-        <div class="form-group">
-               <input type="button" value="Confirm Changes" class="btn float-right login_btn" style="background-color: #4e73df; color:black; margin: 5px; margin-right: 20px; color:white;" data-toggle="modal" data-target="#changeModal" >
+      
+                    <div class="form-group">
+               <input type="button" value="Confirm Changes" class="btn float-right login_btn" style="background-color: #4e73df; color:black; margin: 5px; margin-right: 20px; color:white;" data-toggle="modal" data-target="#deleteModal">
 					
-               </div>
-             
+               </div> 
+                  
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -262,24 +263,22 @@
       </div>
     </div>
   </div>
-    <!-- Logout Modal-->
- 
   
-    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Change Shift?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Delete Patient/s?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" >
-       Select "Change" below if you are ready to change shift/s.
+       Select "Delete" below if you are ready to delete patient/s account.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="confirm">Change</button>
+        <button type="button" class="btn btn-primary" id="confirm">Delete</button>
       </div>
     </div>
   </div>
@@ -295,7 +294,7 @@
         </button>
       </div>
       <div class="modal-body">
-      You have successfully changed shift\s!
+      You have successfully deleted account/s!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
@@ -304,7 +303,26 @@
     </div>
   </div>
 </div>
-<script src="js/admin.js"></script>
+   <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:red">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You need to select a patient/s!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: red" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -326,7 +344,7 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
   
     <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/lekar.js" type="module"></script>
+    <script src="js/adminPacijenti.js"></script>
 
 </body>
 

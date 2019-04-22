@@ -376,6 +376,35 @@ public function dodajLekara($lekar)
     }
     }
 
+    public function vratiLekara($username, $password) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from doktor where korisnicko_ime='$username' and sifra='$password';;");
+        if ($res) {
+            $lekar = null;
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            if ($row = $res->fetch_assoc()) {
+				
+				$lekar=new Lekar($row['id'],$row['ime'], $row['prezime'],$row['jmbg'],$row['zvanje'],
+                                        $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['smena']);
+            }
+            // zatvaranje objekta koji cuva rezultat
+            
+            return $lekar;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
 }
 
 

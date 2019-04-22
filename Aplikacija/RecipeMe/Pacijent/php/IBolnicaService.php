@@ -16,4 +16,5 @@ interface IBolnicaService {
     function vratiRadnoVreme();
     function azurirajRadnoVreme($radni_dan,$subota,$nedelja);
     function vratiAdmina($username,$password);
+    function vratiLekara($username,$password);
 }
