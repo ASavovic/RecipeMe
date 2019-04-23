@@ -27,7 +27,7 @@
        
 	<!--Custom styles-->
 
-        <link rel="stylesheet" type="text/css" href="../css/pacijent.css">
+        <link rel="stylesheet" type="text/css" href="../css/zakazivanjePregleda.css">
        
 </head>
 <body>
@@ -105,13 +105,13 @@ window.onclick = function(event) {
                             
                                <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Profile</a>
+    <a class="nav-link" href="#">Profile</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="uzmiRecept.html">Take Recipe</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="zakaziPregled.html">Set up review</a>
+    <a class="nav-link active" href="zakaziPregled.html">Set up review</a>
   </li>
  
 </ul>
@@ -119,50 +119,89 @@ window.onclick = function(event) {
 			</div>
 			<div class="card-body">
 				<form>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i>Name</span>
-						</div>
-						<input type="text" class="form-control"  name="ime" id="ime">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i>Surname</span>
-						</div>
-						<input type="text" class="form-control"   name="prezime" id="prezime">
-					</div>
-                                     
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-key"></i>SSN</span>
-						</div>
-						<input  class="form-control"  name="jmbg" id="jmbg">
-					</div>
-                                  <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-envelope"></i>Chronic patient</span>
-						</div>
-						<input type="text" class="form-control"  name="bolest" id="hronicni">
-					</div>
+                                    
                                     <div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-envelope"></i>Email</span>
+							<span class="input-group-text">Fever</span>
 						</div>
-						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email">
-					</div>
-                                     <div class="input-group form-group">
+                                        <select class="form-control" id="temperatura">
+                                            <option value="36">36</option>
+                                            <option value="37">37</option>
+                                            <option value="38">38</option>
+                                            <option value="39">39</option>
+                                            <option value="40+">40+</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-mobile" ></i>Phone number</span>
+							<span class="input-group-text">Pain in throat</span>
 						</div>
-						<input  class="form-control" pattern="[0-9]{9,10}" name="telefon">
+                                         <select class="form-control" id="grlo">
+                                            <option value="yes">Yes</option>
+                                             <option value="no">No</option>
+                                             <option value="periodically">Periodically</option>
+                                            
+                                        </select>
+                                       
 					</div>
-                                     <div class="form-group">
-                              
-                                        
-                                            <button  class="btn float-right login_btn" id="recept"/><i class="far fa-edit" style="font-size:18px; font:solid"></i>Edit </button>
-					 </div>
-           
+                                        <div id="kasalj" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Coughing</span>
+						</div>
+                                        <label class="radio-inline mr-2 ml-2"><input type="radio" name="optradio" value="Low" checked> Low</label>
+                                        <label class="radio-inline mr-2"><input type="radio" name="optradio" value="Medium"> Medium</label>
+                                        <label class="radio-inline mr-2"><input type="radio" name="optradio" value="Strong"> Strong</label> 
+                                       
+					</div>
+                                     <div id="kasalj" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Sneeze</span>
+						</div>
+                                        <label class="radio-inline mr-2 ml-2"><input type="radio" name="kijanje" value="Yes" checked> Yes</label>
+                                        <label class="radio-inline mr-2 "><input type="radio" name="kijanje" value="No"> No</label>
+                            
+					</div>
+                                    <div id="curenje" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Leakage-nose</span>
+						</div>
+                                        <label class="radio-inline mr-2 ml-2"><input type="radio" name="curenje" value="Yes" checked> Yes</label>
+                                        <label class="radio-inline mr-2"><input type="radio" name="curenje" value="No"> No</label>
+                            
+					</div>
+                                      <div id="komentar" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Comments</span>
+						</div>
+                                        <textarea class="form-control"  id="komentar"></textarea>
+                            
+					</div>
+                                        <div  class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Doctor</span>
+						</div>
+                                        <select class="form-control" id="doktor">
+                                           
+                                        </select>
+                                    </div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+						</div>
+						<input type="date" class="form-control" placeholder="Date">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class='fas fa-clock'></i></span>
+						</div>
+						<input type="time" class="form-control">
+					</div>
+                                      
+                                               
+                                       
+					<div class="form-group">
+						<input type="submit" value="Send" class="btn float-right login_btn">
+					</div>
 				</form>
 			</div>
 			

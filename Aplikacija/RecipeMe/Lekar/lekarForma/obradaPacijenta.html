@@ -17,7 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../../Pacijent/css/kreiranjeNaloga.css" rel="stylesheet">
+  <link href="../../Pacijent/css/zakazivanjePregleda.css" rel="stylesheet">
 
 </head>
 
@@ -169,101 +169,106 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Doctor Profile</h1>
+          <h1 class="h3 mb-2 text-gray-800">Ime Prezime<br>SSN</h1>
           
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4" style="background-color: white !important; width: 100%;">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Personal Data</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Patient's problems </h6>
             </div>
-            <div class="card-body" ">
-             
-				
-                                  
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Name" name="ime">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Surname" name="prezime">
-					</div>
-                                       <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-mobile" ></i></span>
-						</div>
-						
-                                                <select class=" custom-select form-control"  name="smena">
-                                               <option value="" disabled selected hidden>Shift</option>
-                                                <option value="1">First</option>
-                                                <option value="2">Second</option>
-                                                 <option value="3">Night</option>
-                                                 
-                                                </select>
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-key"></i></span>
-						</div>
-						<input  class="form-control" pattern="[0-9]{13}" placeholder="SSN" name="jmbg">
-					</div>
-                                  <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-envelope"></i></span>
-						</div>
-						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" name="email">
-					</div>
-                                         <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z0-9._%+-]{4,}" placeholder="Username" name="korisnickoIme">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input  class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Password" name="sifra">
-					</div>
-                               
-                                 
-                
+            <div class="card-body" style="width:100%;">
+       
+
+				<form>
+                                    
                                     <div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-graduation-cap"></i></span>
+							<span class="input-group-text text-white">Fever</span>
 						</div>
-						 <select class=" custom-select form-control"  name="titula">
-                                               <option value="" disabled selected hidden>Vocation</option>
-                                                <option value="Ophthalmologist">Ophthalmologist</option>
-                                                <option value="Pediatrician">Pediatrician</option>
-                                                 <option value="Psychiatrist">Psychiatrist</option>
-                                                 <option value="Neurosurgeon">Neurosurgeon</option>
-                                                 <option value="Cardiologist">Cardiologist</option>
-                                                  <option value="Dermatologist">Dermatologist</option>
-                                                   <option value="Neurologist">Neurologist</option>
-                                                   <option value="Rheumatologist">Rheumatologist</option>
-                                                 
-                                                </select>
+                                        <select class="form-control" id="temperatura">
+                                            <option value="36">36</option>
+                                            <option value="37">37</option>
+                                            <option value="38">38</option>
+                                            <option value="39">39</option>
+                                            <option value="40+">40+</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text text-white">Pain in throat</span>
+						</div>
+                                         <select class="form-control" id="grlo">
+                                            <option value="yes">Yes</option>
+                                             <option value="no">No</option>
+                                             <option value="periodically">Periodically</option>
+                                            
+                                        </select>
+                                       
 					</div>
-						
- 							
-					<div class="form-group">
+                                        <div id="kasalj" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text text-white">Coughing</span>
+						</div>
+                                        <label style="color:black !important;" class="radio-inline"><input type="radio" name="optradio" value="Low" checked > Low</label>
+                                        <label style="color:black !important;" class="radio-inline"><input type="radio" name="optradio" value="Medium"> Medium</label>
+                                        <label style="color:black !important;" class="radio-inline"><input type="radio" name="optradio" value="Strong"> Strong</label> 
+                                       
+					</div>
+                                     <div id="kasalj" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text text-white">Sneeze</span>
+						</div>
+                                        <label style="color:black !important;" class="radio-inline"><input type="radio" name="kijanje" value="Yes" checked> Yes</label>
+                                        <label style="color:black !important;" class="radio-inline"><input type="radio" name="kijanje" value="No"> No</label>
+                            
+					</div>
+                                    <div id="curenje" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text text-white">Leakage-nose</span>
+						</div>
+                                        <label style="color:black !important;" class="radio-inline"><input type="radio" name="curenje" value="Yes" checked> Yes</label>
+                                        <label style="color:black !important;" class="radio-inline"><input type="radio" name="curenje" value="No"> No</label>
+                            
+					</div>
+                                      <div id="komentar" class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text text-white">Comments</span>
+						</div>
+                                        <textarea class="form-control"  id="komentar"></textarea>
+                            
+					</div>
+                                        <div  class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text text-white">Doctor</span>
+						</div>
+                                        <select class="form-control" id="doktor">
                                            
-                                            <input type="button" value="Update"  class="btn float-right login_btn" name="Update">
-					
-                                        </div>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-lg-4 offset-lg-8">
+                                   
+                                        <button type="button" class="btn btn-primary " id="recept" style="width:250px; float:right; ">Send a prescription</button>
+                                    </div>
+                                    <div  class="col-lg-4 offset-lg-8" style="padding-top:10px;">
+                                    <button type="button" class="btn btn-primary  " id="pregled" style="width:250px; float:right;">Accept</button>
+                                   </div>
+                                        <div class="col-lg-4 offset-lg-8" style="padding-top:10px;">
+                                    <button type="button" class="btn btn-primary  " id="odbij" style="width:250px; float:right;">Deny</button>
+                                   </div>
+                                    </div>
+				</form>
 				
-      </div>
+                                  
+			
+				
+      
           </div>
+              
         </div>
                   
+        </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -370,6 +375,7 @@
 
 <script src="js/profile.js" type="module"></script>
 <script src="js/lekar.js" type="module" ></script>
+<script src="js/prepisiRecept.js" type="module"></script>
 </body>
 
 </html>

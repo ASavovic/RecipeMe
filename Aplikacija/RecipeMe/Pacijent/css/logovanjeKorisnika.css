@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('https://images7.alphacoders.com/697/697207.jpg');
+background-image: url('bg_1.jpg');
 
 background-size: cover;
 background-repeat: no-repeat;
@@ -17,10 +17,10 @@ align-content: center;
 }
 
 .card{
-height: 350px;
+height: 300px;
 margin-top: auto;
 margin-bottom: auto;
-width: 400px;
+width: 500px;
 background-color: rgba(0,0,0,0.5) !important;
 }
 
@@ -37,7 +37,7 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: #007bff;
+background-color: #4e73df;
 color: black;
 border:0 !important;
 }
@@ -62,7 +62,7 @@ margin-right: 5px;
 
 .login_btn{
 color: black;
-background-color: #007bff;
+background-color: #4e73df;
 width: 100px;
 }
 
@@ -77,13 +77,4 @@ color: white;
 
 .links a{
 margin-left: 4px;
-}
-#alert{
-    margin-top: 20px;
-}
-i{
-    margin-right: 2px;
-}
-#izlaz{
-    margin-right: 0px;
 }

@@ -17,7 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../../Pacijent/css/kreiranjeNaloga.css" rel="stylesheet">
+  <link href="../../Pacijent/css/zakazivanjePregleda.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 </head>
 
@@ -169,108 +170,102 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Doctor Profile</h1>
+          <h1 class="h3 mb-2 text-gray-800" id="naslov">Name Surname <br>SSN</h1>
+          
           
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4" style="background-color: white !important; width: 100%;">
+          <div class="card shadow mb-5" style="background-color: white !important; width: 100%;">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Personal Data</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Prescription for the patient </h6>
             </div>
-            <div class="card-body" ">
-             
+      <div class="card-body">
+      <div class="panel panel-primary">
+      <div class="panel-heading">RecipeMe Hospital</div>
+      <div class="panel-body" style="display:flex; flex-direction:row;">
+       <div style="flex-grow:1;">
+              <p >Email: info.recipeme@gmail.com</p>
+          </div>
+             <div style="flex-grow: 1;">
+              <p>Contact: +381 64 857 6383</p>
+          </div>
+             <div style="flex-grow: 1;">
+                 <p >Adress: Bulevar Dr. Zorana Đinđića 48 <br> 18000 Niš, Serbia</p>
+          </div>
+      </div>
+    </div>
+     <div class="panel panel-primary">
+      <div class="panel-heading">Patient</div>
+      <div class="panel-body" style="display:flex; flex-direction:row;">
+          <div style="flex-grow:1;">
+              <p id="ime">Name: ime_pacijenta</p>
+          </div>
+             <div style="flex-grow: 1;">
+              <p id="prezime">Surname: prezime_pacijenta</p>
+          </div>
+             <div style="flex-grow: 1;">
+                 <p id="jmbg">SSN: jmbg</p>
+          </div>
+             <div style="flex-grow: 1;">
+                 <p id="telefon">Contact: telefon</p>
+          </div>
+         <div style="flex-grow: 1;">
+                 <p id="email">Email: email</p>
+          </div>
+      </div>
+    </div>
+   <div class="panel panel-primary">
+      <div class="panel-heading">Patient diagnosis</div>
+      <div class="panel-body" style="display:flex; flex-direction:column;">
+          <div style="flex-grow:1;">
+             <div class="form-group">
+                 <textarea class="form-control" rows="5" id="dijagnoza" placeholder="Enter the diagnosis...  "></textarea>
+        </div>
+              </div>
+         <div style="flex-grow:1;">
+             <input class="form-control" id="sifraDijagnoze" placeholder="Enter the diagnosis code...">
+        </div>
+              </div>
+
+      </div>
+      <div class="panel panel-primary">
+      <div class="panel-heading">Doctor</div>
+      <div class="panel-body" style="display:flex; flex-direction:row;">
+          <div style="flex-grow:1;">
+              <p id="imeDoktora">Name: ime_doktora</p>
+          </div>
+             <div style="flex-grow: 1;">
+              <p id="prezimeDoktora">Surname: prezime_doktora</p>
+          </div>
+
+          <div style="flex-grow: 1;">
+                 <p id="telefonDoktora">Contact: telefon</p>
+          </div>
+         <div style="flex-grow: 1;">
+                 <p id="emailDoktora">Email: email</p>
+          </div>
+              </div>
+
+      </div>
+  
+  
 				
                                   
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Name" name="ime">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Surname" name="prezime">
-					</div>
-                                       <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-mobile" ></i></span>
-						</div>
-						
-                                                <select class=" custom-select form-control"  name="smena">
-                                               <option value="" disabled selected hidden>Shift</option>
-                                                <option value="1">First</option>
-                                                <option value="2">Second</option>
-                                                 <option value="3">Night</option>
-                                                 
-                                                </select>
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-key"></i></span>
-						</div>
-						<input  class="form-control" pattern="[0-9]{13}" placeholder="SSN" name="jmbg">
-					</div>
-                                  <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-envelope"></i></span>
-						</div>
-						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" name="email">
-					</div>
-                                         <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z0-9._%+-]{4,}" placeholder="Username" name="korisnickoIme">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input  class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Password" name="sifra">
-					</div>
-                               
-                                 
-                
-                                    <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-graduation-cap"></i></span>
-						</div>
-						 <select class=" custom-select form-control"  name="titula">
-                                               <option value="" disabled selected hidden>Vocation</option>
-                                                <option value="Ophthalmologist">Ophthalmologist</option>
-                                                <option value="Pediatrician">Pediatrician</option>
-                                                 <option value="Psychiatrist">Psychiatrist</option>
-                                                 <option value="Neurosurgeon">Neurosurgeon</option>
-                                                 <option value="Cardiologist">Cardiologist</option>
-                                                  <option value="Dermatologist">Dermatologist</option>
-                                                   <option value="Neurologist">Neurologist</option>
-                                                   <option value="Rheumatologist">Rheumatologist</option>
-                                                 
-                                                </select>
-					</div>
-						
- 							
-					<div class="form-group">
-                                           
-                                            <input type="button" value="Update"  class="btn float-right login_btn" name="Update">
-					
-                                        </div>
+			
 				
-      </div>
+      
           </div>
+              
         </div>
-                  
+         <button  id="send" class="btn btn-primary float-right mb-2">Send</button>         
+        </div> 
       <!-- End of Main Content -->
-
+   
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span style="color: white">Copyright &copy; RecipeMe 2019</span>
+            <span style="color: white; font-size:12.8px;">Copyright &copy; RecipeMe 2019</span>
           </div>
         </div>
       </footer>
@@ -370,6 +365,7 @@
 
 <script src="js/profile.js" type="module"></script>
 <script src="js/lekar.js" type="module" ></script>
+
 </body>
 
 </html>
