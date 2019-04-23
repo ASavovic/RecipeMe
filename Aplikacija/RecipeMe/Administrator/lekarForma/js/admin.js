@@ -16,7 +16,7 @@ function prikaziLekare(){
            .catch(error => console.log(error));
     
     }
-    
+    var id;
 function prikaziPodatke(listaLekara)
 {
     
@@ -25,7 +25,7 @@ function prikaziPodatke(listaLekara)
 listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar.smena;
         listaLekaraPod[lekar.id]=lekar;
-        let id=1;
+        id=1;
         innerHTMLTabele += "<tr id='"+id+"'><td>"+ lekar.ime +"</td><td>"+ lekar.prezime 
                 + "</td><td>"+lekar.jmbg+"</td><td>"+ lekar.zvanje 
                 + "</td><td>"+Smena(lekar.smena) +"</td><td>"

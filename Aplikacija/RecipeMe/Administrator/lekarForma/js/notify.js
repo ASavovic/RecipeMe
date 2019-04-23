@@ -15,7 +15,7 @@ function prikaziLekare(){
            .catch(error => console.log(error));
     
     }
-    
+    var id;
 function prikaziPodatke(listaLekara)
 {
     let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>Vocation</th><th>Email</th><th>Check Doctor</th></tr></thead>\n\
@@ -23,7 +23,7 @@ function prikaziPodatke(listaLekara)
     
     listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar;
-        let id=1;
+        id=1;
         innerHTMLTabele += "<tr id='"+id+"'><td>"+ lekar.ime + "</td><td> "+ lekar.prezime 
                 + "</td><td>"+ lekar.zvanje 
                 + "</td><td>"+lekar.email +"</td><td>"
@@ -60,6 +60,7 @@ function posaljiPorukuLekaru(lekar)
     //console.log(lekar);
     $("#notifyModel").modal('hide');
     const formData = new FormData();
+    formData.append("id", lekar.id);
     formData.append("ime", lekar.ime);
     formData.append("prezime", lekar.prezime);
     formData.append("email", lekar.email);

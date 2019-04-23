@@ -3,8 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 require_once '../../PHPMailer/PHPMailer.php';
 require_once '../../PHPMailer/SMTP.php';
 require_once '../../PHPMailer/Exception.php';
-//include_once 'lib.php';
-//$baza=new PacijentService();
+include_once '../../Pacijent/php/lib.php';
+include_once 'obavestenje.php';
+$baza=new PacijentService();
 if(isset($_POST["ime"]))
 {
     
@@ -27,7 +28,8 @@ if(isset($_POST["ime"]))
           "<br><br>"
          . "Pozdrav,<br>"
          . "3SGroup.";
- 
+ $obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0);
+ $baza->ubaciObavestenje($obavestenje);
  if($mail->send())
      echo "Email sent!";
  else

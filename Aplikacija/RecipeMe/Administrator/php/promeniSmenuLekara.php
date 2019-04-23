@@ -4,11 +4,12 @@ require_once '../../PHPMailer/PHPMailer.php';
 require_once '../../PHPMailer/SMTP.php';
 require_once '../../PHPMailer/Exception.php';
 include_once '../../Pacijent/php/lib.php';
+include_once 'obavestenje.php';
 $baza=new PacijentService();
 if (isset($_POST["id"])) {
         $baza->promeniSmenuLekara($_POST["id"],$_POST["smena"]);
         $lekari=$baza->vratiSveLekare();  
-    }
+    
  
 echo json_encode($lekari);
 
@@ -30,8 +31,10 @@ echo json_encode($lekari);
           "<br><br>"
          . "Pozdrav,<br>"
          . "3SGroup.";
- 
+ $obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0);
+ $baza->ubaciObavestenje($obavestenje);
  if($mail->send())
  {}
  else
      echo "Wrong!".$mail->ErrorInfo;
+}

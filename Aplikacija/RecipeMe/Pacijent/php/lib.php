@@ -12,6 +12,7 @@ include_once '../../Lekar/php/ListaLekara.php';
 include_once '../../Lekar/php/Lekar.php';
 include_once '../../Administrator/php/radnoVreme.php';
 include_once '../../Administrator/php/administrator.php';
+include_once '../../Administrator/php/obavestenje.php';
 
 class PacijentService implements IBolnicaService
 {
@@ -457,7 +458,29 @@ public function dodajLekara($lekar)
         }
         }
     }
-
+public function ubaciObavestenje($obavestenje){
+       $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("INSERT INTO obavestenje (id_lekara, text_poruke, flag_vidjena)"
+                . " VALUES "
+                . "('$obavestenje->id_lekara', '$obavestenje->text_poruke',0)");
+                
+        if ($res) {
+            
+       
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
 }
 
-
+}
