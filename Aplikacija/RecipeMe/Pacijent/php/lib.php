@@ -467,9 +467,9 @@ public function ubaciObavestenje($obavestenje){
     else {
         // $res je rezultat izvrsenja upita
         
-        $res=$con->query("INSERT INTO obavestenje (id_lekara, text_poruke, flag_vidjena)"
+        $res=$con->query("INSERT INTO obavestenje (id_lekara, text_poruke, flag_vidjena,datum,vreme)"
                 . " VALUES "
-                . "('$obavestenje->id_lekara', '$obavestenje->text_poruke',0)");
+                . "('$obavestenje->id_lekara', '$obavestenje->text_poruke',0,CURRENT_DATE,CURRENT_TIME)");
                 
         if ($res) {
             

@@ -31,7 +31,7 @@ echo json_encode($lekari);
           "<br><br>"
          . "Pozdrav,<br>"
          . "3SGroup.";
- $obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0);
+ $obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0,0,0);
  $baza->ubaciObavestenje($obavestenje);
  if($mail->send())
  {}
