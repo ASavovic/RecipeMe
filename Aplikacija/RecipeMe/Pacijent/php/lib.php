@@ -483,4 +483,25 @@ public function ubaciObavestenje($obavestenje){
     }
 }
 
+public function promeniHronicneBolesnike($id,$hronicni)
+{
+       $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update pacijent set hronicniBolesnik=$hronicni where id = $id");
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+
 }
