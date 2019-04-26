@@ -42,39 +42,16 @@
 	          <li class="nav-item"><a href="services.html" class="nav-link font-weight-bold"  style="font-size:18px">Services</a></li>
 	          <li class="nav-item"><a href="doctors.html" class="nav-link font-weight-bold"  style="font-size:18px">Doctors</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold"  style="font-size:18px">Contact</a></li>
+	         <li  class="nav-item border" style=" border-radius: 25px;" >
+	        <div class="nav-link">
+			  <a href="../../Pacijent/html/logovanjeKorisnika.html" id="id1" onclick="myFunction()"  class="  font-weight-bold text-white"  aria-haspopup="true" aria-expanded="false" style="font-size:18px">Log in</a>
 			  
-			  <li class="nav-item border" style=" border-radius: 25px;" >
-			  <div class="dropdown nav-link">
-			  <span id="id1" onclick="myFunction()"  class=" dropdown-toggle font-weight-bold " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px">Log in</span>
-			  <div id="nav-tabs-wrapper" class="dropdown-menu  ">
-			  <a class="dropdown-item" style="font-size:14px" href="#">As Doctor</a>
-			  <a class="dropdown-item" style="font-size:14px"  href="../../Pacijent/html/logovanjeKorisnika.html">As Patient</a>
-                          </div>
                           
 		</div>
 		</li>
              
 			
-			<script>
-			function myFunction() {
-				document.getElementById("myDropdown").classList.toggle("show");
-				}
-
-
-			window.onclick = function(event) {
-			if (!event.target.matches('.dropdown-toggle')) {
-			var dropdowns = document.getElementsByClassName("nav nav-tabs nav-tabs-horizontal");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-      }
-    }
-  }
-} 
-});
-</script>
+			
 			
 			
 	        </ul>
@@ -657,6 +634,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeVa1hULe3G5LCVW3Ji88SdPSxGEw9e3M&sensors=true"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-  <script type="module" src="javascript/index.js"></script>
+  
   </body>
 </html>

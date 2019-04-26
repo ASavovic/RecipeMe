@@ -504,4 +504,115 @@ public function promeniHronicneBolesnike($id,$hronicni)
         }
     }
 
+    public function izmeniPacijenta($ime, $prezime, $email, $jmbg, $telefon, $username, $password) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update pacijent set ime='$ime', prezime='$prezime', jmbg='$jmbg', email='$email', sifra='$password', broj_telefona='$telefon'
+                where korisnicko_ime='$username';");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+
+    public function vratiKorisnika($username) {
+        $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from pacijent where korisnicko_ime='$username'");
+        if ($res) {
+            $pacijent = null;
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            if ($row = $res->fetch_assoc()) {
+				
+				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+
+            }
+            // zatvaranje objekta koji cuva rezultat
+            
+            return $pacijent;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
+    public function vratiDoktore($smena) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from doktor where smena='$smena'");
+        if ($res) {
+            $niz = array();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$lekar=new Lekar($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['zvanje'],
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['smena']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+		$niz[]=$lekar;
+
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    
+        
+    }
+    }
+
+    public function unesiTegobe($pacijent, $tegobe) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("INSERT INTO tegobe (pacijent, groznica, bolGrlo, kasalj, kijanje, curenje, komentar, doktorId, datum, vreme)"
+                . " VALUES "
+                . "('$pacijent', '$tegobe->groznica', '$tegobe->bolGrlo', '$tegobe->kasalj', '$tegobe->kijanje', '$tegobe->curenjeNos',"
+                . "'$tegobe->komentar', '$tegobe->doktorId', '$tegobe->datum', '$tegobe->vreme')");
+        if ($res) {
+            
+       
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
 }
+

@@ -20,4 +20,8 @@ interface IBolnicaService {
     function vratiDoktora($username);
     function izmeniLekara($ime,$prezime,$jmbg, $smena, $email, $korisnickoIme, $sifra,$zvanje);
     function ubaciObavestenje($obavestenje);
+    function izmeniPacijenta($ime,$prezime,$email,$jmbg,$telefon,$username,$password);
+    function vratiKorisnika($username);
+    function vratiDoktore($smena);
+    function unesiTegobe($pacijent,$tegobe);
 }
