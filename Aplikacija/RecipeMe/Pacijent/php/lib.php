@@ -63,7 +63,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -93,7 +93,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -124,7 +124,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest'],$row["doza"],$row["kontrola"],$row["datum"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -155,7 +155,7 @@ class PacijentService implements IBolnicaService
             while ($row = $res->fetch_assoc()) {
 				
 		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 		$niz->dodajPacijenta($pacijent);
 
             }
@@ -542,7 +542,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -631,7 +631,8 @@ public function promeniHronicneBolesnike($id,$hronicni)
             while ($row = $res->fetch_assoc()) {
 				
 		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],
+                        $row["doza"],$row["kontrola"],$row["datum"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 		$niz[]=$pacijent;
 
             }
@@ -646,7 +647,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
     }
     }
 
-    public function izmeniHronicnogPacijenta($pacijent, $hronicni, $dijagnoza, $medikamenti, $doktor) {
+    public function izmeniHronicnogPacijenta($pacijent, $hronicni, $dijagnoza, $medikamenti, $doktor,$doza,$kontrola,$datum) {
         
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
     if ($con->connect_errno) {
@@ -655,7 +656,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
     }
    else {
             // $res je rezultat izvrsenja upita
-            $res = $con->query("update pacijent set hronicniBolesnik='$hronicni', dijagnoza='$dijagnoza', medikamenti='$medikamenti', doktor='$doktor' where id='$pacijent';");
+            $res = $con->query("update pacijent set hronicniBolesnik='$hronicni', dijagnoza='$dijagnoza', medikamenti='$medikamenti', doktor='$doktor', doza='$doza', kontrola='$kontrola', datum='$datum' where id='$pacijent';");
            
           
         if ($res) {

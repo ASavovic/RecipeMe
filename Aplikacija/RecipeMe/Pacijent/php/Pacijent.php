@@ -14,8 +14,12 @@ class Pacijent {
    public $dijagnoza;
    public $medikamenti;
    public $doktor;
+   public $doza;
+   public $kontrola;
+   public $datum;
    
-   function  __construct($id,$ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$dijagnoza,$medikamenti,$doktor)
+   
+   function  __construct($id,$ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$dijagnoza,$medikamenti,$doktor,$doza,$kontrola,$datum)
    {
        $this->id=$id;
        $this->jmbg=$jmbg;
@@ -29,6 +33,9 @@ class Pacijent {
        $this->dijagnoza=$dijagnoza;
        $this->medikamenti=$medikamenti;
        $this->doktor=$doktor;
+       $this->doza=$doza;
+       $this->kontrola=$kontrola;
+       $this->datum=$datum;
        
    }
    

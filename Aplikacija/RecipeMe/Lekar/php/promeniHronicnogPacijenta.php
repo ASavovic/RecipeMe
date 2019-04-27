@@ -6,7 +6,7 @@ $baza=new PacijentService();
 if($_POST["pacijent"] && $_POST["doktor"])
 {
    
-   $baza->izmeniHronicnogPacijenta($_POST["pacijent"],$_POST["hronicni"],$_POST["dijagnoza"], $_POST["medikamenti"], $_POST["doktor"]); 
+   $baza->izmeniHronicnogPacijenta($_POST["pacijent"],$_POST["hronicni"],$_POST["dijagnoza"], $_POST["medikamenti"], $_POST["doktor"],$_POST["doza"],$_POST["kontrola"],$_POST["datum"]); 
 }
 
 ?>
