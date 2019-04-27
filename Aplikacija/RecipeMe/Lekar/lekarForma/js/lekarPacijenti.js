@@ -54,13 +54,13 @@ let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><
             medikamenti=pacijent.medikamenti;
         if(pom==true)    
         { innerHTMLTabele += "<tr id='"+id+"'><td>"+ pacijent.ime +"</td><td>"+ pacijent.prezime 
-                + "</td><td>"+pacijent.jmbg+"</td><td>"+ pacijent.email+"</td><td ><input class='ml-3' name='"+pacijent.id+"' type='checkbox' checked disabled/></td><td><textarea name='"+pacijent.id+"' disabled>"+dijagnoza+"</textarea></td><td><textarea name='"+pacijent.id+"' disabled>"+medikamenti+"</textarea></td><td><button class='btn btn-primary' name='edit' id="+pacijent.id+">Edit</button>"
+                + "</td><td>"+pacijent.jmbg+"</td><td>"+ pacijent.email+"</td><td ><input class='ml-3' name='"+pacijent.id+"' type='checkbox' checked disabled/></td><td><textarea id='dijagnoza"+pacijent.id+"' name='"+pacijent.id+"' disabled>"+dijagnoza+"</textarea></td><td><textarea id='medikamenti"+pacijent.id+"' name='"+pacijent.id+"' disabled>"+medikamenti+"</textarea></td><td><button class='btn btn-primary' name='edit' id="+pacijent.id+">Edit</button>"
                 +"</td></tr>";
         }
         else
         {
             innerHTMLTabele += "<tr id='"+id+"'><td>"+ pacijent.ime +"</td><td>"+ pacijent.prezime 
-                + "</td><td>"+pacijent.jmbg+"</td><td>"+ pacijent.email+"</td><td ><input class='ml-3' name='"+pacijent.id+"' type='checkbox' disabled/></td><td><textarea id='dijagnoza' name='"+pacijent.id+"' disabled>"+dijagnoza+"</textarea></td><td><textarea id='medikamenti' name='"+pacijent.id+"' disabled>"+medikamenti+"</textarea></td><td><button class='btn btn-primary' name='edit' id="+pacijent.id+">Edit</button>"
+                + "</td><td>"+pacijent.jmbg+"</td><td>"+ pacijent.email+"</td><td ><input class='ml-3' name='"+pacijent.id+"' type='checkbox' disabled/></td><td><textarea id='dijagnoza"+pacijent.id+"' name='"+pacijent.id+"' disabled>"+dijagnoza+"</textarea></td><td><textarea id='medikamenti"+pacijent.id+"' name='"+pacijent.id+"' disabled>"+medikamenti+"</textarea></td><td><button class='btn btn-primary' name='edit' id="+pacijent.id+">Edit</button>"
                 +"</td></tr>";
             
         }
@@ -76,12 +76,13 @@ let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><
 }
 function omoguciPromene(d)
 {
-    idPacijenta=d.id;
+    
     if(d.innerHTML=="Edit")
     {
+        idPacijenta=d.id;
         let nizElemenata=document.querySelectorAll("input[name='"+d.id+"'");
-        const dijagnoza=document.getElementById("dijagnoza");
-        const medikamenti=document.getElementById("medikamenti");
+        const dijagnoza=document.getElementById("dijagnoza"+d.id);
+        const medikamenti=document.getElementById("medikamenti"+d.id);
         nizElemenata.forEach(el => {
             el.disabled=false;
         });
@@ -93,6 +94,26 @@ function omoguciPromene(d)
     }
     else
     {
+        let nizElemenata=document.querySelectorAll("input[name='"+idPacijenta+"'");
+        const dijagnoza=document.getElementById("dijagnoza"+idPacijenta);
+        const medikamenti=document.getElementById("medikamenti"+idPacijenta);
+        if(nizElemenata[0].checked==true)
+        {
+            if(dijagnoza.value=="" || medikamenti.value=="")
+            { 
+                $('#warningModal').modal('show');
+                return;
+            }
+            else
+            {
+               $('#confirmModal').modal('show'); 
+            }
+        }
+        else
+        {
+            dijagnoza.value="";
+            medikamenti.value="";
+        }
         $('#confirmModal').modal('show');
         
         
@@ -102,15 +123,15 @@ function omoguciPromene(d)
 
 function azurirajHronicneBolesnike(ev)
 {
+    
      $('#confirmModal').modal('hide');
         let nizElemenata=document.querySelectorAll("input[name='"+idPacijenta+"'");
-        const dijagnoza=document.getElementById("dijagnoza");
-        const medikamenti=document.getElementById("medikamenti"); 
+        const dijagnoza=document.getElementById("dijagnoza"+idPacijenta);
+        const medikamenti=document.getElementById("medikamenti"+idPacijenta); 
         var url_string = window.location.href;
         var url = new URL(url_string);
         var username = url.searchParams.get("name");
-        
-        const formData=new FormData();
+         const formData=new FormData();
         let pom=0;
         if(nizElemenata[0].checked==true)
             pom=1;
