@@ -31,10 +31,14 @@ class PacijentService implements IBolnicaService
     else {
         // $res je rezultat izvrsenja upita
         
-        $res=$con->query("INSERT INTO pacijent (jmbg, ime, prezime, broj_telefona, korisnicko_ime, sifra, email, hronicniBolesnik, bolest)"
+        /*$res=$con->query("INSERT INTO pacijent (jmbg, ime, prezime, broj_telefona, korisnicko_ime, sifra, email, hronicniBolesnik, bolest)"
                 . " VALUES "
                 . "('$p->jmbg', '$p->ime', '$p->prezime', '$p->telefon', '$p->korisnickoIme', "
-                . "'$p->sifra', '$p->email', $p->hronicniBolesnik, '$p->bolest')");
+                . "'$p->sifra', '$p->email', $p->hronicniBolesnik, '$p->bolest')");*/
+        $res=$con->query("INSERT INTO pacijent (jmbg, ime, prezime, broj_telefona, korisnicko_ime, sifra, email)"
+                . " VALUES "
+                . "('$p->jmbg', '$p->ime', '$p->prezime', '$p->telefon', '$p->korisnickoIme', "
+                . "'$p->sifra', '$p->email')");
         if ($res) {
             
         print("Dobro je proslo");
@@ -668,6 +672,38 @@ public function promeniHronicneBolesnike($id,$hronicni)
         }
         }
     }
+    
+    public function vratiSvePacijentee() {
+   $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from pacijent");
+        if ($res) {
+            $niz = new ListaPacijenata();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+		$niz->dodajPacijenta($pacijent);
+
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+
+}
 
 }
 
