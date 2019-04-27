@@ -63,7 +63,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -93,7 +93,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -139,7 +139,7 @@ class PacijentService implements IBolnicaService
     
     }
 
-    public function vratiSvePacijente() {
+    public function vratiSvePacijente($username) {
    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
     if ($con->connect_errno) {
         // u slucaju greske odstampati odgovarajucu poruku
@@ -147,7 +147,7 @@ class PacijentService implements IBolnicaService
     }
     else {
         // $res je rezultat izvrsenja upita
-        $res = $con->query("select * from pacijent");
+        $res = $con->query("select * from pacijent where korisnicko_ime in ( select pacijent from tegobe where doktorId='$username')");
         if ($res) {
             $niz = new ListaPacijenata();
             // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
@@ -155,7 +155,7 @@ class PacijentService implements IBolnicaService
             while ($row = $res->fetch_assoc()) {
 				
 		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 		$niz->dodajPacijenta($pacijent);
 
             }
@@ -542,7 +542,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -589,7 +589,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
     }
     }
 
-    public function unesiTegobe($pacijent, $tegobe) {
+    public function unesiTegobe( $tegobe) {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
     if ($con->connect_errno) {
         // u slucaju greske odstampati odgovarajucu poruku
@@ -600,7 +600,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
         
         $res=$con->query("INSERT INTO tegobe (pacijent, groznica, bolGrlo, kasalj, kijanje, curenje, komentar, doktorId, datum, vreme)"
                 . " VALUES "
-                . "('$pacijent', '$tegobe->groznica', '$tegobe->bolGrlo', '$tegobe->kasalj', '$tegobe->kijanje', '$tegobe->curenjeNos',"
+                . "('$tegobe->pacijent', '$tegobe->groznica', '$tegobe->bolGrlo', '$tegobe->kasalj', '$tegobe->kijanje', '$tegobe->curenjeNos',"
                 . "'$tegobe->komentar', '$tegobe->doktorId', '$tegobe->datum', '$tegobe->vreme')");
         if ($res) {
             
@@ -612,6 +612,60 @@ public function promeniHronicneBolesnike($id,$hronicni)
             print ("Query failed");
         }
     }
+    }
+
+    public function vratiPacijente() {
+        
+         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from pacijent");
+        if ($res) {
+            $niz = array();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+		$niz[]=$pacijent;
+
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
+    public function izmeniHronicnogPacijenta($pacijent, $hronicni, $dijagnoza, $medikamenti, $doktor) {
+        
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update pacijent set hronicniBolesnik='$hronicni', dijagnoza='$dijagnoza', medikamenti='$medikamenti', doktor='$doktor' where id='$pacijent';");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
     }
 
 }

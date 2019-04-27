@@ -13,6 +13,7 @@ function prikaziLekare(){
            .catch(error => console.log(error));
     
     }
+    var id;
 function prikaziPodatke(listaLekara)
 {
     let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Username</th><th>Password</th><th>Email</th><th>Shift</th><th>Delete</th></tr></thead>\n\
@@ -20,14 +21,17 @@ function prikaziPodatke(listaLekara)
     nizLekara=[];
     listaLekara.lekari.forEach((lekar) =>  { 
         nizLekara[lekar.id]=lekar.korisnickoIme;
-        let id=1;
+      id=1;
         innerHTMLTabele += "<tr id='"+id+"'><td>"+ lekar.ime + "</td><td>"+ lekar.prezime  
                 + "</td><td>"+ lekar.jmbg + "</td><td>"+ lekar.zvanje +"</td><td>"+lekar.korisnickoIme+"</td><td>"+lekar.sifra
                 + "</td><td>"+ lekar.email + "</td><td>"+ Smena(lekar.smena) + "</td><td>"
-                +"<input  type='checkbox' name='"+lekar.id+"' value='"+lekar.id+"'>  Check to delete</td></tr>";})
+                +"<input  type='checkbox' name='"+lekar.id+"' value='"+lekar.id+"'>  Check to delete</td></tr>";
+    
+});
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
     id++;
+    
     //tabela.innerHTML=""
 }
 const confirmDugme=document.getElementById("confirm");

@@ -7,7 +7,8 @@ interface IBolnicaService {
     function vratiPacijenta($username, $password);
     function vratiPacijentaId($id);
     function vratiPacijentaUsername($username);
-    function vratiSvePacijente();
+    function vratiSvePacijente($username);
+    function vratiPacijente();
     function vratiSveLekare();
     function promeniSmenuLekara($id,$smena);
     function obrisiLekara($id);
@@ -23,5 +24,6 @@ interface IBolnicaService {
     function izmeniPacijenta($ime,$prezime,$email,$jmbg,$telefon,$username,$password);
     function vratiKorisnika($username);
     function vratiDoktore($smena);
-    function unesiTegobe($pacijent,$tegobe);
+    function unesiTegobe($tegobe);
+    function izmeniHronicnogPacijenta($pacijent,$hronicni,$dijagnoza,$medikamenti,$doktor);
 }

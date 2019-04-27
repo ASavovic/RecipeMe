@@ -11,9 +11,11 @@ class Pacijent {
    public $sifra;
    public $korisnickoIme;
    public $hronicniBolesnik;
-   public $bolest;
+   public $dijagnoza;
+   public $medikamenti;
+   public $doktor;
    
-   function  __construct($id,$ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$bolest)
+   function  __construct($id,$ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$dijagnoza,$medikamenti,$doktor)
    {
        $this->id=$id;
        $this->jmbg=$jmbg;
@@ -24,7 +26,9 @@ class Pacijent {
        $this->sifra=$sifra;
        $this->korisnickoIme=$korisnickoIme;
        $this->hronicniBolesnik=$hronicni;
-       $this->bolest=$bolest;
+       $this->dijagnoza=$dijagnoza;
+       $this->medikamenti=$medikamenti;
+       $this->doktor=$doktor;
        
    }
    

@@ -16,7 +16,7 @@ function prikaziLekare(){
            .catch(error => console.log(error));
     
     }
-    var id;
+var id;
 function prikaziPodatke(listaLekara)
 {
     

@@ -2,6 +2,6 @@
 
 include_once '../../Pacijent/php/lib.php';
 $baza=new PacijentService();
-$lekari=$baza->vratiSvePacijente();  
-echo json_encode($lekari);
+$pacijenti=$baza->vratiPacijente();  
+echo json_encode($pacijenti);
 ?>

@@ -3,6 +3,7 @@
 
 class Tegobe {
    public $id;
+   public $pacijent;
    public $groznica;
    public $bolGrlo;
    public $kasalj;
@@ -13,8 +14,9 @@ class Tegobe {
    public $vreme;
    public $doktorId;
    
-   function  __construct($id,$groznica,$bolGrlo,$kasalj,$kijanje,$curenjeNos,$komentar,$doktorId,$datum,$vreme)
+   function  __construct($pacijent,$id,$groznica,$bolGrlo,$kasalj,$kijanje,$curenjeNos,$komentar,$doktorId,$datum,$vreme)
    {
+       $this->pacijent=$pacijent;
        $this->id=$id;
        $this->groznica=$groznica;
        $this->bolGrlo=$bolGrlo;
