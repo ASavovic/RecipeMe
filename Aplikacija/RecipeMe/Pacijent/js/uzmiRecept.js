@@ -15,9 +15,32 @@ const medikamenti=document.getElementById("medikamenti");
 var url_string = window.location.href;
 var url = new URL(url_string);
 var username = url.searchParams.get("name");
+//dugme
+const dugme=document.getElementById("take");
+dugme.onclick =(ev)=> preuzmiRecept();
 var korisnik;
 popuniRecept();
-
+function preuzmiRecept()
+{
+    var date=new Date();
+    var datum=date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
+    let nizVrednosti=korisnik.datum.split("-");
+    if(nizVrednosti[2]>date.getFullYear() || nizVrednosti[1]>(date.getMonth()+1)%12 || nizVrednosti[0]>date.getDate())
+    {
+           document.getElementById("card").innerHTML="We are sorry, but you need to visit the doctor.";
+               
+           document.getElementById("take").style.display = 'none';
+           return;
+    }
+    else if(korisnik.brojPreuzetih>korisnik.doza)
+    {
+         document.getElementById("card").innerHTML="We are sorry, but you need to wait for new Month.";
+               
+          document.getElementById("take").style.display = 'none';
+          return;
+    }
+    //jos da se gadja ondgovarajuca php skript za lsanje mejla
+}
 function popuniRecept()
 {
     const formData = new FormData();
@@ -41,7 +64,7 @@ function popuniRecept()
 }
 function popuniPoljaPacijent(pacijent)
 {
-  
+   korisnik=pacijent;
     if(pacijent.hronicniBolesnik==1)
         { 
              ime.innerHTML="Name: "+pacijent.ime;
