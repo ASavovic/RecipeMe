@@ -7,8 +7,13 @@ include_once 'lib.php';
 $baza=new PacijentService();
 if(isset($_POST["jmbg"]))
 {
+    // staro kreiranje objekata koje je ostalo
+    //$pacijent= new Pacijent(0,$_POST["ime"],$_POST["prezime"],$_POST["jmbg"],
+    //        $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"");
+    
+    // novo kreiranje objekata, dodati i novi atributi iz klase
     $pacijent= new Pacijent(0,$_POST["ime"],$_POST["prezime"],$_POST["jmbg"],
-            $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"");
+            $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"null","null","null",0,0,"null",0);
     
     $baza->dodajPacijenta($pacijent);
     
@@ -37,13 +42,6 @@ if(isset($_POST["jmbg"]))
  else
      echo "Wrong!".$mail->ErrorInfo;
  
- 
- 
-         
- 
-
-
-
 }
 else if(isset($_GET["name"]))
 {

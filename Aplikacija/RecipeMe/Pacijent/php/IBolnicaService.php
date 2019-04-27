@@ -26,4 +26,5 @@ interface IBolnicaService {
     function vratiDoktore($smena);
     function unesiTegobe($tegobe);
     function izmeniHronicnogPacijenta($pacijent,$hronicni,$dijagnoza,$medikamenti,$doktor,$doza,$kontrola,$datum);
+    function vratiSvePacijentee();
 }
