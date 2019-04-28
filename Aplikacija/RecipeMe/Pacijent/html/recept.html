@@ -175,90 +175,65 @@
           
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-5" style="background-color: white !important; width: 100%;">
-            <div class="card-header py-3">
+     <div id="sendDiv"  class="card shadow mb-5" style="background-color: white !important; width: 100%;">
+          <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Prescription for the chronic patient </h6>
-            </div>
+           </div>
       <div class="card-body" id="card">
       <div class="panel panel-primary" id="card1" >
       <div class="panel-heading">RecipeMe Hospital</div>
-      <div class="panel-body" style="display:flex; flex-direction:row;">
-       <div style="flex-grow:1;">
-              <p >Email: info.recipeme@gmail.com</p>
-          </div>
-             <div style="flex-grow: 1;">
-              <p>Contact: +381 64 857 6383</p>
-          </div>
-             <div style="flex-grow: 1;">
-                 <p >Adress: Bulevar Dr. Zorana Đinđića 48 <br> 18000 Niš, Serbia</p>
-          </div>
+      <div class="panel-body" >
+        
+           <p>Email: info.recipeme@gmail.com</p>
+           <p>Contact: +381 64 857 6383</p>
+           <p>Adress: Bulevar Nikole Tesle 48 <br> 18000 Niš, Serbia</p>
+         
       </div>
-    </div>
+      </div>
+      
      <div class="panel panel-primary">
       <div class="panel-heading">Patient</div>
-      <div class="panel-body" style="display:flex; flex-direction:row;">
-          <div style="flex-grow:1;">
+      <div class="panel-body" >
+
+         
               <p id="ime">Name: ime_pacijenta</p>
-          </div>
-             <div style="flex-grow: 1;">
               <p id="prezime">Surname: prezime_pacijenta</p>
-          </div>
-             <div style="flex-grow: 1;">
-                 <p id="jmbg">SSN: jmbg</p>
-          </div>
-             <div style="flex-grow: 1;">
-                 <p id="telefon">Contact: telefon</p>
-          </div>
-         <div style="flex-grow: 1;">
-                 <p id="email">Email: email</p>
-          </div>
+              <p id="jmbg">SSN: jmbg</p>
+              <p id="telefon">Contact: telefon</p>
+              <p id="email">Email: email</p>
+        
+      </div> 
       </div>
-    </div>
+   
    <div class="panel panel-primary">
       <div class="panel-heading">Patient diagnosis</div>
-      <div class="panel-body" style="display:flex; flex-direction:column;">
-          <div style="flex-grow:1;">
-             <div class="form-group">
-                 <textarea class="form-control" rows="5" id="dijagnoza" placeholder="Enter the diagnosis...  "></textarea>
+      <div class="panel-body" >
+
+         
+            <p id="dijagnoza"></p>
+            <p id="medikamenti" ></p>
+      
         </div>
-              </div>
-         <div style="flex-grow:1;">
-             <input class="form-control" id="medikamenti" placeholder="Enter the medicines...">
-        </div>
-              </div>
 
       </div>
+   
       <div class="panel panel-primary">
       <div class="panel-heading">Doctor</div>
-      <div class="panel-body" style="display:flex; flex-direction:row;">
-          <div style="flex-grow:1;">
-              <p id="imeDoktora">Name: ime_doktora</p>
-          </div>
-             <div style="flex-grow: 1;">
-              <p id="prezimeDoktora">Surname: prezime_doktora</p>
-          </div>
-
-          <div style="flex-grow: 1;">
-                 <p id="telefonDoktora">Contact: +381 64 857 6383</p>
-          </div>
-         <div style="flex-grow: 1;">
-                 <p id="emailDoktora">Email: email</p>
-          </div>
-              </div>
+      <div class="panel-body">
+ 
+         
+              <p id="imeDoktora"></p>
+              <p id="prezimeDoktora"></p>
+              <p id="telefonDoktora">Contact: +381 64 857 6383</p>
+              <p id="emailDoktora"></p>
+         
 
       </div>
-  
-  
-				
-                                  
-			
-				
-      
-          </div>
+      </div>
               
-       
-                
-        </div> 
+                       
+  </div> 
+         </div>
           <!-- DataTales Example -->
           <button  id="take" class="btn btn-primary float-right mb-2">Take</button>
         </div> 
@@ -338,7 +313,27 @@
         </button>
       </div>
       <div class="modal-body">
-      You have successfully changed Chronic Patient's status!
+      You have successfully changed profile!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    
+      <div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully take a prescription!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>

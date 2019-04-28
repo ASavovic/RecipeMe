@@ -19,10 +19,13 @@ var username = url.searchParams.get("name");
 const dugme=document.getElementById("take");
 dugme.onclick =(ev)=> preuzmiRecept();
 var korisnik;
+
 popuniRecept();
 function preuzmiRecept()
 {
-    var date=new Date();
+   // $('#sendModal').modal({show:true});
+   //ovde neki popup da izleti
+   /* var date=new Date();
     var datum=date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
     let nizVrednosti=korisnik.datum.split("-");
     if(nizVrednosti[2]>date.getFullYear() || nizVrednosti[1]>(date.getMonth()+1)%12 || nizVrednosti[0]>date.getDate())
@@ -38,8 +41,32 @@ function preuzmiRecept()
                
           document.getElementById("take").style.display = 'none';
           return;
-    }
-    //jos da se gadja ondgovarajuca php skript za lsanje mejla
+    }*/
+    //jos da se gadja odgovarajuca php skript za slanje mejla
+   let content=$('#sendDiv').html();
+    const formData=new FormData();
+    formData.append("naziv",korisnik.korisnickoIme+Math.random());
+    formData.append("email",korisnik.email);
+    formData.append("data",content);
+    const fetchData={
+        method: "POST",
+        body: formData
+      
+    };
+    
+    fetch('../php/sendEmail.php',fetchData)
+            .then(response =>{
+                if(!response.ok)
+                throw new Error(response.statusText);
+    }).then(()=>{})
+            .catch(error => console.log(error));
+   
+  
+     
+     
+
+
+
 }
 function popuniRecept()
 {
@@ -72,9 +99,8 @@ function popuniPoljaPacijent(pacijent)
              jmbg.innerHTML="SSN: "+pacijent.jmbg;
              telefon.innerHTML="Contact: "+pacijent.telefon;
              email.innerHTML="Email: "+pacijent.email;
-             dijagnoza.value=pacijent.dijagnoza;
-             dijagnoza.readOnly=true;
-             medikamenti.value=pacijent.medikamenti;
+             dijagnoza.innerHTML="Diagnosis: "+pacijent.dijagnoza;
+             medikamenti.innerHTML="Medicines: "+pacijent.medikamenti;
              medikamenti.readOnly=true;
              popuniLekara(pacijent.doktor);
         }
@@ -87,6 +113,7 @@ function popuniPoljaPacijent(pacijent)
 }
 function popuniPoljaLekar(lekar)
 {
+    
     doktorIme.innerHTML="Name: "+lekar.ime;
     doktorPrezime.innerHTML="Surname: "+lekar.prezime;
     doktorEmail.innerHTML="Email: "+lekar.email;
