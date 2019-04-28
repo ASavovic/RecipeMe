@@ -705,5 +705,27 @@ public function promeniHronicneBolesnike($id,$hronicni)
 
 }
 
+    public function izmeniBrojPreuzetih($name, $broj) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update pacijent set brojPreuzetih='$broj'
+                where korisnicko_ime='$name';");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+
 }
 

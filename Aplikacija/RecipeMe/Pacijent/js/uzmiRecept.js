@@ -23,27 +23,24 @@ var korisnik;
 popuniRecept();
 function preuzmiRecept()
 {
-   // $('#sendModal').modal({show:true});
-   //ovde neki popup da izleti
-   /* var date=new Date();
-    var datum=date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
+
+   
+    var date=new Date();
     let nizVrednosti=korisnik.datum.split("-");
-    if(nizVrednosti[2]>date.getFullYear() || nizVrednosti[1]>(date.getMonth()+1)%12 || nizVrednosti[0]>date.getDate())
+    if(parseInt(nizVrednosti[2],10)>date.getFullYear() && ((parseInt(nizVrednosti[1],10)+parseInt(korisnik.kontrola,10))%12)>date.getMonth()) 
     {
            document.getElementById("card").innerHTML="We are sorry, but you need to visit the doctor.";
-               
            document.getElementById("take").style.display = 'none';
            return;
     }
-    else if(korisnik.brojPreuzetih>korisnik.doza)
+    else if(korisnik.brojPreuzetih>=korisnik.doza)
     {
          document.getElementById("card").innerHTML="We are sorry, but you need to wait for new Month.";
-               
-          document.getElementById("take").style.display = 'none';
-          return;
-    }*/
-    //jos da se gadja odgovarajuca php skript za slanje mejla
-   let content=$('#sendDiv').html();
+         document.getElementById("take").style.display = 'none';
+         return;
+    }
+    
+    let content=$('#sendDiv').html();
     const formData=new FormData();
     formData.append("naziv",korisnik.korisnickoIme+Math.random());
     formData.append("email",korisnik.email);
@@ -53,7 +50,7 @@ function preuzmiRecept()
         body: formData
       
     };
-    
+    obavestiPacijenta();//kako ne bi bezrazlozno cekao
     fetch('../php/sendEmail.php',fetchData)
             .then(response =>{
                 if(!response.ok)
@@ -61,12 +58,39 @@ function preuzmiRecept()
     }).then(()=>{})
             .catch(error => console.log(error));
    
-  
+   korisnik.brojPreuzetih++;
+   azurirajPacijenta(korisnik);
      
      
 
 
 
+}
+function azurirajPacijenta(korisnik)
+{
+    const formData=new FormData();
+    formData.append("name",username);
+    formData.append("broj",korisnik.brojPreuzetih);
+    const fetchData={
+        method: "POST",
+        body: formData
+    };
+    
+    fetch("../php/izmeniBrojPreuzetih.php",fetchData)
+            .then(response =>{
+                if(!response.ok)
+                throw new Error(response.statusText);
+    }).then(()=>{})
+            .catch(error => console.log(error));
+} 
+function obavestiPacijenta()
+{
+document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-gray-800'>Prescription</h1><div class='alert alert-success' role='alert'>\n\
+<h4 class='alert-heading'>Well done!</h4>\n\
+<p>You will soon receive a precsription on the email.</p><hr>\n\
+<p class='mb-0'>\n\
+Due to overloading the network, it may take a while.\n\
+</p></div>";
 }
 function popuniRecept()
 {
