@@ -13,7 +13,7 @@ include_once '../../Lekar/php/Lekar.php';
 include_once '../../Administrator/php/radnoVreme.php';
 include_once '../../Administrator/php/administrator.php';
 include_once '../../Administrator/php/obavestenje.php';
-
+include_once 'Tegobe.php';
 class PacijentService implements IBolnicaService
 {
     const db_host="localhost";
@@ -704,6 +704,78 @@ public function promeniHronicneBolesnike($id,$hronicni)
     }
 
 }
+public function vratiTegobuKorisnika($username)
+{
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from tegobe where pacijent='$username' ");
+        if ($res) {
+            $tegoba = null;
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            if ($row = $res->fetch_assoc()) {
+				
+				$tegoba=new Tegobe($row['pacijent'],$row['id'],$row['groznica'], $row['bolGrlo'],$row['kasalj'],
+                                       $row['kijanje'],$row['curenje'],$row['komentar'],$row['doktorId'],$row['datum'],$row['vreme']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
+            }
+            // zatvaranje objekta koji cuva rezultat
+            
+            return $tegoba;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+}
+public function azurirajPacijentuDijagnozuMedikamente($pacijent,$dijagnoza,$medikamenti,$doktor,$doza,$kontrola,$datum,$brojPreuzetih)
+{
+        $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update pacijent set dijagnoza='$dijagnoza', medikamenti='$medikamenti', doktor='$doktor', doza='$doza', kontrola='$kontrola', datum='$datum',brojPreuzetih=".($brojPreuzetih+1)." where id='$pacijent';");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    
+}
+public function obrisiTegobePacijenta($id)
+{
+             $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("delete from tegobe where id = $id");
+          if($res) 
+          {
+              
+          }
+        
+        else
+        {
+            print ("Query failed");
+        }
+        }   
+}
 }
 
