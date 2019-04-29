@@ -113,7 +113,7 @@ function posaljiRecept(dugme)
         formData.append("brojPreuzetih",PacijentGlobal.brojPreuzetih);
         formData.append("dijagnoza",dijagnozaText);
         formData.append("medikamenti",medikamentiText);
-        formData.append("doktor",DoktorGlobal.ime+" "+DoktorGlobal.prezime);
+        formData.append("doktor",DoktorGlobal.korisnickoIme);
         formData.append("doza",PacijentGlobal.doza);
         formData.append("kontrola",PacijentGlobal.kontrola);
         formData.append("datum",datum);
