@@ -210,25 +210,41 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text text-white">Coughing</span>
 						</div>
+<<<<<<< HEAD
                                         <label style="color:black !important;" class="radio-inline"><input type="radio" name="Coughing" value="Low"  > Low</label>
                                         <label style="color:black !important;" class="radio-inline"><input type="radio" name="Coughing" value="Medium"> Medium</label>
                                         <label style="color:black !important;" class="radio-inline"><input type="radio" name="Coughing" value="Strong"> Strong</label> 
+=======
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="optradio" value="Low" checked > Low</label>
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="optradio" value="Medium"> Medium</label>
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="optradio" value="Strong"> Strong</label> 
+>>>>>>> 2263fc19dba5b23b383b7f7286ecc06080862cca
                                        
 					</div>
                                      <div id="kasalj" class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text text-white">Sneeze</span>
 						</div>
+<<<<<<< HEAD
                                         <label style="color:black !important;" class="radio-inline"><input type="radio" name="kijanje" value="Yes"> Yes</label>
                                         <label style="color:black !important;" class="radio-inline"><input type="radio" name="kijanje" value="No"> No</label>
+=======
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="kijanje" value="Yes" checked> Yes</label>
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="kijanje" value="No"> No</label>
+>>>>>>> 2263fc19dba5b23b383b7f7286ecc06080862cca
                             
 					</div>
                                     <div id="curenje" class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text text-white">Leakage-nose</span>
 						</div>
+<<<<<<< HEAD
                                         <label style="color:black !important;" class="radio-inline"><input type="radio" name="curenje" value="Yes" > Yes</label>
                                         <label style="color:black !important;" class="radio-inline"><input type="radio" name="curenje" value="No"> No</label>
+=======
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="curenje" value="Yes" checked> Yes</label>
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="curenje" value="No"> No</label>
+>>>>>>> 2263fc19dba5b23b383b7f7286ecc06080862cca
                             
 					</div>
                                       <div  class="input-group form-group">
@@ -247,7 +263,11 @@
                                         </select>
                                     </div>
                                     <div class="row">
-                                    <div class="col-lg-4 offset-lg-8">
+                                          <div class="col-lg-4 offset-lg-8" style="padding-top:10px;">
+                                   
+                                        <button type="button" class="btn btn-primary " id="history" style="width:250px; float:right; " data-toggle="modal" data-target="#patientHistory">Patient History</button>
+                                    </div>
+                                    <div class="col-lg-4 offset-lg-8" style="padding-top:10px;">
                                    
                                         <button type="button" class="btn btn-primary " id="recept" style="width:250px; float:right; ">Send a prescription</button>
                                     </div>
@@ -292,6 +312,27 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+  
+  <div class="modal fade" id="patientHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">History of Patient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="dijagnozePacijenta">
+        Ovde ce ici sve dijagnoze pacijenta i to kroz jednu forEach petlju kada pribavi dijagnoze iz baze i za svaku se pravi po jedan div - unese se opis i medikamenti
+        Na kraju svake dijagnoze ide ime i prezime lekara i datum i tako se sve redja do dole isto kao kada se pravi tabela sa podacima iz naze!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

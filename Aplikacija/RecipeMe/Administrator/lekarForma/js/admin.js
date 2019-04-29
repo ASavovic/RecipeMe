@@ -16,23 +16,24 @@ function prikaziLekare(){
            .catch(error => console.log(error));
     
     }
-var id;
+
 function prikaziPodatke(listaLekara)
 {
-    
-    let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></thead>\n\
+var i=0; 
+ let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></thead>\n\
 <tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></tfoot><tbody>";
 listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar.smena;
         listaLekaraPod[lekar.id]=lekar;
         id=1;
-        innerHTMLTabele += "<tr id='"+id+"'><td>"+ lekar.ime +"</td><td>"+ lekar.prezime 
+        innerHTMLTabele += "<tr id='"+i+"'><td>"+ lekar.ime +"</td><td>"+ lekar.prezime 
                 + "</td><td>"+lekar.jmbg+"</td><td>"+ lekar.zvanje 
                 + "</td><td>"+Smena(lekar.smena) +"</td><td>"
-                +"<form><label class='radio-inline mr-2'><input  type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='1'> first</label><label class='radio-inline  mr-2'><input  type='radio' name='"+lekar.id+"' id='"+lekar.id+"' value='2'> second</label><label class='radio-inline  mr-2'><input type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='3'> night</label></form> </td></tr>";})
+                +"<form><label class='radio-inline mr-2'><input  type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='1'> first</label><label class='radio-inline  mr-2'><input  type='radio' name='"+lekar.id+"' id='"+lekar.id+"' value='2'> second</label><label class='radio-inline  mr-2'><input type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='3'> night</label></form> </td></tr>";
+    i++;});
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
-    id++;
+    
     //tabela.innerHTML="";
     popuniRadioDugmad(listaLekara);
 }

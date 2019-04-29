@@ -723,6 +723,7 @@ public function vratiTegobuKorisnika($username)
 				$tegoba=new Tegobe($row['pacijent'],$row['id'],$row['groznica'], $row['bolGrlo'],$row['kasalj'],
                                        $row['kijanje'],$row['curenje'],$row['komentar'],$row['doktorId'],$row['datum'],$row['vreme']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
+<<<<<<< HEAD
             }
             // zatvaranje objekta koji cuva rezultat
             
@@ -737,13 +738,22 @@ public function vratiTegobuKorisnika($username)
 public function azurirajPacijentuDijagnozuMedikamente($pacijent,$dijagnoza,$medikamenti,$doktor,$doza,$kontrola,$datum,$brojPreuzetih)
 {
         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+=======
+    public function izmeniBrojPreuzetih($name, $broj) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+>>>>>>> 2263fc19dba5b23b383b7f7286ecc06080862cca
     if ($con->connect_errno) {
         // u slucaju greske odstampati odgovarajucu poruku
         print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
     }
    else {
             // $res je rezultat izvrsenja upita
+<<<<<<< HEAD
             $res = $con->query("update pacijent set dijagnoza='$dijagnoza', medikamenti='$medikamenti', doktor='$doktor', doza='$doza', kontrola='$kontrola', datum='$datum',brojPreuzetih=".($brojPreuzetih+1)." where id='$pacijent';");
+=======
+            $res = $con->query("update pacijent set brojPreuzetih='$broj'
+                where korisnicko_ime='$name';");
+>>>>>>> 2263fc19dba5b23b383b7f7286ecc06080862cca
            
           
         if ($res) {
@@ -754,6 +764,7 @@ public function azurirajPacijentuDijagnozuMedikamente($pacijent,$dijagnoza,$medi
             print ("Query failed");
         }
         }
+<<<<<<< HEAD
     
 }
 public function obrisiTegobePacijenta($id)
@@ -777,5 +788,9 @@ public function obrisiTegobePacijenta($id)
         }
         }   
 }
+=======
+    }
+
+>>>>>>> 2263fc19dba5b23b383b7f7286ecc06080862cca
 }
 

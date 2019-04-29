@@ -66,10 +66,9 @@ function kreirajNalog()
     formData.append("sifra",korisnik.sifra);
     
     
-   let pom=postojiKorisnik();
+    let pom=postojiKorisnik();
    
-  
-    if(pom!=1)
+   if(pom!=1)
     {
          let innerHtml="<div class='alert alert-danger' role='alert'><strong>Username already exists!</strong></div>";
           el.innerHTML=innerHtml;
@@ -86,23 +85,20 @@ function kreirajNalog()
                 method:"POST",
                 body: formData
             }
-    fetch("../php/indexKreirajNalog.php",fetchData)
+         fetch("../php/indexKreirajNalog.php",fetchData)
             .then(response =>
-    {
-        if(!response.ok)
-            throw new Error(response.statusText);
+             {
+                if(!response.ok)
+                    throw new Error(response.statusText);
 
-    }).then(()=>notifyKorisnik())
-            .catch(error => console.log(error));
+             }).then(()=>notifyKorisnik())
+                .catch(error => console.log(error));
+     }
     
-    //location.reload(true);
-   
-
-     } 
 }
 function postojiUsername(formData){
 
-    let pom;
+    //let pom;
     const fetchData =
             {
                 method:"POST",
@@ -119,23 +115,19 @@ function postojiUsername(formData){
                         return response.json();
                
  
-            }).then((korisnici) => {
-             users=korisnici;
-             postojiKorisnik();}
-                 )
-             // .catch(error => console.log(error));
+            }).then((korisnici) => proveriObjekat(korisnici,formData)
+                 ).catch(error => console.log(error));
    
     
 }
-function proveriObjekat(korisnici)
+function proveriObjekat(korisnici,formData)
 {
+    let pom=1;
     korisnici.forEach(k =>{
         if(k.korisnickoIme==korisnik.korisnickoIme)
-            postojiKorisnik=0;
-        else postojiKorisnik=1;
-            
+            pom=0;
     });
-
+    
 }
 function notifyKorisnik(){
     let innerHtml="<div  class='alert alert-success' role='alert' >\n\
