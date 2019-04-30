@@ -14,6 +14,9 @@ include_once '../../Administrator/php/radnoVreme.php';
 include_once '../../Administrator/php/administrator.php';
 include_once '../../Administrator/php/obavestenje.php';
 include_once 'Tegobe.php';
+include_once '../../Lekar/php/Dijagnoza.php';
+include_once '../../Lekar/php/ListaDijagnoza.php';
+
 class PacijentService implements IBolnicaService
 {
     const db_host="localhost";
@@ -800,7 +803,61 @@ public function obrisiTegobePacijenta($id)
         }
         }   
 }
+public function ubaciPacijentuDijagnozuMedikamente($pacijent,$dijagnoza,$medikamenti,$doktor,$Ime_PrezimePac,$datum,$vreme)
+{
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
     }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("INSERT INTO dijagnoza (pacijent_username , dijagnoza, medikamenti, lekar, pacijent, datum, vreme) "
+                . "VALUES('$pacijent', '$dijagnoza', '$medikamenti', '$doktor', '$Ime_PrezimePac', '$datum','$vreme')");
+        if ($res) {
+            
+       
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+}
+public function vratiDijagnoze($username)
+{
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from dijagnoza where pacijent_username='$username'");
+        if ($res) {
+            $niz = new ListaDijagnoza();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$dijagnoza=new Dijagnoza($row['id'],$row['pacijent_username'],$row['pacijent'], $row['dijagnoza'],$row['medikamenti'],
+                                       $row['lekar'],$row['datum'],$row['vreme']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+		$niz->dodajDijagnozu($dijagnoza);
+
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+}
+}
 
 
 

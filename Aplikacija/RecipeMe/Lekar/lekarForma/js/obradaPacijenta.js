@@ -63,7 +63,7 @@ function prikaziPodatke(tegoba)
    komentar.innerText=tegoba.komentar;
   
    tegobeGlobal=tegoba;
-   console.log(tegoba);
+   //console.log(tegoba);
 }
 function prikaziPacijenta(){
    const formData=new FormData();
@@ -206,4 +206,70 @@ function obrisiZahtev(id)
         throw new Error(response.statusText);
     }
     }).catch(error => console.log(error)); 
+}
+
+const historyDugme=document.getElementById("history").onclick=(ev)=>prikaziIstoriju();
+function prikaziIstoriju()
+{
+    
+     fetch("../php/vratiDijagnoze.php?username="+pacijentGlobal.korisnickoIme).then(response=>
+   {
+       if(!response.ok)
+           throw new Error(response.statusText)
+       else return response.json();
+   }).then(listaDijagnoza=>prikaziDijagnoze(listaDijagnoza))
+           .catch(error => console.log(error));
+    
+}
+
+
+var flag=0;
+function prikaziDijagnoze(listaDijagnoza)
+{
+    var kontenjerDiv=document.getElementById("dijagnozePacijenta");
+    kontenjerDiv.align='center';
+    var naslov=document.getElementById("exampleModalLongTitle").innerHTML="History of Patient "+pacijentGlobal.ime+" "+pacijentGlobal.prezime;
+    if(listaDijagnoza.dijagnoze.length==0)
+    {
+         kontenjerDiv.innerHTML="Patient dont have any history...";
+    }
+    else
+    {
+        kontenjerDiv.innerHTML="";
+        var SortitaneDijagnoze=sortirajDijagnoze(listaDijagnoza.dijagnoze);
+        if(flag==0)
+        SortitaneDijagnoze.forEach((d)=>
+        {
+            flag=1;
+            let kontenjer=document.createElement("div");
+            kontenjer.align='left';
+            kontenjer.className="toast fade show";
+            let zaglavlje=document.createElement("div");
+            zaglavlje.className="toast-header bg-primary text-white"
+            zaglavlje.innerHTML="Doctor: "+d.doktor+"<br> Date: "+d.datum+" Time: "+d.vreme;
+            let telo=document.createElement("div");
+            telo.className="toast-body";
+            telo.innerHTML="Diagnosis: "+d.dijagnoza+"<br>Medicines: "+d.medikamenti;
+            kontenjer.appendChild(zaglavlje);
+            kontenjer.appendChild(telo);
+            kontenjerDiv.appendChild(kontenjer);
+        });
+    }
+}
+function sortirajDijagnoze(niz)
+{
+    let i;
+    let j;
+    let pom;
+    for(i=0;i<niz.length;i++)
+        for(j=i+1;j<niz.length;j++)
+        {
+            if(niz[j].id > niz[i].id)
+            {
+                pom=niz[i];
+                niz[i]=niz[j];
+                niz[j]=pom;
+            }
+        }
+    return niz;
 }

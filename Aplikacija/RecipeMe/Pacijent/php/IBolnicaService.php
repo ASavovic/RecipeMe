@@ -31,4 +31,7 @@ interface IBolnicaService {
     function azurirajPacijentuDijagnozuMedikamente($pacijent,$dijagnoza,$medikamenti,$doktor,$doza,$kontrola,$datum,$brojPreuzetih);
     function obrisiTegobePacijenta($id);
     function izmeniBrojPreuzetih($name,$broj);
+    function ubaciPacijentuDijagnozuMedikamente($pacijent,$dijagnoza,$medikamenti,$doktor,$Ime_PrezimePac,$datum,$vreme);
+    function vratiDijagnoze($username);
+    
 }

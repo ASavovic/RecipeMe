@@ -34,6 +34,8 @@ const prezimePacijenta=document.getElementById("prezime");
 const jmbgPacijenta=document.getElementById("jmbg");
 const telefonPacijenta=document.getElementById("telefon");
 const emailPacijenta=document.getElementById("email");
+const naslov=document.getElementById("naslov");
+
 function PodaciPacijenta(pacijent)
 {
     imePacijenta.innerHTML="Name: "+pacijent.ime;
@@ -41,6 +43,7 @@ function PodaciPacijenta(pacijent)
     jmbgPacijenta.innerHTML="SSN: "+pacijent.jmbg;
     telefonPacijenta.innerHTML="Contact: "+pacijent.telefon;
     emailPacijenta.innerHTML="Email: "+pacijent.email;
+    naslov.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>"+pacijent.jmbg;
     PacijentGlobal=pacijent;
 }
 
@@ -95,7 +98,7 @@ posaljiDugme.onclick = (ev)=> posaljiRecept(ev.target);
 
 function posaljiRecept(dugme)
 {
-    if(PacijentGlobal.brojPreuzetih > 10)
+    if(PacijentGlobal.brojPreuzetih > 100)
     {
         // ako se predje limit sa brojem poslatih recepata 
         // da iskoci neko upozorenje Lekaru i da se pacijentu posalje neki mail mora da se smisli sta i kako 
@@ -106,16 +109,18 @@ function posaljiRecept(dugme)
     let medikamentiText=medikamenti.value;
     const formData=new FormData();
         let date=new Date();
+        
         let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
+        let vreme=date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
         formData.append("emailPacijenta",PacijentGlobal.email);
         formData.append("Ime_PrezimePac",PacijentGlobal.ime+" "+PacijentGlobal.prezime);
-        formData.append("pacijent",PacijentGlobal.id);
-        formData.append("brojPreuzetih",PacijentGlobal.brojPreuzetih);
+        formData.append("pacijent",PacijentGlobal.korisnickoIme);
+        formData.append("brojPreuzetih",parseInt(PacijentGlobal.brojPreuzetih)+1);
         formData.append("dijagnoza",dijagnozaText);
         formData.append("medikamenti",medikamentiText);
-        formData.append("doktor",DoktorGlobal.korisnickoIme);
-        formData.append("doza",PacijentGlobal.doza);
-        formData.append("kontrola",PacijentGlobal.kontrola);
+        formData.append("doktor",DoktorGlobal.ime+" "+DoktorGlobal.prezime);
+        
+        formData.append("vreme",vreme);
         formData.append("datum",datum);
         
         const fetchData =
@@ -124,7 +129,7 @@ function posaljiRecept(dugme)
                 body: formData
             }
    
-    fetch("../php/azurirajPacijentuDijagnozuMedikamente.php",fetchData).then(response=>
+    fetch("../php/ubaciPacijentuDijagnozuMedikamente.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
