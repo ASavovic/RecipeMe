@@ -857,6 +857,38 @@ public function vratiDijagnoze($username)
         }
     }
 }
+
+    public function vratiDijagnozu($pacijent, $doktor, $datum) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from dijagnoza where pacijent_username='$pacijent' and lekar='$doktor' and datum='$datum'");
+        if ($res) {
+            $niz = new ListaDijagnoza();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            if ($row = $res->fetch_assoc()) {
+				
+		$dijagnoza=new Dijagnoza($row['id'],$row['pacijent_username'],$row['pacijent'], $row['dijagnoza'],$row['medikamenti'],
+                                       $row['lekar'],$row['datum'],$row['vreme']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+		
+
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $dijagnoza;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    } 
+    }
+
 }
 
 

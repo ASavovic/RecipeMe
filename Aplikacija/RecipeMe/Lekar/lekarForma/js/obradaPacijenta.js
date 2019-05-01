@@ -44,24 +44,26 @@ function prikaziPodatke(tegoba)
 {
    //temperatura.value=tegoba.groznica;
    temp.innerHTML="<option value ='"+tegoba.groznica+"'>"+tegoba.groznica+"</option>";
+   temp.disabled=true;
    grlo.innerHTML="<option value ='"+tegoba.bolGrlo+"'>"+tegoba.bolGrlo+"</option>";
+   grlo.disabled=true;
    if(tegoba.kasalj=="no")
         kasalj[0].checked=true;
    else
        kasalj[2].checked=true;
-   
+    kasalj.forEach(d => d.disabled=true);
    if(tegoba.kijanje=="yes")
        kijanje[0].checked=true;
    else
        kijanje[1].checked=true;
-   
+   kijanje.forEach(d => d.disabled=true);
    if(tegoba.curenjeNos=="yes")
        curenje[0].checked=true;
    else 
        curenje[1].checked=true;
-   
-   komentar.innerText=tegoba.komentar;
-  
+   curenje.forEach(d => d.disabled=true);
+  komentar.innerText=tegoba.komentar;
+  komentar.disabled=true;
    tegobeGlobal=tegoba;
    //console.log(tegoba);
 }
@@ -93,7 +95,7 @@ function prikaziPacijenta(){
 }
 function imeIPrezimePacijenta(pacijent)
 {
-    imePrezimePacjentaLabela.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>"+pacijent.jmbg;
+    imePrezimePacjentaLabela.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>SSN: "+pacijent.jmbg;
     pacijentGlobal=pacijent;
     
 }
@@ -128,6 +130,7 @@ function Lekar(lekar)
 {
      doktor.innerHTML="<option value ='"+lekar.ime+" "+lekar.prezime+"'>"+lekar.ime+" "+lekar.prezime+"</option>";
      lekarGlobal=lekar;
+     doktor.disabled=true;
 }
 
 
@@ -138,16 +141,16 @@ recept.onclick = (ev) => otvoriRecept();
 
 function otvoriRecept()
 {
-    let myu=podesiValue("docName");
+    let myu=podesiVrednost("docName");
     var url_safe_username = encodeURIComponent(myu);
-    myu=podesiValue("patName");
+    myu=podesiVrednost("patName");
     var url_safe_username2= encodeURIComponent(myu);
     //window.open("prepisiRecept.html","_self");
     window.open("prepisiRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
     
 }
 
-function podesiValue(string)
+function podesiVrednost(string)
 {
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -157,7 +160,8 @@ function podesiValue(string)
 
 
 const AcceptDugme=document.getElementById("pregled").onclick=(ev)=>OdobriTermin();
-const DenyDugme=document.getElementById("odbij").onclick=(ev)=>OtkaziTermin();
+const DenyModal=document.getElementById("denyConfirm").onclick=(ev)=>OtkaziTermin();
+const DenyDugme=document.getElementById("odbij").onclick=(ev)=>{  $('#denyModalConfirm').modal('show');};
 
 function OdobriTermin()
 {
@@ -167,9 +171,11 @@ function OdobriTermin()
 
 function OtkaziTermin()
 {
-    let poruka="Vas zahtev za pregled nije odobren. Doktor "+lekarGlobal.ime+" "+lekarGlobal.prezime+" nije <br> u mogucnosti da vas pregleda u tom terminu, molimo vas da pokusate u nekom drugom terminu.";
+  $('#denyModalConfirm').modal('hide');
+  let poruka="Vas zahtev za pregled nije odobren. Doktor "+lekarGlobal.ime+" "+lekarGlobal.prezime+" nije <br> u mogucnosti da vas pregleda u tom terminu, molimo vas da pokusate u nekom drugom terminu.";
   ObavestiPacijenta(poruka); 
   obrisiZahtev(tegobeGlobal.id);
+  $('#denyModal').modal('show');
 }
 
 function ObavestiPacijenta(poruka)
@@ -235,9 +241,12 @@ function prikaziDijagnoze(listaDijagnoza)
     }
     else
     {
-        kontenjerDiv.innerHTML="";
+       
         var SortitaneDijagnoze=sortirajDijagnoze(listaDijagnoza.dijagnoze);
         if(flag==0)
+        {
+             kontenjerDiv.innerHTML="";
+        }
         SortitaneDijagnoze.forEach((d)=>
         {
             flag=1;

@@ -1,7 +1,60 @@
+const imePacijenta=document.getElementById("ime");
+const prezimePacijenta=document.getElementById("prezime");
+const jmbgPacijenta=document.getElementById("jmbg");
+const telefonPacijenta=document.getElementById("telefon");
+const emailPacijenta=document.getElementById("email");
+const naslov=document.getElementById("naslov");
+const imeDoktora=document.getElementById("imeDoktora");
+const prezimeDoktora=document.getElementById("prezimeDoktora");
+const telefonDoktora=document.getElementById("telefonDoktora");
+const emailDoktora=document.getElementById("emailDoktora");
+const posaljiDugme = document.getElementById("send");
+const dijagnoza = document.getElementById("dijagnoza");
+const medikamenti = document.getElementById("medikamenti"); 
+posaljiDugme.onclick=(ev)=>posaljiReceptPacijentu(ev);
+
+
+
 prikaziPacijenta();
 prikaziLekara();
+
 var PacijentGlobal;
 var DoktorGlobal;
+
+function prikaziDijagnozu()
+{
+   const formData=new FormData();
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   
+   var patName= url.searchParams.get("patName");
+    let date=new Date();
+   let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
+   let doktor=DoktorGlobal.ime+" "+DoktorGlobal.prezime;
+   formData.append("pacijent",patName);
+   formData.append("doktor",doktor);
+   formData.append("datum",datum);
+   const fetchData =
+            {
+                method:"POST",
+                body: formData
+            }
+   
+    
+   fetch("../php/vratiDijagnozu.php",fetchData).then(response=>
+   {
+       if(!response.ok)
+           throw new Error(response.statusText)
+       else return response.json();
+   }).then((dijagnoza)=>popuniDijagnozu(dijagnoza))
+           .catch(error => console.log(error));
+    
+}
+function popuniDijagnozu(d)
+{
+    dijagnoza.innerHTML="Diagnosis: "+d.dijagnoza;
+    medikamenti.innerHTML="Medicines: "+d.medikamenti;
+}
 function prikaziPacijenta(){
    const formData=new FormData();
    var url_string = window.location.href;
@@ -29,22 +82,17 @@ function prikaziPacijenta(){
     
 }
 
-const imePacijenta=document.getElementById("ime");
-const prezimePacijenta=document.getElementById("prezime");
-const jmbgPacijenta=document.getElementById("jmbg");
-const telefonPacijenta=document.getElementById("telefon");
-const emailPacijenta=document.getElementById("email");
-const naslov=document.getElementById("naslov");
 
 function PodaciPacijenta(pacijent)
 {
+    PacijentGlobal=pacijent;
     imePacijenta.innerHTML="Name: "+pacijent.ime;
     prezimePacijenta.innerHTML="Surname: "+pacijent.prezime;
     jmbgPacijenta.innerHTML="SSN: "+pacijent.jmbg;
     telefonPacijenta.innerHTML="Contact: "+pacijent.telefon;
     emailPacijenta.innerHTML="Email: "+pacijent.email;
     naslov.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>"+pacijent.jmbg;
-    PacijentGlobal=pacijent;
+    
 }
 
 function prikaziLekara()
@@ -72,13 +120,11 @@ function prikaziLekara()
        else return response.json();
    }).then(lekar=>Lekar(lekar))
            .catch(error => console.log(error));
+   
     
 }
 
-const imeDoktora=document.getElementById("imeDoktora");
-const prezimeDoktora=document.getElementById("prezimeDoktora");
-const telefonDoktora=document.getElementById("telefonDoktora");
-const emailDoktora=document.getElementById("emailDoktora");
+
 
 function Lekar(lekar)
 {
@@ -87,13 +133,9 @@ function Lekar(lekar)
     telefonDoktora.innerHTML="Expertise: "+lekar.zvanje;
     emailDoktora.innerHTML="Email: "+lekar.email;
     DoktorGlobal=lekar;
+    prikaziDijagnozu();
 }
 
-
-const posaljiDugme = document.getElementById("send");
-const dijagnoza = document.getElementById("dijagnoza");
-const medikamenti = document.getElementById("medikamenti"); 
-posaljiDugme.onclick=(ev)=>posaljiRecept(ev);
 
 
 function prikaziModal()
@@ -109,50 +151,19 @@ function posaljiRecept(dugme)
     }
     else
     {
-    let dijagnozaText=dijagnoza.value;
-    let medikamentiText=medikamenti.value;
-    const formData=new FormData();
-        let date=new Date();
-        
-        let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
-        let vreme=date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-        formData.append("emailPacijenta",PacijentGlobal.email);
-        formData.append("Ime_PrezimePac",PacijentGlobal.ime+" "+PacijentGlobal.prezime);
-        formData.append("pacijent",PacijentGlobal.korisnickoIme);
-        formData.append("brojPreuzetih",parseInt(PacijentGlobal.brojPreuzetih)+1);
-        formData.append("dijagnoza",dijagnozaText);
-        formData.append("medikamenti",medikamentiText);
-        formData.append("doktor",DoktorGlobal.ime+" "+DoktorGlobal.prezime);
-        
-        formData.append("vreme",vreme);
-        formData.append("datum",datum);
-        
-        const fetchData =
-            {
-                method:"POST",
-                body: formData
-            }
-   
-    fetch("../php/ubaciPacijentuDijagnozuMedikamente.php",fetchData).then(response=>
-   {
-       if(!response.ok)
-           throw new Error(response.statusText)
-       
-   }).
-           then(()=>preview()).catch(error => console.log(error));   
     
+    posaljiReceptPacijentu();
     }
-   
     
     
 }
 
 function posaljiReceptPacijentu()
 {
-    
+   
     let content=$('#sendDiv').html();
     const formData=new FormData();
-    formData.append("naziv",PacijentGlobal.ime+" "+PacijentGlobal.prezime+Math.random());
+    formData.append("naziv","RecipeMe_Prescription_01_"+Math.random());
     formData.append("email",PacijentGlobal.email);
     formData.append("data",content);
     const fetchData={
@@ -167,7 +178,7 @@ function posaljiReceptPacijentu()
                 throw new Error(response.statusText);
     }).then(()=>{})
             .catch(error => console.log(error));
-   obavestiLekara();
+    obavestiLekara();
 }
 function obavestiLekara()
 {
@@ -182,8 +193,7 @@ Due to overloading the network, it may take a while.\n\
 
 function preview()
 {
-   
-    let myu=podesiVrednost("docName");
+     let myu=podesiVrednost("docName");
     var url_safe_username = encodeURIComponent(myu);
     myu=podesiVrednost("patName");
     var url_safe_username2= encodeURIComponent(myu);
@@ -197,3 +207,5 @@ function podesiVrednost(string)
     var username = url.searchParams.get(string);
     return username;
 }
+
+

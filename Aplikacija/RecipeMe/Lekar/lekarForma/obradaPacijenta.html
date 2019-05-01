@@ -375,7 +375,46 @@
     </div>
   </div>
 </div>
-
+  
+  <!--Novi div-->
+  <div class="modal fade" id="denyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully send deny-mail to patient!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+ <div class="modal fade" id="denyModalConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Deny Patient?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      Select "Deny" below if you are sure you want to deny the patient.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="denyConfirm">Deny</button>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -398,6 +437,7 @@
   
     <script src="js/demo/datatables-demo.js"></script>
 <script src="js/obradaPacijenta.js" ></script>
+<script src="js/ucitavanjePodataka.js"></script>
 
 
 </body>
