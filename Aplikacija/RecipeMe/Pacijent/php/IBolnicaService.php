@@ -34,5 +34,7 @@ interface IBolnicaService {
     function ubaciPacijentuDijagnozuMedikamente($pacijent,$dijagnoza,$medikamenti,$doktor,$Ime_PrezimePac,$datum,$vreme);
     function vratiDijagnoze($username);
     function vratiDijagnozu($pacijent,$doktor,$datum);
+    function vratiObavestenja($username);
+    function obrisiObavestenje($id);
     
 }

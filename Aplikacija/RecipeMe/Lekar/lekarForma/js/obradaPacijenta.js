@@ -242,11 +242,12 @@ function prikaziDijagnoze(listaDijagnoza)
     else
     {
        
-        var SortitaneDijagnoze=sortirajDijagnoze(listaDijagnoza.dijagnoze);
+        var SortitaneDijagnoze=listaDijagnoza.dijagnoze;//sortirajDijagnoze(listaDijagnoza.dijagnoze);
+        
         if(flag==0)
         {
              kontenjerDiv.innerHTML="";
-        }
+        
         SortitaneDijagnoze.forEach((d)=>
         {
             flag=1;
@@ -264,20 +265,27 @@ function prikaziDijagnoze(listaDijagnoza)
             kontenjerDiv.appendChild(kontenjer);
         });
     }
+    }
 }
 function sortirajDijagnoze(niz)
 {
     let i;
     let j;
+    let a;
+    let b;
     let pom;
-    for(i=0;i<niz.length;i++)
-        for(j=i+1;j<niz.length;j++)
+    for(i=0;i<((niz.length)-2);i++)
+        for(j=i+1;j<((niz.length)-1);j++)
         {
-            if(niz[j].id > niz[i].id)
+            a=(niz[i].id);
+            b=(niz[j].id);
+        
+            if(b > a)
             {
                 pom=niz[i];
                 niz[i]=niz[j];
                 niz[j]=pom;
+                
             }
         }
     return niz;

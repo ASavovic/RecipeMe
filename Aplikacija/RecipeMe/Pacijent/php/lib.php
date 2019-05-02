@@ -16,6 +16,7 @@ include_once '../../Administrator/php/obavestenje.php';
 include_once 'Tegobe.php';
 include_once '../../Lekar/php/Dijagnoza.php';
 include_once '../../Lekar/php/ListaDijagnoza.php';
+include_once '../../Lekar/php/Listaobavestenja.php';
 
 class PacijentService implements IBolnicaService
 {
@@ -888,7 +889,59 @@ public function vratiDijagnoze($username)
         }
     } 
     }
+public function vratiObavestenja($username) {
+     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from obavestenje where id_lekara =(select id from doktor where korisnicko_ime='$username')");
+        if ($res) {
+       
+            $niz = new ListaObavestenja();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$obavestenje=new Obavestenje($row['id'],$row['id_lekara'],$row['text_poruke'], $row['flag_vidjena'],$row['datum'],
+                                       $row['vreme']);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+		$niz->dodajObavestenje($obavestenje);
 
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+
+}
+public function obrisiObavestenje($id)
+{
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("delete from obavestenje where id = $id");
+          if($res) 
+          {
+              
+          }
+        
+        else
+        {
+            print ("Query failed");
+        }
+        }  
+}
 }
 
 
