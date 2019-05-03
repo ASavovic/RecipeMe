@@ -21,6 +21,7 @@ interface IBolnicaService {
     function vratiDoktora($username);
     function izmeniLekara($ime,$prezime,$jmbg, $smena, $email, $korisnickoIme, $sifra,$zvanje);
     function ubaciObavestenje($obavestenje);
+    function promeniHronicneBolesnike($id,$hronicni);
     function izmeniPacijenta($ime,$prezime,$email,$jmbg,$telefon,$username,$password);
     function vratiKorisnika($username);
     function vratiDoktore($smena);
@@ -36,5 +37,14 @@ interface IBolnicaService {
     function vratiDijagnozu($pacijent,$doktor,$datum);
     function vratiObavestenja($username);
     function obrisiObavestenje($id);
+    function vratiSveTermine();
+    function vratiTermineLekara($username);
+    function obrisiTermineLekara($username);
+    function dodajTermineLekaraPrvaSmenaPrviDeo($username);
+    function dodajTermineLekaraPrvaSmenaDrugiDeo($username);
+    function dodajTermineLekaraDrugaSmenaPrviDeo($username);
+    function dodajTermineLekaraDrugaSmenaDrugiDeo($username);
+    function vratiSveSlobodneTermine();
+    function vratiSveSlobodneTermineLekara($username);
     
 }
