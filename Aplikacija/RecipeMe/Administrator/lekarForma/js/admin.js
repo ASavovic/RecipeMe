@@ -6,6 +6,7 @@ var nizLekara=[];
 var listaLekaraPod=[];
 //tabela.innerHTML="";
 prikaziLekare();
+
 function prikaziLekare(){
    fetch("../php/lekari.php").then(response=>
    {
@@ -37,6 +38,7 @@ listaLekara.lekari.forEach((lekar) =>  {
     //tabela.innerHTML="";
     popuniRadioDugmad(listaLekara);
 }
+
 function popuniRadioDugmad(listaLekara)
 {
     listaLekara.lekari.forEach((lekar) =>
@@ -54,10 +56,16 @@ function azurirajSmeneLekara(rod)
     {
         pom=document.querySelector("input[name='"+key+"']:checked").value
         if(nizLekara[key]!=pom)
+        {
             promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,pom,listaLekaraPod[key]);
+            //dodato
+            obrisiTermineLekara(listaLekaraPod[key]);
+            dodeliNoveTermineLekaru(pom,listaLekaraPod[key]);
+        }
     }
         
 }
+
 function promeniSmenuLekara(id,smena,lekar)
 {
     $('#changeModal').modal('hide');
@@ -81,6 +89,7 @@ function promeniSmenuLekara(id,smena,lekar)
     $('#okModal').modal('show');
 
 }
+
 function Smena(s)
 {
     if(s==1)
@@ -89,3 +98,62 @@ function Smena(s)
         return "second";
     else return "night"
     }
+
+//dodato
+function obrisiTermineLekara(korisnik)
+{
+    $('#changeModal').modal('hide');
+    const formData = new FormData();
+    //console.log(korisnik.korisnickoIme);
+    formData.append("ime", korisnik.ime);
+    formData.append("prezime", korisnik.prezime);
+    formData.append("username", korisnik.korisnickoIme);
+     const fetchData = {
+        method: "post",
+        body: formData
+    }
+    fetch("../php/obrisiTermineLekara.php",fetchData).then(response=>
+    {
+        if(!response.ok)
+            throw new Error(response.statusText);
+        else return response.json();
+    }).then(listaL=>console.log(listaL))
+            .catch(error=>console.log(error));
+    $('#okModal').modal('show');
+
+}
+
+function dodeliNoveTermineLekaru(smena,korisnik)
+{
+    $('#changeModal').modal('hide');
+    const formData = new FormData();
+    formData.append("ime", korisnik.ime);
+    formData.append("prezime", korisnik.prezime);
+    formData.append("username", korisnik.korisnickoIme);
+     const fetchData = {
+        method: "post",
+        body: formData
+    }
+    if(smena == 1)
+    {
+        fetch("../php/terminiPrvaSmena.php",fetchData).then(response=>
+        {
+            if(!response.ok)
+                throw new Error(response.statusText);
+            else return response.json();
+        }).then(listaL=>prikaziPodatke(listaL))
+        .catch(error=>console.log(error));
+        $('#okModal').modal('show');
+    }
+    else if(smena == 2)
+    {
+        fetch("../php/terminiDrugaSmena.php",fetchData).then(response=>
+        {
+            if(!response.ok)
+                throw new Error(response.statusText);
+            else return response.json();
+        }).then(listaL=>prikaziPodatke(listaL))
+        .catch(error=>console.log(error));
+        $('#okModal').modal('show');
+    }
+}
