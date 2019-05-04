@@ -1046,8 +1046,6 @@ public function dodajTermineLekaraPrvaSmenaPrviDeo($username) {
                 . "('$username','null','Wednesday','10:00h - 10:30h',0),('$username','null','Wednesday','10:30h - 11:00h',0),('$username','null','Wednesday','11:00h - 11:30h',0),('$username','null','Wednesday','11:30h - 12:00h',0),('$username','null','Thursday','08:00h - 08:30h',0);");
         if ($res) {
             
-        print("Dobro je proslo");
-            
         }
         else
         {
@@ -1073,8 +1071,6 @@ public function dodajTermineLekaraPrvaSmenaDrugiDeo($username) {
                 . "('$username','null','Saturday','09:00h - 09:30h',0),('$username','null','Saturday','09:30h - 10:00h',0),('$username','null','Saturday','10:00h - 10:30h',0),('$username','null','Saturday','10:30h - 11:00h',0),('$username','null','Saturday','11:00h - 11:30h',0),"
                 . "('$username','null','Saturday','11:30h - 12:00h',0),('$username','null','Sunday','10:00h - 10:30h',0),('$username','null','Sunday','10:30h - 11:00h',0),('$username','null','Sunday','11:00h - 11:30h',0),('$username','null','Sunday','11:30h - 12:00h',0);");
         if ($res) {
-            
-        print("Dobro je proslo");
             
         }
         else
@@ -1102,8 +1098,6 @@ public function dodajTermineLekaraDrugaSmenaPrviDeo($username) {
                 . "('$username','null','Wednesday','14:30h - 15:00h',0),('$username','null','Wednesday','15:00h - 15:30h',0),('$username','null','Wednesday','15:30h - 16:00h',0),('$username','null','Thursday','12:00h - 12:30h',0),('$username','null','Thursday','12:30h - 13:00h',0);");
         if ($res) {
             
-        print("Dobro je proslo");
-            
         }
         else
         {
@@ -1129,8 +1123,6 @@ public function dodajTermineLekaraDrugaSmenaDrugiDeo($username) {
                 . "('$username','null','Saturday','12:30h - 13:00h',0),('$username','null','Saturday','13:00h - 13:30h',0),('$username','null','Saturday','13:30h - 14:00h',0),('$username','null','Saturday','14:00h - 14:30h',0),('$username','null','Saturday','14:30h - 15:00h',0),"
                 . "('$username','null','Sunday','12:00h - 12:30h',0),('$username','null','Sunday','12:30h - 13:00h',0),('$username','null','Sunday','13:00h - 13:30h',0),('$username','null','Sunday','13:30h - 14:00h',0);");
         if ($res) {
-            
-        print("Dobro je proslo");
             
         }
         else
@@ -1192,6 +1184,134 @@ public function vratiSveSlobodneTermineLekara($username) {
             // zatvaranje objekta koji cuva rezultat
             
             return $pacijent;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+    
+public function vratiSveZakazaneTermine() {
+   $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from zakazani_pregledi");
+        if ($res) {
+            $niz = new ListaZakazanihTermina();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$ztermin=new ZakazanTerminTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
+		$niz->dodajZakazaniTermin($ztermin);
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+}
+}
+
+public function vratiZakazaneTermineLekara($username) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from zakazani_pregledi where doktor_username='$username'");
+        if ($res) {
+            $niz = new ListaZakazanihTermina();
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$ztermin=new ZakazanTerminTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
+		$niz->dodajZakazaniTermin($ztermin);
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            
+            return $pacijent;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+    
+public function obrisiZakazaneTermineLekara($username)
+    {
+        
+         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("delete from zakazani_pregledi where doktor_username = '$username'");
+          if($res) 
+          {
+              
+          }
+        
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+    
+public function obrisiZakazanTerminLekaraIPacijenta($lekar,$pacijent)
+    {
+        
+         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("delete from zakazani_pregledi where doktor_username = '$lekar' and pacijent_username='$pacijent'");
+          if($res) 
+          {
+              
+          }
+        
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+    
+public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("INSERT INTO zakazani_pregledi (doktor_username, pacijent_username)"
+                . " VALUES "
+                . "('$lekar','$pacijent');");
+        if ($res) {
+            
         }
         else
         {

@@ -46,5 +46,10 @@ interface IBolnicaService {
     function dodajTermineLekaraDrugaSmenaDrugiDeo($username);
     function vratiSveSlobodneTermine();
     function vratiSveSlobodneTermineLekara($username);
+    function vratiSveZakazaneTermine();
+    function vratiZakazaneTermineLekara($username);
+    function obrisiZakazaneTermineLekara($username);
+    function obrisiZakazanTerminLekaraIPacijenta($lekar,$pacijent);
+    function zakaziTerminLekaraIPacijenta($lekar,$pacijent);
     
 }
