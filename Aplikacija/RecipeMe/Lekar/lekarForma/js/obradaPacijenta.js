@@ -4,6 +4,9 @@ prikaziLekara();
 var pacijentGlobal;
 var tegobeGlobal;
 var lekarGlobal;
+var pacijentGlobalUsername;
+var lekarGlobalUsername;
+
 function prikaziTegobe(){
    const formData=new FormData();
    var url_string = window.location.href;
@@ -28,7 +31,10 @@ function prikaziTegobe(){
        else return response.json();
    }).then(tegoba=>prikaziPodatke(tegoba))
            .catch(error => console.log(error));
-    
+   
+   pacijentGlobalUsername = patName;
+   lekarGlobalUsername = docName
+   
 }
 
 const imePrezimePacjentaLabela=document.getElementById("imePrezime");
@@ -93,12 +99,13 @@ function prikaziPacijenta(){
            .catch(error => console.log(error));
     
 }
+
 function imeIPrezimePacijenta(pacijent)
 {
     imePrezimePacjentaLabela.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>SSN: "+pacijent.jmbg;
     pacijentGlobal=pacijent;
-    
 }
+
 function prikaziLekara()
 {
        const formData=new FormData();
@@ -126,6 +133,7 @@ function prikaziLekara()
            .catch(error => console.log(error));
     
 }
+
 function Lekar(lekar)
 {
      doktor.innerHTML="<option value ='"+lekar.ime+" "+lekar.prezime+"'>"+lekar.ime+" "+lekar.prezime+"</option>";
@@ -133,11 +141,8 @@ function Lekar(lekar)
      doktor.disabled=true;
 }
 
-
-
 const recept=document.getElementById("recept");
 recept.onclick = (ev) => otvoriRecept();
-
 
 function otvoriRecept()
 {
@@ -166,7 +171,8 @@ const DenyDugme=document.getElementById("odbij").onclick=(ev)=>{  $('#denyModalC
 function OdobriTermin()
 {
     let poruka="Vas zahtev za pregled je odobren. Molimo vas da dodjete u ordinaciju u vasem zakazanom terminu";
-  ObavestiPacijenta(poruka);
+    ObavestiPacijenta(poruka);
+    ZakaziTerminLekara();
 }
 
 function OtkaziTermin()
@@ -197,6 +203,34 @@ function ObavestiPacijenta(poruka)
     }).catch(error => console.log(error)); 
 }
 
+function ZakaziTerminLekara()
+{
+    const formData=new FormData();
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var docName = url.searchParams.get("docName");
+    var patName= url.searchParams.get("patName");
+    
+    //formData.append("usernDoc", lekarGlobalUsername);
+    //formData.append("usernPat", pacijentGlobalUsername);
+   
+    formData.append("usernDoc",docName);
+    formData.append("usernPat",patName);
+   
+    const fetchData =
+            {
+                method:"POST",
+                body: formData
+            }
+    
+   fetch("../php/zakaziTermin.php",fetchData).then(response=>
+   {
+       if(!response.ok)
+           throw new Error(response.statusText)
+       else return response.json();
+   }).then(lista=>console.log(lista))
+   .catch(error => console.log(error));
+}
 
 function obrisiZahtev(id)
 {
@@ -227,7 +261,6 @@ function prikaziIstoriju()
            .catch(error => console.log(error));
     
 }
-
 
 var flag=0;
 function prikaziDijagnoze(listaDijagnoza)
@@ -267,6 +300,7 @@ function prikaziDijagnoze(listaDijagnoza)
     }
     }
 }
+
 function sortirajDijagnoze(niz)
 {
     let i;
