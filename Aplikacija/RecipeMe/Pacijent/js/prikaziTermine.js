@@ -57,11 +57,11 @@ function posaljiMejlPacijentu()
     }
      fetch('../php/vratiPacijenta.php',fetchData)
    .then(response =>
-            {
+   {
         if(!response.ok)
             throw new Error(response.statusText);
         else
-            response.json();
+            return response.json();
       
            
 
@@ -76,19 +76,18 @@ function posaljiMejl(pacijent)
     formData.append("email",pacijent.email);
     formData.append("ime",pacijent.ime);
     formData.append("prezime",pacijent.prezime);
-    let textPoruke="Postovani,<br>Uspesno ste zakazali termin "+dan.value+" - "+termin.value+".";
+    let textPoruke="Uspesno ste zakazali termin "+dan.value+" - "+termin.value+".";
     formData.append("txtPoruke",textPoruke);
     const fetchData ={
         method: "POST",
         body: formData
     }
-     fetch('../../Lekar/php/notify.php',fetchData)
+     fetch('../../Lekar/php/notifyPatient.php',fetchData)
    .then(response =>
             {
         if(!response.ok)
             throw new Error(response.statusText);
-        else
-            response.json();
+      
       
            
 
