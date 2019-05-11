@@ -43,12 +43,12 @@ function otvoriDashboard()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("pacijent.html?name="+ url_safe_username,"_self");
+    window.open("index.html?name="+ url_safe_username,"_self");
 }
 function otvoriIndex()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("pacijent.html?name="+ url_safe_username,"_self");
+    window.open("index.html?name="+ url_safe_username,"_self");
 }
 

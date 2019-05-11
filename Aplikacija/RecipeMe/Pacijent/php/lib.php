@@ -1183,7 +1183,7 @@ public function vratiSveSlobodneTermineLekara($username) {
             }
             // zatvaranje objekta koji cuva rezultat
             
-            return $pacijent;
+            return $niz;
         }
         else
         {
@@ -1319,8 +1319,84 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
         }
     }
     }
-    
-    
+
+    public function proveraZakazaniTermin($pacijent) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("select * from pacijent where korisnicko_ime=(select pacijent_username from zakazani_pregledi where pacijent_username='$pacijent')");
+ 
+        if ($res) {
+            $pacijent=null;
+            if($row = $res->fetch_assoc())
+            {
+            $pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+            }
+            return $pacijent;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }  
+    }
+
+    public function vratiDoktorId($pacijent) {
+      $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("select * from zakazani_pregledi where  pacijent_username='$pacijent';");
+ 
+        if ($res) {
+            $doktor=null;
+            if($row = $res->fetch_assoc())
+            {
+                $doktor=$row["doktor_username"];
+           
+            }
+            return $doktor;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }    
+    }
+
+    public function zakaziTermin($pacijent, $doktor, $dan, $termin) {
+        
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+        $res = $con->query("update termini_pregleda set pacijent_username='$pacijent', flag_zauzeto='1'"
+                    . "where doktor_username='$doktor' and dan='$dan' and termin='$termin';");
+           
+          
+        if ($res) {
+          $res = $con->query("delete from zakazani_pregledi where pacijent_username='$pacijent';");
+          
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
 
 }
 
