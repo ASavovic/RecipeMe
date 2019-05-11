@@ -7,6 +7,8 @@ var listaLekaraPod=[];
 //tabela.innerHTML="";
 prikaziLekare();
 
+
+
 function prikaziLekare(){
    fetch("../php/lekari.php").then(response=>
    {
