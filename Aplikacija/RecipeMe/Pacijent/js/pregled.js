@@ -1,0 +1,102 @@
+const doktori=document.querySelector("select[name='doctor']");
+const temperatura=document.querySelector("select[name='temperatura']");
+const grlo=document.querySelector("select[name='grlo']");
+const kasalj=document.querySelector("input[name='kasalj']");
+const kijanje=document.querySelector("input[name='kijanje']");
+const curenje=document.querySelector("input[name='curenje']");
+const komentar=document.querySelector("textarea[name='komentar']");
+
+const dugme=document.getElementById("Send");
+
+dugme.onclick = (ev) => posaljiTegobe();
+popuniDoktore();
+
+function posaljiTegobe()
+{
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var pacijent = url.searchParams.get("name");
+   const formData = new FormData();
+   var today = new Date();
+   var datum=today.getDay()+"."+today.getMonth()+"."+today.getFullYear()+".";
+   var vreme=today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+   formData.append("pacijent",pacijent);
+   formData.append("temperatura",temperatura.value);
+   formData.append("grlo",grlo.value);
+   formData.append("kasalj",document.querySelector("input[name='kasalj']:checked").value);
+   formData.append("kijanje",document.querySelector("input[name='kijanje']:checked").value);
+   formData.append("curenje",document.querySelector("input[name='curenje']:checked").value);
+   formData.append("komentar",komentar.value);
+   formData.append("doktor",doktori.value);
+   formData.append("date",datum);
+    formData.append("time",vreme);
+     
+        const fetchData =
+            {
+                method:"POST",
+                body: formData
+            }
+       fetch("../php/unesiTegobe.php",fetchData)
+            .then(response =>
+            {
+        if(!response.ok)
+            throw new Error(response.statusText);
+        else
+            return response.json();
+
+    }).then(()=>prikaziPoruku())
+            .catch(error => console.log(error));
+     $('#okModal').modal('show');
+}
+function popuniDoktore()
+{
+   var today = new Date();
+   var time = today.getHours();
+   var smena;
+    if(time>=20)
+    {
+        smena=3;
+    }
+    else if(time>=12)
+    {
+        smena=2;
+    }
+    else
+    {
+        smena=1;
+    }
+    const formData=new FormData();
+    formData.append("smena",smena);
+    const fetchData =
+            {
+                method:"POST",
+                body: formData
+            }
+       fetch("../php/vratiLekare.php",fetchData)
+            .then(response =>
+            {
+        if(!response.ok)
+            throw new Error(response.statusText);
+        else
+            return response.json();
+
+    }).then((lekari)=>popuniPolja(lekari))
+            .catch(error => console.log(error));
+   
+    
+}
+function popuniPolja(lekari)
+{
+    lekari.forEach(lekar => {
+        const el=document.createElement("option");
+        el.value=lekar.korisnickoIme;
+        el.innerHTML=lekar.ime+" "+lekar.prezime;
+        doktori.appendChild(el);
+    });
+}
+function prikaziPoruku()
+{
+    
+}
+
+

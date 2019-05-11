@@ -1,0 +1,10 @@
+diff a/Aplikacija/RecipeMe/Pacijent/html/pacijent.html b/Aplikacija/RecipeMe/Pacijent/html/pacijent.html	(rejected hunks)
+@@ -16,7 +16,7 @@
+        
+ 	<!--Custom styles-->
+ 	<link rel="stylesheet" type="text/css" href="../css/pacijent.css">
+-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
++       
+ </head>
+ <body>
+     <div id="parent">

@@ -1,8 +1,8 @@
 <?php
 
-include_once 'PacijentServiceImpl.php';
+include_once 'lib.php';
 $baza=new PacijentService();
-$pacijenti=$baza->vratiSvePacijente();  
+$pacijenti=$baza->vratiSvePacijentee();  
 echo json_encode($pacijenti);
 ?>
 

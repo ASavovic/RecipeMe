@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Recipe Me</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+      
+	  <nav class=" navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html" style="font-size:36px"><span>Recipe</span>Me</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.html" class="nav-link font-weight-bold"  style="font-size:18px">Home</a></li>
+	          <li class="nav-item"><a href="about.html" class="nav-link font-weight-bold"  style="font-size:18px">About</a></li>
+	          <li class="nav-item"><a href="services.html" class="nav-link font-weight-bold"  style="font-size:18px">Services</a></li>
+	          <li class="nav-item"><a href="doctors.html" class="nav-link font-weight-bold"  style="font-size:18px">Doctors</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold"  style="font-size:18px">Contact</a></li>
+	         <li  class="nav-item border" style=" border-radius: 25px;" >
+	        <div class="nav-link">
+			  <a href="../../Pacijent/html/logovanjeKorisnika.html" id="id1" onclick="myFunction()"  class="  font-weight-bold text-white"  aria-haspopup="true" aria-expanded="false" style="font-size:18px">Log in</a>
+			  
+                          
+		</div>
+		</li>
+             
+			
+			
+			
+			
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+    <section class="home-slider owl-carousel">
+      <div class="slider-item" style="background-image: url('images/bg_1.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row slider-text align-items-center" data-scrollax-parent="true">
+            <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+              <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Modern Clinic in a Calm and Relaxed Environment</h1>
+              <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">In some cases, there's no need to come by to see us, we can help you online.</p>
+              <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-item" style="background-image: url('images/bg_2.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row slider-text align-items-center" data-scrollax-parent="true">
+            <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+              <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Fast And Easy Access To Your Chosen Doctor</h1>
+              <p class="mb-4">Easy access to your online prescription.</p>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-intro ">
+    	<div class="container ">
+    		<div class="row no-gutters">
+    			<div class="col-md-5 color-1 p-2 ml-md-5">
+    				<h3 class="mb-4">Emergency Cases</h3>
+    				<p>You can contact us via email</p>
+    				<span>info.recipeme@gmail.com</span>
+    			</div>
+    			<div class="col-md-5 color-2 p-2">
+    				<h3 class="mb-4">Opening Hours</h3>
+    				<p class="openinghours d-flex">
+    					<span>Monday - Friday</span>
+    					<span id="radni_dan"></span>
+    				</p>
+    				<p class="openinghours d-flex">
+    					<span>Saturday</span>
+    					<span id="subota"></span>
+    				</p>
+    				<p class="openinghours d-flex">
+    					<span>Sunday</span>
+    					<span id="nedelja"></span>
+    				</p>
+    			</div>
+    			
+                    
+	       </div>
+	</div>
+	              
+
+    </section>
+  
+    <section class="ftco-section ftco-services">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mb-2">Our service helps you to do the right thing!</h2>
+            <p>Fast online prescription is one of our most used and popular thing we offer.</p>
+          </div>
+        </div>
+ 
+      <div class="container-wrap mt-5">
+      	<div class="row d-flex no-gutters">
+      		<div class="col-md-6 img" style="background-image: url(images/about-2.jpg);">
+      		</div>
+      		<div class="col-md-6 d-flex">
+      			<div class="about-wrap">
+      				<div class="heading-section heading-section-white mb-5 ftco-animate">
+		            <h2 class="mb-2">Licensed and kindly doctors</h2>
+		            <p>We are gave our best to form a team of the most appreciated doctors in the city.</p>
+		          </div>
+      				<div class="list-services d-flex ftco-animate">
+      					<div class="icon d-flex justify-content-center align-items-center">
+      						<span class="icon-check2"></span>
+      					</div>
+      					<div class="text">
+	      					<h3>Well Experience Doctors</h3>
+	      					<p>We truly made everything, just you to have the best care you ever wanted.</p>
+      					</div>
+      				</div>
+      				<div class="list-services d-flex ftco-animate">
+      					<div class="icon d-flex justify-content-center align-items-center">
+      						<span class="icon-check2"></span>
+      					</div>
+      					<div class="text">
+	      					<h3>High Technology Facilities</h3>
+	      					<p>Our latest technologies will leave you without a word.</p>
+      					</div>
+      				</div>
+      				<div class="list-services d-flex ftco-animate">
+      					<div class="icon d-flex justify-content-center align-items-center">
+      						<span class="icon-check2"></span>
+      					</div>
+      					<div class="text">
+	      					<h3>Comfortable Clinics</h3>
+	      					<p>New buildings and modern design is something we've worked for to make you feel comfortable.</p>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      </div>
+    </section>
+
+
+    <section class="ftco-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mb-3">Meet Our Experience Doctors</h2>
+            <p>Let us meet you with our specialized team. We hope they will have answer for everything that's bothering you!</p>
+          </div>
+        </div>
+        <div class="row">
+        	<div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+        		<div class="staff">
+      				<div class="img mb-4" style="background-image: url(images/person_5.jpg);"></div>
+      				<div class="info text-center">
+      					<h3><a href="teacher-single.html">Tom Smith</a></h3>
+      					<span class="position">Ophthalmologist</span>
+      					<div class="text">
+	        				<p>After completing college and practice abroad, he is willing to share his knowledge and experience with you!</p>
+	        				
+	        			</div>
+      				</div>
+        		</div>
+        	</div>
+        	<div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+        		<div class="staff">
+      				<div class="img mb-4" style="background-image: url(images/person_6.jpg);"></div>
+      				<div class="info text-center">
+      					<h3><a href="teacher-single.html">Mark Wilson</a></h3>
+      					<span class="position">Pediatrician</span>
+      					<div class="text">
+	        				<p>Huge experience in working with children and great love for them. Your child is in safe hands!</p>
+	        				
+	        			</div>
+      				</div>
+        		</div>
+        	</div>
+        	<div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+        		<div class="staff">
+      				<div class="img mb-4" style="background-image: url(images/person_7.jpg);"></div>
+      				<div class="info text-center">
+      					<h3><a href="teacher-single.html">Patricia Jacobson</a></h3>
+      					<span class="position">Psychiatrist</span>
+      					<div class="text">
+	        				<p>With her great patience, it will be her pleasure to do her best to help in absolutely all cases!</p>
+	        				
+	        			</div>
+      				</div>
+        		</div>
+        	</div>
+        	<div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+        		<div class="staff">
+      				<div class="img mb-4" style="background-image: url(images/person_8.jpg);"></div>
+      				<div class="info text-center">
+      					<h3><a href="teacher-single.html">Ivan Dorchsner</a></h3>
+      					<span class="position">Neurosurgeon</span>
+      					<div class="text">
+	        				<p>After countless successful operations, every venture for him is a challenge of satisfaction!</p>
+	        				
+	        			</div>
+      				</div>
+        		</div>
+        	</div>
+        </div>
+        <div class="row  mt-5 justify-conten-center">
+        	<div class="col-md-8 ftco-animate">
+        		<p>There are many more people in our team which helps us to work like one. We will try our best to provide you with the willing results.</p>
+        	</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+    	<div class="container">
+    		<div class="row d-flex align-items-center">
+    			<div class="col-md-3 aside-stretch py-5">
+    				<div class=" heading-section heading-section-white ftco-animate pr-md-4">
+	            <h2 class="mb-3">Achievements</h2>
+	            <p>These are some of our modestly achievements.</p>
+	          </div>
+    			</div>
+    			<div class="col-md-9 py-5 pl-md-5">
+		    		<div class="row">
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18">
+		              <div class="text">
+		                <strong class="number" data-number="3">0</strong>
+		                <span>Years of Experience</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18">
+		              <div class="text">
+		                <strong class="number" data-number="45">0</strong>
+		                <span>Qualified Doctors</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18">
+		              <div class="text">
+		                <strong class="number" data-number="900">0</strong>
+		                <span>Satisfied Patients</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18">
+		              <div class="text">
+		                <strong class="number" data-number="300">0</strong>
+		                <span>Patients Per Year</span>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+	      </div>
+    	</div>
+    </section>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mb-3">Our Best Pricing</h2>
+            <p>We hope our prices are symbolic.</p>
+          </div>
+        </div>
+    		<div class="row">
+        	<div class="col-md-3 ftco-animate">
+        		<div class="pricing-entry pb-5 text-center">
+        			<div>
+	        			<h3 class="mb-4">Basic</h3>
+	        			<p><span class="price">$24.99</span> <span class="per">/ session</span></p>
+	        		</div>
+        			<ul>
+        				<li>Diagnostic Services</li>
+								<li>Professional Consultation</li>
+								<li>Physical Therapy</li>
+								<li>Surgical Extractions</li>
+								<li>Prescription online</li>
+                                                                <li>Support 24/7</li>
+        			</ul>
+        			
+        		</div>
+        	</div>
+        	<div class="col-md-3 ftco-animate">
+        		<div class="pricing-entry pb-5 text-center">
+        			<div>
+	        			<h3 class="mb-4">Standard</h3>
+	        			<p><span class="price">$74.99</span> <span class="per">/ month</span></p>
+	        		</div>
+        			<ul>
+        				<li>Diagnostic Services</li>
+								<li>Professional Consultation</li>
+								<li>Physical Therapy</li>
+								<li>Surgical Extractions</li>
+								<li>Prescription online</li>
+                                                                <li>Support 24/7</li>
+        			</ul>
+        			
+        		</div>
+        	</div>
+        	<div class="col-md-3 ftco-animate">
+        		<div class="pricing-entry active pb-5 text-center">
+        			<div>
+	        			<h3 class="mb-4">Premium</h3>
+	        			<p><span class="price">$349.99</span> <span class="per">/ 6 months</span></p>
+	        		</div>
+        			<ul>
+        				<li>Diagnostic Services</li>
+								<li>Professional Consultation</li>
+								<li>Physical Therapy</li>
+								<li>Surgical Extractions</li>
+								<li>Prescription online</li>
+                                                                <li>Support 24/7</li>
+        			</ul>
+        			
+        		</div>
+        	</div>
+        	<div class="col-md-3 ftco-animate">
+        		<div class="pricing-entry pb-5 text-center">
+        			<div>
+	        			<h3 class="mb-4">Platinum</h3>
+	        			<p><span class="price">$599.99</span> <span class="per">/ year</span></p>
+	        		</div>
+        			<ul>
+        				<li>Diagnostic Services</li>
+								<li>Professional Consultation</li>
+								<li>Physical Therapy</li>
+								<li>Surgical Extractions</li>
+								<li>Prescription online</li>
+                                                                <li>Support 24/7</li>
+        			</ul>
+        			
+        		</div>
+        	</div>
+        </div>
+    	</div>
+    </section>
+
+    
+		
+		<section class="ftco-section testimony-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mb-2">Testimony</h2>
+            <span class="subheading">Our Happy Customer Says</span>
+          </div>
+        </div>
+        <div class="row justify-content-center ftco-animate">
+          <div class="col-md-8">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5">It was such a pleasure to deal with this guys! The truly professionals in their job, fast and easy online communication.</p>
+                    <p class="name">Dennis Green</p>
+                    <span class="position">Marketing Manager</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_2.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5">I'm very satisfied with the staff, they are so kind and there's no waiting at all!</p>
+                    <p class="name">Thomas Miller</p>
+                    <span class="position">Interface Designer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_3.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5">I truly recomend this site! I get my online presciption regularly and on time.</p>
+                    <p class="name">Richard Garcia</p>
+                    <span class="position">UI Designer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5">Text.</p>
+                    <p class="name">Barbara Clark</p>
+                    <span class="position">Web Developer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5">Text.</p>
+                    <p class="name">Lisa Adams</p>
+                    <span class="position">System Analytics</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+		
+		<section class="ftco-gallery">
+    	<div class="container-wrap">
+    		<div class="row no-gutters">
+					<div class="col-md-3 ftco-animate">
+						<a href="#" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-1.jpg);">
+							
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="#" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-2.jpg);">
+							
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="#" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-3.jpg);">
+							
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="#" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-4.jpg);">
+							
+						</a>
+					</div>
+        </div>
+    	</div>
+    </section>
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mb-2">Satisfied Patients</h2>
+            <p>Here are some of the latest impressions of our satisfied patients.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 ftco-animate">
+            <div class="blog-entry">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+              </a>
+              <div class="text d-flex py-4">
+                
+                <div class="desc pl-3">
+	                <h3 class="heading"><a href="#">I feel like a goddess after the operation!</a></h3>
+	              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 ftco-animate">
+            <div class="blog-entry" data-aos-delay="100">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+              </a>
+              <div class="text d-flex py-4">
+                
+                <div class="desc pl-3">
+	                <h3 class="heading"><a href="#">My kids are now smiling, so do I!</a></h3>
+	              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 ftco-animate">
+            <div class="blog-entry" data-aos-delay="200">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+              </a>
+              <div class="text d-flex py-4">
+                
+                <div class="desc pl-3">
+	                <h3 class="heading"><a href="#">I'm reborn!</a></h3>
+	              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="ftco-quote">
+    	
+    		
+    			<div class=" pr-md-5 aside-stretch py-5 choose" style="margin-bottom: 100px;">
+    				<div class="heading-section heading-section-white mb-5 ftco-animate">
+	            <h2 class="mb-2">RecipeMe Care &amp; High Quality Services</h2>
+	          </div>
+	          <div class="ftco-animate">
+	          	<p>We look forward to meeting you in advance! We believe that we can do anything for your needs. We guarantee professionalism and satisfaction. Contact us!</p>
+	          	<ul class="un-styled my-5">
+	          		<li><span class="icon-check"></span>Well Experience Doctors</li>
+	          		<li><span class="icon-check"></span>High Technology Facilities</li>
+	          		<li><span class="icon-check"></span>Comfortable Clinics</li>
+	          	</ul>
+	          </div>
+    			</div>
+    			
+    
+    </section>
+		
+		<div  class="mapouter"><div style="width:100%;" class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Aleksandra%20Medvedeva%2014%2C%20Ni%C5%A1%2018000%2C%20Serbia&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.crocothemes.net">crocothemes.net</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">RecipeMe.</h2>
+              <p>Follow us on Twitter, Facebook and Instagram.</p>
+            </div>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft ">
+              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            
+          </div>
+          <div class="col-md-4 pr-md-4">
+            
+            
+          </div>
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Office</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">Bulevar Dr. Zorana Đinđića 48, 18000 Niš, Serbia</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+381 64 857 6383</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info.recipeme@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <!-- Modal -->
+  
+
+        
+      </div>
+    </div>
+  </div>
+
+  <script src="js/ucitavanje.js" type="module"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeVa1hULe3G5LCVW3Ji88SdPSxGEw9e3M&sensors=true"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  
+  </body>
+</html>

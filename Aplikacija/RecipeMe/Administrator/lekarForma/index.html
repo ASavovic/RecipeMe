@@ -17,7 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+  <link rel="stylesheet"  type="text/css" href="css/admin.css">
 </head>
 
 <body id="page-top">
@@ -60,28 +60,33 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="doctors.html">
           <i class="fas fa-fw fa-table"></i>
           <span style="font-size:14px">Doctors</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=#>
+        <a class="nav-link" href="addDoctor.html">
           <i class="fa fa-user-plus"></i>
           <span style="font-size:14px">Add Doctor</span>
         </a>
-        
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="patients.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span style="font-size:14px">Patients</span></a>
+      </li>  
        
-      </li>
       
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="notify.html">
           <i class="fa fa-envelope""></i>
           <span style="font-size:14px">Notify</span></a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="openHours.html">
           <i class="fa fa-edit"></i>
           <span style="font-size:14px">Opening Hours</span></a>
       </li>
@@ -177,36 +182,29 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  
+                <table class="sortable table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th  >Name</th>
+                      <th >Surname</th>
+                      <th >SSN</th>
+                      <th >Shift</th>
+                      <th >Change Shift</th>
                     </tr>
                   </thead>
                   <tfoot>
-                    <tr>
+                   <tr>
                       <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Surname</th>
+                      <th>SSN</th>
+                      <th>Vocation</th>
+                      <th>Shift</th>
+                      <th>Change Shift</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
+
         
                   </tbody>
                 </table>
@@ -218,14 +216,22 @@
         <!-- /.container-fluid -->
 
       </div>
-                  
+      <script>
+         
+            
+
+        <div class="form-group">
+               <input type="button" value="Confirm Changes" class="btn float-right login_btn" style="background-color: #4e73df; color:black; margin: 5px; margin-right: 20px; color:white;" data-toggle="modal" data-target="#changeModal" >
+					
+               </div>
+             
       <!-- End of Main Content -->
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; RecipeMe 2019</span>
+            <span style="color: white;">Copyright &copy; RecipeMe 2019</span>
           </div>
         </div>
       </footer>
@@ -255,12 +261,54 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="logovanjeAdministratora.html">Logout</a>
         </div>
       </div>
     </div>
   </div>
-
+    <!-- Logout Modal-->
+ 
+  
+    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Change Shift?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+       Select "Change" below if you are ready to change shift/s.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="confirm">Change</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="modal fade" id="okModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully changed shift\s!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/admin.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

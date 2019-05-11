@@ -1,16 +1,14 @@
-
-
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('https://images7.alphacoders.com/697/697207.jpg');
+background-image: url('bg_1.jpg');
 
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
 font-family: 'Numans', sans-serif;
-
 }
+
 #parent{
     display: flex;
     flex-direction: row;
@@ -18,7 +16,8 @@ font-family: 'Numans', sans-serif;
 }
 
 .container{
-    margin-top: 100px;
+ margin-top: 5px;
+ 
 height: 100%;
 align-content: center;
 }

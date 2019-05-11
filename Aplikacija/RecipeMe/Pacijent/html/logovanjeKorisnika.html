@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Page</title>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <title>RecipeMe Patients</title>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <!--Made with love by Mutiullah Samim -->
@@ -15,13 +16,34 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 	<!--Custom styles-->
-	<link rel="stylesheet" type="text/css" href="../css/logovanjeKorisnika.css">
+	<!--Custom styles-->
+
+        <link rel="stylesheet" href="../css/logovanjeKorisnika.css">
 </head>
 <body>
-<div class="container">
-     <div id="alert">
-     </div>
+    	 	  <nav class=" navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+                <a class="navbar-brand" href="pacijent.html" style="font-size:36px; "><span>RecipeMe</span><strong style="font-style: italic; font-family: serif; color: #2f89fc; font-size: 1.75rem">Patient</strong></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
 
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="../../HomePage/RecipeMe/index.html" class="nav-link font-weight-bold"  style="font-size:18px">Home</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/about.html" class="nav-link font-weight-bold"  style="font-size:18px">About</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/services.html" class="nav-link font-weight-bold"  style="font-size:18px">Services</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/doctors.html" class="nav-link font-weight-bold"  style="font-size:18px">Doctors</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/contact.html" class="nav-link font-weight-bold "  style="font-size:18px margin-right:0px;">Contact</a></li>
+	
+                 </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+    <div id="alert"></div>  
+<div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
@@ -34,34 +56,27 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input name="username" type="text" class="form-control" placeholder="username">
+						<input type="text" class="form-control" placeholder="username" name="username">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input name="password" type="password" class="form-control" placeholder="password">
+						<input type="password" class="form-control" placeholder="password" name="password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
 					</div>
 					<div class="form-group">
-						<input id="logIn" type="button" value="Login" class="btn float-right login_btn">
+						<input  type="button" id="logIn" value="Login" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="kreiranjeNaloga.html" id="signIn">Sign Up</a>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </div>
-<script type="module" src="../js/logovanjeKorisnika.js"></script>
+    <script src="../js/logovanjeKorisnika.js" ></script>
 </body>
 </html>
