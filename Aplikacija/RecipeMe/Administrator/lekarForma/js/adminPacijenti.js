@@ -18,22 +18,23 @@ function prikaziPacijente(){
   
 function prikaziPodatke(listaPacijenata)
 {
-    var id;
+/*    var id;
     let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name Surname</th><th>SSN</th><th>Phone number</th><th>Username</th><th>Password</th><th>Email</th><th>Cronic patient</th><th>Disease</th><th>Delete</th></tr></thead>\n\
 <tfoot style='text-align:center'><tr><th>Name Surname</th><th>SSN</th><th>Phone number</th><th>Username</th><th>Password</th><th>Email</th><th>Chronic Patient</th><th>Diagnosis</th><th>Delete</th></tr></tfoot><tbody>";
-    nizPacijenata=[];
-    id=1;
+ */  
+   nizPacijenata=[];
+   // id=1;
     listaPacijenata.forEach((pacijent) =>  { 
         nizPacijenata[pacijent.id]=pacijent.korisnickoIme;
        
-        innerHTMLTabele += "<tr id='"+id+"'><td>"+ pacijent.ime + " "+ pacijent.prezime  
+        /*innerHTMLTabele += "<tr id='"+id+"'><td>"+ pacijent.ime + " "+ pacijent.prezime  
                 + "</td><td>"+ pacijent.jmbg + "</td><td>"+ pacijent.telefon +"</td><td>"+pacijent.korisnickoIme+"</td><td>"+pacijent.sifra
                 + "</td><td>"+ pacijent.email + "</td><td>"+ Hronicni(pacijent.hronicniBolesnik) + "</td><td>"+pacijent.dijagnoza + "</td><td>"
                 +"<input  type='checkbox' name='"+pacijent.id+"' value='"+pacijent.id+"'>  Check to delete</td></tr>";
-                id++;
+                id++;*/
     });
-    innerHTMLTabele += "</tbody>";   
-    tabela.innerHTML = innerHTMLTabele;
+    //innerHTMLTabele += "</tbody>";   
+    //tabela.innerHTML = innerHTMLTabele;
 
     //tabela.innerHTML=""
 }
