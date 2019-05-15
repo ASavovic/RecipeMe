@@ -38,11 +38,11 @@ function prikaziPacijente(){
 function prikaziPodatke(listaPacijenata)
 {
 
-let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>E-mail</th><th>Chronic patient</th><th>Diagnosis</th><th>Medicines</th><th>Allowed dose</th><th>Control</th><th>Edit</th></tr></thead>\n\
+/*let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>E-mail</th><th>Chronic patient</th><th>Diagnosis</th><th>Medicines</th><th>Allowed dose</th><th>Control</th><th>Edit</th></tr></thead>\n\
 <tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>E-mail</th><th>Chronic Patient</th><th>Diagnosis</th><th>Medicines</th><th>Allowed dose</th><th>Control</th><th>Edit</th></tr></tfoot><tbody>";
-
-    listaPacijenata.pacijenti.forEach((pacijent) =>  {  
-        id=1;
+*/
+    //listaPacijenata.pacijenti.forEach((pacijent) =>  {  
+       /* id=1;
         let pom=false;
         if(pacijent.hronicniBolesnik==1)
             pom=true;
@@ -82,11 +82,16 @@ let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
     id++;
-   
+   */
+
+}
+function podesiButton()
+{
   let nizDugmadi=document.querySelectorAll("button[name='edit']");
   nizDugmadi.forEach(d => 
   {d.onclick=(ev)=>omoguciPromene(d);});
 }
+
 function omoguciPromene(d)
 {
     
@@ -102,9 +107,11 @@ function omoguciPromene(d)
             el.disabled=false;
         });
         dijagnoza.disabled=false;
-        dijagnoza.innerHTML="";
+        if(dijagnoza.innerHTML=="None")
+         dijagnoza.innerHTML="";
         medikamenti.disabled=false;
-        medikamenti.innerHTML="";
+        if(medikamenti.innerHTML=="None")
+           medikamenti.innerHTML="";
         doza.disabled=false;
         kontrola.disabled=false;
         d.innerHTML="Confirm";

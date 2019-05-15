@@ -107,7 +107,7 @@ $(document).ready(function() {
         "data": data
       
   });
-  if(typeof (popuniRadioDugmad)===typeof(Function))
+  if(typeof (popuniRadioDugmad)=== typeof (Function))
      popuniRadioDugmad(response);
    $('#dataTable1').DataTable({
         "columns":[

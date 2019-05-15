@@ -35,14 +35,25 @@ function prikaziPacijente(){
    docUsername = username;
 }
   
- var id;   
+ 
+function podesiButton()
+{
+  
+  let nizDugmadi=document.querySelectorAll("button[name='process']");
+  nizDugmadi.forEach(d => 
+  {
+      d.onclick=(ev)=>otvoriNovuStranicu(d);
+  });
+}
+
+
 function prikaziPodatke(listaPacijenata)
 {
-let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></thead>\n\
-<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic Patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></tfoot><tbody>";
+//let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></thead>\n\
+//<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic Patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></tfoot><tbody>";
 
     listaPacijenata.pacijenti.forEach((pacijent) =>  {  
-        id=1;
+       /* id=1;
 
         let dijagnoza="None";
         if(pacijent.dijagnoza!=null)
@@ -57,20 +68,19 @@ let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><
           <td>"+dijagnoza+"</td>\n\
           <td>"+medikamenti+"<td><button class='btn btn-primary' name='process' id="+pacijent.id+">Process</button>"
                 +"</td></tr>";
-        
+        */
        
       
     });
-    innerHTMLTabele += "</tbody>";   
+    /*innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
-    id++;
+    id++;*/
     
     nizPacijenata = listaPacijenata;
-   
-  let nizDugmadi=document.querySelectorAll("button[name='process']");
-  nizDugmadi.forEach(d => 
-  {d.onclick=(ev)=>otvoriNovuStranicu(d);});
+    
+  
 }
+
 
 function otvoriNovuStranicu(korisnik)
 {

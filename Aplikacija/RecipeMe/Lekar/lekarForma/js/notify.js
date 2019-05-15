@@ -35,11 +35,11 @@ function prikaziPacijente(){
     var id;
 function prikaziPodatke(listaPacijenata)
 {
-    let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></thead>\n\
-    <tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></tfoot><tbody>";
+    //let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></thead>\n\
+    //<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></tfoot><tbody>";
     listaPacijenata.pacijenti.forEach((pacijent) =>  {
         nizPacijenata[pacijent.id]=pacijent;
-        id=1;
+        /*id=1;
         innerHTMLTabele += "<tr id='"+id+"'><td>"+ pacijent.ime +"</td><td>"+ pacijent.prezime 
                 + "</td><td>"+pacijent.telefon+"</td><td>"+ pacijent.email 
                 + "</td><td>"+pacijent.bolest
@@ -48,7 +48,8 @@ function prikaziPodatke(listaPacijenata)
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
     id++;
-    //tabela.innerHTML="";
+    //tabela.innerHTML="";*/
+    });
 }
 
 function posaljiPoruku(dugme)
