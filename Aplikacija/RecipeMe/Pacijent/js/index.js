@@ -2,15 +2,21 @@ const profil=document.getElementById("profile");
 const recept=document.querySelector("a[name='recept']");
 const pregled=document.querySelector("a[name='pregled']");
 const dashboard=document.getElementById("dashboard");
+const patient=document.getElementById("patient");
+const logOut=document.getElementById("userDropdown");
+logOut.onclick=(ev)=>odjaviSe();
 
-
+function odjaviSe()
+{
+    $("#logoutModal").modal('show');
+}
 
 podesiValue();
 profil.onclick=(ev)=>otvoriProfil();
 pregled.onclick=(ev)=>otvoriPregled();
 recept.onclick=(ev)=>otvoriRecept();
 dashboard.onclick=(ev)=>otvoriDashboard();
-
+patient.onclick=(ev)=>otvoriDashboard();
 
 function podesiValue()
 {

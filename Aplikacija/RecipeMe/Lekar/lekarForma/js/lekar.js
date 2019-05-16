@@ -6,7 +6,13 @@ const notifications=document.getElementById("notifications");
 const notify=document.getElementById("notify");
 const dashboard=document.getElementById("dashboard");
 const doctor=document.getElementById("doctor");
+const logOut=document.getElementById("userDropdown");
+logOut.onclick=(ev)=>odjaviSe();
 
+function odjaviSe()
+{
+    $("#logoutModal").modal('show');
+}
 
 podesiValue();
 profil.onclick=(ev)=>otvoriProfil();

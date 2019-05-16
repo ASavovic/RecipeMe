@@ -2,7 +2,13 @@ const radni_dan=document.querySelector("input[name='rdan']");
 const subota=document.querySelector("input[name='subota']");
 const nedelja=document.querySelector("input[name='nedelja']");
 const dugme=document.getElementById("register");
+const logOut=document.getElementById("userDropdown");
+logOut.onclick=(ev)=>odjaviSe();
 
+function odjaviSe()
+{
+    $("#logoutModal").modal('show');
+}
 dugme.onclick =(ev) => promeni();
 prikaziRadnoVreme();
 

@@ -45,6 +45,9 @@ const kasalj = document.querySelectorAll("input[name='Coughing']");
 const kijanje = document.querySelectorAll("input[name='kijanje']");
 const curenje = document.querySelectorAll("input[name='curenje']");
 const komentar = document.getElementById("komentar");
+const dugmeAccept=document.getElementById("accept");
+
+dugmeAccept.onclick=(ev) => OdobriTermin();
 
 function prikaziPodatke(tegoba)
 {
@@ -164,15 +167,20 @@ function podesiVrednost(string)
 }
 
 
-const AcceptDugme=document.getElementById("pregled").onclick=(ev)=>OdobriTermin();
+const AcceptDugme=document.getElementById("pregled").onclick=(ev)=>prikaziModal();
 const DenyModal=document.getElementById("denyConfirm").onclick=(ev)=>OtkaziTermin();
 const DenyDugme=document.getElementById("odbij").onclick=(ev)=>{  $('#denyModalConfirm').modal('show');};
-
+function prikaziModal()
+{
+    $('#acceptModal').modal('show');
+}
 function OdobriTermin()
 {
-    let poruka="Vas zahtev za pregled je odobren. Molimo vas da dodjete u ordinaciju u vasem zakazanom terminu";
+    $('#acceptModal').modal('hide');
+    let poruka="Vas zahtev za pregled je odobren. Molimo Vas da se ulogujete i izaberite zeljeni termin.";
     ObavestiPacijenta(poruka);
     ZakaziTerminLekara();
+    $('#okModalAccept').modal('show');
 }
 
 function OtkaziTermin()
@@ -186,7 +194,7 @@ function OtkaziTermin()
 
 function ObavestiPacijenta(poruka)
 {
-       const formData = new FormData();
+    const formData = new FormData();
     formData.append("ime", pacijentGlobal.ime);
     formData.append("prezime", pacijentGlobal.prezime);
     formData.append("email", pacijentGlobal.email);

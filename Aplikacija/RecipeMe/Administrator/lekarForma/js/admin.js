@@ -1,3 +1,10 @@
+const logOut=document.getElementById("userDropdown");
+logOut.onclick=(ev)=>odjaviSe();
+
+function odjaviSe()
+{
+    $("#logoutModal").modal('show');
+}
 const tabela=document.getElementById("dataTable");
 const confirmDugme=document.getElementById("confirm");
 confirmDugme.onclick=(ev)=>{azurirajSmeneLekara(ev.target);}

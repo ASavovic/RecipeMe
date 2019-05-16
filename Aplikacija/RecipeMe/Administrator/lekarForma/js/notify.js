@@ -1,3 +1,10 @@
+const logOut=document.getElementById("userDropdown");
+logOut.onclick=(ev)=>odjaviSe();
+
+function odjaviSe()
+{
+    $("#logoutModal").modal('show');
+}
 const tabela=document.getElementById("dataTable");
 const confirmDugme=document.getElementById("register");
 confirmDugme.onclick=(ev)=>{posaljiPoruku(ev.target);}

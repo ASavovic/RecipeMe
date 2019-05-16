@@ -1,3 +1,10 @@
+const logOut=document.getElementById("userDropdown");
+logOut.onclick=(ev)=>odjaviSe();
+
+function odjaviSe()
+{
+    $("#logoutModal").modal('show');
+}
 const tabela=document.getElementById("dataTable");
 //console.log(1);
 //tabela.innerHTML="";

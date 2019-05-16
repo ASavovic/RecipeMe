@@ -5,14 +5,46 @@ const kasalj=document.querySelector("input[name='kasalj']");
 const kijanje=document.querySelector("input[name='kijanje']");
 const curenje=document.querySelector("input[name='curenje']");
 const komentar=document.querySelector("textarea[name='komentar']");
-
+const dugmeSlanjePotvrda=document.getElementById("sendConfirm");
 const dugme=document.getElementById("Send");
 
-dugme.onclick = (ev) => posaljiTegobe();
-popuniDoktore();
 
+dugme.onclick=(ev)=>prikaziModal();
+dugmeSlanjePotvrda.onclick=(ev)=>posaljiTegobe(ev);
+
+popuniDoktore();
+function validacijaZahteva()
+{
+    if(doktori.value==null)
+        return false;
+    if(temperatura.value==null)
+        return false;
+    if(grlo.value==null)
+        return false;
+    if(document.querySelector("input[name='kasalj']:checked")==null)
+        return false;
+    if(document.querySelector("input[name='kijanje']:checked")==null)
+        return false;
+    if(document.querySelector("input[name='curenje']:checked")==null)
+        return false;
+    if(komentar.value==null)
+        return false;
+    if(doktori.value==null)
+        return false;
+    return true;
+}
+function prikaziModal()
+{
+    let pom=validacijaZahteva();
+    if(!pom)
+        $('#upozorenje').modal('show');
+    else
+        $('#send').modal('show');
+}
 function posaljiTegobe()
 {
+   $('#send').modal('hide');
+   
    var url_string = window.location.href;
    var url = new URL(url_string);
    var pacijent = url.searchParams.get("name");

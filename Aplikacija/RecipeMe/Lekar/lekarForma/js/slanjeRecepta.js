@@ -151,8 +151,7 @@ function posaljiRecept(dugme)
     }
     else
     {
-    
-    posaljiReceptPacijentu();
+        posaljiReceptPacijentu();
     }
     
     
