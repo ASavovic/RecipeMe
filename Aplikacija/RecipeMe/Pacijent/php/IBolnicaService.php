@@ -54,5 +54,7 @@ interface IBolnicaService {
     function proveraZakazaniTermin($pacijent);
     function vratiDoktorId($pacijent);
     function zakaziTermin($pacijent,$doktor,$dan,$termin);
+    function unesiOcenu($pacijent,$lekar,$ocena);
+    function vratiOcene();
     
 }

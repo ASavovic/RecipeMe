@@ -32,6 +32,8 @@ $(document).ready(function() {
         "data": data
                });
          dodeliKlase();
+         //izracunavanjeOcenaLekara();
+         
        
    })
            .catch(error => console.log(error));

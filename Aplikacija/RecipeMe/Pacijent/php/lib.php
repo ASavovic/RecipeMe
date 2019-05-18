@@ -7,6 +7,7 @@
  */
 include_once 'IBolnicaService.php';
 include_once 'Pacijent.php';
+include_once 'Ocena.php';
 include_once 'ListaPacijenata.php';
 include_once '../../Lekar/php/ListaLekara.php';
 include_once '../../Lekar/php/Lekar.php';
@@ -1398,7 +1399,71 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
         }
     }
 
+    public function unesiOcenu($pacijent,$lekar, $ocena) {
+         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res=$con->query("select * from ocene_lekara where pacijent='$pacijent' and lekar='$lekar';");
+        
+        if($res->num_rows==0)
+        {
+            $res=$con->query("INSERT INTO ocene_lekara (pacijent, lekar, ocena)"
+                . " VALUES "
+                . "('$pacijent','$lekar','$ocena');");
+        }
+        else
+        {
+             $res=$con->query("update  ocene_lekara set ocena='$ocena' where lekar='$lekar' and pacijent='$pacijent'");
+        }
+        if ($res) {
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+        
+    }
+
+    public function vratiOcene() {
+  
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from ocene_lekara");
+        if ($res) {
+            $niz = [];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		
+                $ocena=new Ocena($row["id"],$row["pacijent"],$row["lekar"],$row["ocena"]);
+                $niz[]=$ocena;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
 }
+}
+}
+
+
 
 
 
