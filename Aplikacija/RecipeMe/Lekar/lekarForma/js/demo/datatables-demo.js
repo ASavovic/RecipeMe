@@ -84,7 +84,7 @@ $(document).ready(function() {
               
            };
            data2.push(obj2);
-           
+          
        });
        $('#dataTable').DataTable(
           {
@@ -140,5 +140,63 @@ $(document).ready(function() {
     
    })
    .catch(error => console.log(error));
+   
+   const formData1=new FormData();
+   formData1.append("username",username);
 
+   const fetchData1=
+   {
+     method: "POST",
+     body: formData1   
+   }
+   var data5=[];
+   var result1=fetch("../php/vratiTermine.php",fetchData).then(response=>
+   {
+       if(!response.ok)
+           throw new Error(response.statusText)
+       else return response.json();
+   }).then((response)=>
+   {
+       response.forEach(t =>
+       {
+           var obj5;
+           
+                obj5={
+                   "Name":t.ime,
+                   "Surname":t.prezime,
+                   "SSN":t.jmbg,
+                   "Phone":t.telefon,
+                   "Email":t.email,
+                   "Day":t.dan,
+                   "Appointment":t.termin
+                   };
+               data5.push(obj5);
+       });
+        $('#dataTable5').DataTable(
+          {
+        "columns":[
+            {"data":"Name"},
+            {"data":"Surname"},
+            {"data":"SSN"},
+             {"data":"Phone"},
+            {"data":"Email"},
+            
+           
+            {"data":"Day"},
+            {"data":"Appointment"}
+           
+        ],
+        "data": data5
+    });
+       
+       }).catch(error=>console.log(error));
+           
+     
+       
+      
+       
+
+ 
+ 
+    
 });

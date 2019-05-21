@@ -9,6 +9,7 @@ include_once 'IBolnicaService.php';
 include_once 'Pacijent.php';
 include_once 'Ocena.php';
 include_once 'ListaPacijenata.php';
+include_once 'ZakazaniTerminPregled.php';
 include_once '../../Lekar/php/ListaLekara.php';
 include_once '../../Lekar/php/Lekar.php';
 include_once '../../Administrator/php/radnoVreme.php';
@@ -20,6 +21,8 @@ include_once '../../Lekar/php/ListaDijagnoza.php';
 include_once '../../Lekar/php/Listaobavestenja.php';
 include_once '../../Lekar/php/ListaTermina.php';
 include_once '../../Lekar/php/Termin.php';
+include_once '../../Lekar/php/ListaZakazanihTermina.php';
+include_once '../../Lekar/php/ZakazanTermin.php';
 
 class PacijentService implements IBolnicaService
 {
@@ -1208,8 +1211,8 @@ public function vratiSveZakazaneTermine() {
 			// u redosledu u kom ga je vratio db server
             while ($row = $res->fetch_assoc()) {
 				
-		$ztermin=new ZakazanTerminTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
-		$niz->dodajZakazaniTermin($ztermin);
+		$ztermin=new ZakazanTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
+		$niz->dodajZakazanTermin($ztermin);
                 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -1231,20 +1234,20 @@ public function vratiZakazaneTermineLekara($username) {
     }
     else {
         // $res je rezultat izvrsenja upita
-        $res = $con->query("select * from zakazani_pregledi where doktor_username='$username'");
+        $res = $con->query("select * from termini_pregleda where flag_zauzeto=1 and doktor_username='$username'");
         if ($res) {
-            $niz = new ListaZakazanihTermina();
+            $niz = new ListaTermina();
             // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
 			// u redosledu u kom ga je vratio db server
             while ($row = $res->fetch_assoc()) {
 				
-		$ztermin=new ZakazanTerminTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
-		$niz->dodajZakazaniTermin($ztermin);
+		$termin=new Termin($row['id'],$row['doktor_username'],$row['pacijent_username'], $row['dan'],$row['termin'],$row['flag_zauzeto']);
+		$niz->dodajTermin($termin);
                 
             }
             // zatvaranje objekta koji cuva rezultat
             
-            return $pacijent;
+            return $niz;
         }
         else
         {
@@ -1461,6 +1464,48 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
         }
 }
 }
+
+    public function vratiZauzeteTermineLekara($username) {
+           $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from termini_pregleda where doktor_username='$username' and flag_zauzeto='1';");
+        if ($res) {
+            $niz =[];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$termin=new ZakazaniTerminPregled($row["dan"],$row["termin"]);
+                $korisnik=$row["pacijent_username"];
+                $res1 = $con->query("select * from pacijent where korisnicko_ime='$korisnik';");
+                if($res1)
+                {
+                    if($row = $res1->fetch_assoc())
+                    $termin->setujOstaleVrednosti($row["ime"], $row["prezime"], $row["jmbg"], $row["broj_telefona"], $row["email"]);
+                }
+                else
+                {
+                    print ("Query failed");
+                }
+		$niz[]=$termin;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
 }
 
 

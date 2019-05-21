@@ -6,6 +6,7 @@ const notifications=document.getElementById("notifications");
 const notify=document.getElementById("notify");
 const dashboard=document.getElementById("dashboard");
 const doctor=document.getElementById("doctor");
+const termin=document.getElementById("termin");
 const logOut=document.getElementById("userDropdown");
 logOut.onclick=(ev)=>odjaviSe();
 
@@ -21,6 +22,7 @@ notifications.onclick=(ev)=>otvoriNotifications();
 notify.onclick=(ev)=>otvoriNotify();
 dashboard.onclick=(ev)=>otvoriDashboard();
 doctor.onclick=(ev)=>otvoriIndex();
+termin.onclick=(ev)=>otvoriTermine();
 
 function podesiValue()
 {
@@ -28,6 +30,13 @@ function podesiValue()
     var url = new URL(url_string);
     var username = url.searchParams.get("name");
     return username;
+}
+function otvoriTermine()
+{
+    let myu=podesiValue();
+    var url_safe_username = encodeURIComponent(myu); 
+    window.open("zakazaniTermini.html?name="+ url_safe_username,"_self");
+    
 }
 function otvoriProfil()
 {
