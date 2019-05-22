@@ -1032,12 +1032,9 @@ public function obrisiTermineLekara($username)
         }
     }
 
-public function dodajTermineLekaraPrvaSmenaPrviDeo($username) {
+public function dodajTermineLekaraPrvaSmena($username) {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
+    if ($con->connect_errno) { print ("Connection error (" . $con->connect_errno . "): $con->connect_error"); }
     else {
         // $res je rezultat izvrsenja upita
         
@@ -1047,49 +1044,20 @@ public function dodajTermineLekaraPrvaSmenaPrviDeo($username) {
                 . "('$username','null','Monday','10:30h - 11:00h',0),('$username','null','Monday','11:00h - 11:30h',0),('$username','null','Monday','11:30h - 12:00h',0),('$username','null','Tuesday','08:00h - 08:30h',0),('$username','null','Tuesday','08:30h - 09:00h',0),"
                 . "('$username','null','Tuesday','09:00h - 09:30h',0),('$username','null','Tuesday','09:30h - 10:00h',0),('$username','null','Tuesday','10:00h - 10:30h',0),('$username','null','Tuesday','10:30h - 11:00h',0),('$username','null','Tuesday','11:00h - 11:30h',0),"
                 . "('$username','null','Tuesday','11:30h - 12:00h',0),('$username','null','Wednesday','08:00h - 08:30h',0),('$username','null','Wednesday','08:30h - 09:00h',0),('$username','null','Wednesday','09:00h - 09:30h',0),('$username','null','Wednesday','09:30h - 10:00h',0),"
-                . "('$username','null','Wednesday','10:00h - 10:30h',0),('$username','null','Wednesday','10:30h - 11:00h',0),('$username','null','Wednesday','11:00h - 11:30h',0),('$username','null','Wednesday','11:30h - 12:00h',0),('$username','null','Thursday','08:00h - 08:30h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
-    }
-    }
-    
-public function dodajTermineLekaraPrvaSmenaDrugiDeo($username) {
-    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
-    else {
-        // $res je rezultat izvrsenja upita
-        
-        $res=$con->query("INSERT INTO termini_pregleda (doktor_username, pacijent_username, dan, termin, flag_zauzeto)"
-                . " VALUES "
+                . "('$username','null','Wednesday','10:00h - 10:30h',0),('$username','null','Wednesday','10:30h - 11:00h',0),('$username','null','Wednesday','11:00h - 11:30h',0),('$username','null','Wednesday','11:30h - 12:00h',0),('$username','null','Thursday','08:00h - 08:30h',0),"
                 . "('$username','null','Thursday','08:30h - 09:00h',0),('$username','null','Thursday','09:00h - 09:30h',0),('$username','null','Thursday','09:30h - 10:00h',0),('$username','null','Thursday','10:00h - 10:30h',0),('$username','null','Thursday','10:30h - 11:00h',0),"
                 . "('$username','null','Thursday','11:00h - 11:30h',0),('$username','null','Thursday','11:30h - 12:00h',0),('$username','null','Friday','08:00h - 08:30h',0),('$username','null','Friday','08:30h - 09:00h',0),('$username','null','Friday','09:00h - 09:30h',0),"
                 . "('$username','null','Friday','09:30h - 10:00h',0),('$username','null','Friday','10:00h - 10:30h',0),('$username','null','Friday','10:30h - 11:00h',0),('$username','null','Friday','11:00h - 11:30h',0),('$username','null','Friday','11:30h - 12:00h',0),"
                 . "('$username','null','Saturday','09:00h - 09:30h',0),('$username','null','Saturday','09:30h - 10:00h',0),('$username','null','Saturday','10:00h - 10:30h',0),('$username','null','Saturday','10:30h - 11:00h',0),('$username','null','Saturday','11:00h - 11:30h',0),"
                 . "('$username','null','Saturday','11:30h - 12:00h',0),('$username','null','Sunday','10:00h - 10:30h',0),('$username','null','Sunday','10:30h - 11:00h',0),('$username','null','Sunday','11:00h - 11:30h',0),('$username','null','Sunday','11:30h - 12:00h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
+        if ($res) { }
+        else { print ("Query failed"); }
     }
     }
     
-public function dodajTermineLekaraDrugaSmenaPrviDeo($username) {
+public function dodajTermineLekaraDrugaSmena($username) {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
+    if ($con->connect_errno) { print ("Connection error (" . $con->connect_errno . "): $con->connect_error"); }
     else {
         // $res je rezultat izvrsenja upita
         
@@ -1099,40 +1067,14 @@ public function dodajTermineLekaraDrugaSmenaPrviDeo($username) {
                 . "('$username','null','Monday','14:30h - 15:00h',0),('$username','null','Monday','15:30h - 16:00h',0),('$username','null','Tuesday','12:00h - 12:30h',0),('$username','null','Tuesday','12:30h - 13:00h',0),('$username','null','Tuesday','13:00h - 13:30h',0),"
                 . "('$username','null','Tuesday','13:30h - 14:00h',0),('$username','null','Tuesday','14:00h - 14:30h',0),('$username','null','Tuesday','14:30h - 15:00h',0),('$username','null','Tuesday','15:00h - 15:30h',0),('$username','null','Tuesday','15:30h - 16:00h',0),"
                 . "('$username','null','Wednesday','12:00h - 12:30h',0),('$username','null','Wednesday','12:30h - 13:00h',0),('$username','null','Wednesday','13:00h - 13:30h',0),('$username','null','Wednesday','13:30h - 14:00h',0),('$username','null','Wednesday','14:00h - 14:30h',0),"
-                . "('$username','null','Wednesday','14:30h - 15:00h',0),('$username','null','Wednesday','15:00h - 15:30h',0),('$username','null','Wednesday','15:30h - 16:00h',0),('$username','null','Thursday','12:00h - 12:30h',0),('$username','null','Thursday','12:30h - 13:00h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
-    }
-    }
-    
-public function dodajTermineLekaraDrugaSmenaDrugiDeo($username) {
-    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
-    else {
-        // $res je rezultat izvrsenja upita
-        
-        $res=$con->query("INSERT INTO termini_pregleda (doktor_username, pacijent_username, dan, termin, flag_zauzeto)"
-                . " VALUES "
+                . "('$username','null','Wednesday','14:30h - 15:00h',0),('$username','null','Wednesday','15:00h - 15:30h',0),('$username','null','Wednesday','15:30h - 16:00h',0),('$username','null','Thursday','12:00h - 12:30h',0),('$username','null','Thursday','12:30h - 13:00h',0),"
                 . "('$username','null','Thursday','13:00h - 13:30h',0),('$username','null','Thursday','13:30h - 14:00h',0),('$username','null','Thursday','14:00h - 14:30h',0),('$username','null','Thursday','14:30h - 15:00h',0),('$username','null','Thursday','15:00h - 15:30h',0),"
                 . "('$username','null','Thursday','15:30h - 16:00h',0),('$username','null','Friday','12:00h - 12:30h',0),('$username','null','Friday','12:30h - 13:00h',0),('$username','null','Friday','13:00h - 13:30h',0),('$username','null','Friday','13:30h - 14:00h',0),"
                 . "('$username','null','Friday','14:00h - 14:30h',0),('$username','null','Friday','14:30h - 15:00h',0),('$username','null','Friday','15:00h - 15:30h',0),('$username','null','Friday','15:30h - 16:00h',0),('$username','null','Saturday','12:00h - 12:30h',0),"
                 . "('$username','null','Saturday','12:30h - 13:00h',0),('$username','null','Saturday','13:00h - 13:30h',0),('$username','null','Saturday','13:30h - 14:00h',0),('$username','null','Saturday','14:00h - 14:30h',0),('$username','null','Saturday','14:30h - 15:00h',0),"
                 . "('$username','null','Sunday','12:00h - 12:30h',0),('$username','null','Sunday','12:30h - 13:00h',0),('$username','null','Sunday','13:00h - 13:30h',0),('$username','null','Sunday','13:30h - 14:00h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
+        if ($res) { }
+        else { print ("Query failed"); }
     }
     }
     
