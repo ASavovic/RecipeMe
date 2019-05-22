@@ -19,7 +19,7 @@ function prikaziPacijenta(){
             }
    
     
-   fetch("../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -65,7 +65,7 @@ function prikaziLekara()
             }
    
     
-   fetch("../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -133,7 +133,7 @@ function posaljiRecept(dugme)
                 body: formData
             }
    
-    fetch("../php/ubaciPacijentuDijagnozuMedikamente.php",fetchData).then(response=>
+    fetch("../../php/ubaciPacijentuDijagnozuMedikamente.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -161,7 +161,7 @@ function posaljiReceptPacijentu()
       
     };
     
-    fetch('../../Pacijent/php/sendEmail.php',fetchData)
+    fetch('../../../Pacijent/php/sendEmail.php',fetchData)
             .then(response =>{
                 if(!response.ok)
                 throw new Error(response.statusText);

@@ -24,7 +24,7 @@ function prikaziPacijente(){
             }
    
     
-   fetch("../php/pacijenti.php",fetchData).then(response=>
+   fetch("../../php/pacijenti.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)

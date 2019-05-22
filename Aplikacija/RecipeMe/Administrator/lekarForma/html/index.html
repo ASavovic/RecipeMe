@@ -9,15 +9,15 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Doctor</title>
+  <title>Administrator</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link rel="stylesheet"  type="text/css" href="css/admin.css">
+  <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="stylesheet"  type="text/css" href="../css/admin.css">
 </head>
 
 <body id="page-top">
@@ -29,9 +29,9 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a id="doctor" class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
        
-        <div class="sidebar-brand-text mx-3" style="font-size:18px">Doctor</div>
+        <div class="sidebar-brand-text mx-3" style="font-size:18px">Administrator</div>
       </a>
 
       <!-- Divider -->
@@ -39,7 +39,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a id="dashboard" class="nav-link" href="#">
+        <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span style="font-size:16px">Dashboard</span></a>
       </li>
@@ -59,39 +59,37 @@
       <!-- Nav Item - Pages Collapse Menu -->
 
       <!-- Nav Item - Tables -->
-               <li class="nav-item">
-        <a id="profile" class="nav-link" href="#">
-          <i class="fa fa-user-circle"></i>
-          <span style="font-size:14px">Profile</span></a>
-      </li> 
       <li class="nav-item">
-        <a id="patients" class="nav-link" href="#">
+        <a class="nav-link" href="doctors.html">
           <i class="fas fa-fw fa-table"></i>
-          <span style="font-size:14px">Patients</span></a>
+          <span style="font-size:14px">Doctors</span></a>
       </li>
       <li class="nav-item">
-        <a id="notifications" class="nav-link" href="#">
-          <i class="fa fa-bell"></i>
-          <span style="font-size:14px">Notifications</span>
+        <a class="nav-link" href="addDoctor.html">
+          <i class="fa fa-user-plus"></i>
+          <span style="font-size:14px">Add Doctor</span>
         </a>
         </li>
 
- 
+        <li class="nav-item">
+        <a class="nav-link" href="patients.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span style="font-size:14px">Patients</span></a>
+      </li>  
        
       
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a id="notify" class="nav-link" href="#">
-          <i class="fa fa-envelope"></i>
+        <a class="nav-link" href="notify.html">
+          <i class="fa fa-envelope""></i>
           <span style="font-size:14px">Notify</span></a>
       </li>
       
-             <li class="nav-item">
-        <a id="termin" class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span style="font-size:14px">Appointments</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="openHours.html">
+          <i class="fa fa-edit"></i>
+          <span style="font-size:14px">Opening Hours</span></a>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -180,28 +178,51 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">List of Notifications</h6>
+              <h6 class="m-0 font-weight-bold text-primary">List of Doctors</h6>
             </div>
-               <div class="card-body mojaKlasa"  id="father" >
-           
-
-               
-
-            
-                   
-                   
-                   
-                   
+            <div class="card-body">
+              <div class="table-responsive">
+                  
+                <table  class="sortable table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                <thead class="rounded-top" style="background-color:#4e73df; color:white; text-align:center;">
+                    <tr>
+                      <th  >Name</th>
+                      <th >Surname</th>
+                      <th >SSN</th>
+                      <th >Shift</th>
+                      <th >Change Shift</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                   <tr>
+                      <th>Name</th>
+                      <th>Surname</th>
+                      <th>SSN</th>
+                       
+                      <th>Shift</th>
+                      <th>Change Shift</th>
+                    </tr>
+                  </tfoot>
+                 
+                
+                </table>
+              </div>
             </div>
           </div>
 
-      
+        </div>
         <!-- /.container-fluid -->
 
       </div>
+      
+         
             
-      </div>
-    
+
+        <div class="form-group">
+               <input type="button" value="Confirm Changes" class="btn float-right login_btn" style="background-color: #4e73df; color:black; margin: 5px; margin-right: 20px; color:white;" data-toggle="modal" data-target="#changeModal" >
+					
+               </div>
+             
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -238,7 +259,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="logovanjeLekar.html">Logout</a>
+          <a class="btn btn-primary" href="logovanjeAdministratora.html">Logout</a>
         </div>
       </div>
     </div>
@@ -250,13 +271,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Change Chronic Patient status?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Change Shift?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" >
-       Select "Change" below if you are ready to change Chronic Patient's status.
+       Select "Change" below if you are ready to change shift/s.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -276,7 +297,7 @@
         </button>
       </div>
       <div class="modal-body">
-      You have successfully changed Chronic Patient's status!
+      You have successfully changed shift\s!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
@@ -285,31 +306,30 @@
     </div>
   </div>
 </div>
-<script src="js/admin.js"></script>
+<script src="../js/admin.js"></script>
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="../vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="../js/demo/chart-area-demo.js"></script>
+  <script src="../js/demo/chart-pie-demo.js"></script>
   
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
   
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/lekar.js"></script>
-    <script src="js/notifications.js"></script>
-    
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src=""></script>
+
 </body>
 
 </html>

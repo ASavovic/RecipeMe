@@ -12,15 +12,17 @@
   <title>Doctor</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../../Pacijent/css/zakazivanjePregleda.css" rel="stylesheet">
+  <link href="../css/sb-admin-2.css" rel="stylesheet">
+   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="stylesheet"  type="text/css" href="../../css/admin.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
 </head>
 
 <body id="page-top">
@@ -172,105 +174,88 @@
 
         </nav>
          <!-- Begin Page Content -->
-        <div class="container-fluid">
+               <!-- Begin Page Content -->
+        <div id="notificationDiv" class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" id="naslov">Name Surname <br>SSN</h1>
+          <h1 class="h3 mb-2 text-gray-800">Prescription</h1>
+          
+
           
           
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-5" style="background-color: white !important; width: 100%;">
-            <div class="card-header py-3">
+     <div id="sendDiv"  class="card shadow mb-5" style="background-color: white !important; width: 100%;">
+          <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Prescription for the patient </h6>
-            </div>
-      <div class="card-body">
-      <div class="panel panel-primary">
+           </div>
+      <div class="card-body" id="card">
+      <div class="panel panel-primary" id="card1" >
       <div class="panel-heading">RecipeMe Hospital</div>
-      <div class="panel-body" style="display:flex; flex-direction:row;">
-       <div style="flex-grow:1;">
-              <p >Email: info.recipeme@gmail.com</p>
-          </div>
-             <div style="flex-grow: 1;">
-              <p>Contact: +381 64 857 6383</p>
-          </div>
-             <div style="flex-grow: 1;">
-                 <p >Adress: Bulevar Dr. Zorana Đinđića 48 <br> 18000 Niš, Serbia</p>
-          </div>
+      <div class="panel-body" >
+        
+           <p>Email: info.recipeme@gmail.com</p>
+           <p>Contact: +381 64 857 6383</p>
+           <p>Adress: Bulevar Nikole Tesle 48 <br> 18000 Niš, Serbia</p>
+         
       </div>
-    </div>
+      </div>
+      
      <div class="panel panel-primary">
       <div class="panel-heading">Patient</div>
-      <div class="panel-body" style="display:flex; flex-direction:row;">
-          <div style="flex-grow:1;">
+      <div class="panel-body" >
+
+         
               <p id="ime">Name: ime_pacijenta</p>
-          </div>
-             <div style="flex-grow: 1;">
               <p id="prezime">Surname: prezime_pacijenta</p>
-          </div>
-             <div style="flex-grow: 1;">
-                 <p id="jmbg">SSN: jmbg</p>
-          </div>
-             <div style="flex-grow: 1;">
-                 <p id="telefon">Contact: telefon</p>
-          </div>
-         <div style="flex-grow: 1;">
-                 <p id="email">Email: email</p>
-          </div>
+              <p id="jmbg">SSN: jmbg</p>
+              <p id="telefon">Contact: telefon</p>
+              <p id="email">Email: email</p>
+        
+      </div> 
       </div>
-    </div>
+   
    <div class="panel panel-primary">
       <div class="panel-heading">Patient diagnosis</div>
-      <div class="panel-body" style="display:flex; flex-direction:column;">
-          <div style="flex-grow:1;">
-             <div class="form-group">
-                 <input class="form-control"  id="dijagnoza" placeholder="Enter the diagnosis...  "/>
+      <div class="panel-body" >
+
+         
+            <p id="dijagnoza"></p>
+            <p id="medikamenti" ></p>
+      
         </div>
-              </div>
-         <div style="flex-grow:1;">
-             <textarea class="form-control" row="5" id="medikamenti" placeholder="Enter the medicines..."></textarea>
-        </div>
-              </div>
 
       </div>
+   
       <div class="panel panel-primary">
       <div class="panel-heading">Doctor</div>
-      <div class="panel-body" style="display:flex; flex-direction:row;">
-          <div style="flex-grow:1;">
-              <p id="imeDoktora">Name: ime_doktora</p>
-          </div>
-             <div style="flex-grow: 1;">
-              <p id="prezimeDoktora">Surname: prezime_doktora</p>
-          </div>
-
-          <div style="flex-grow: 1;">
-                 <p id="telefonDoktora">Contact: telefon</p>
-          </div>
-         <div style="flex-grow: 1;">
-                 <p id="emailDoktora">Email: email</p>
-          </div>
-              </div>
+      <div class="panel-body">
+ 
+         
+              <p id="imeDoktora"></p>
+              <p id="prezimeDoktora"></p>
+              <p id="telefonDoktora">Contact: +381 64 857 6383</p>
+              <p id="emailDoktora"></p>
+         
 
       </div>
-  
-  
-				
-                                  
-			
-				
-      
-          </div>
+      </div>
               
-        </div>
-         <button  id="send" class="btn btn-primary float-right mb-2">Done&Preview</button>         
+                       
+  </div> 
+         </div>
+          <!-- DataTales Example -->
+          <button  id="send" class="btn btn-primary float-right mb-2">Send</button>
         </div> 
+
+      </div>
       <!-- End of Main Content -->
-   
+
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span style="color: white; font-size:12.8px;">Copyright &copy; RecipeMe 2019</span>
+            <span style="color: white; font-size:14px;">Copyright &copy; RecipeMe 2019</span>
           </div>
         </div>
       </footer>
@@ -300,27 +285,29 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="logovanjeLekar.html">Logout</a>
+          <a class="btn btn-primary" href="logovanjeKorisnika.html">Logout</a>
         </div>
       </div>
     </div>
   </div>
+    <!-- Logout Modal-->
+ 
   
-  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Update Profile?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Change Chronic Patient status?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-       Select "Update" below if you are ready to add new doctor account.
+      <div class="modal-body" >
+       Select "Change" below if you are ready to change Chronic Patient's status.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id="register">Update</button>
+        <button type="button" class="btn btn-primary" id="confirm">Change</button>
       </div>
     </div>
   </div>
@@ -336,7 +323,7 @@
         </button>
       </div>
       <div class="modal-body">
-      You have successfully updated account!
+      You have successfully changed profile!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
@@ -345,32 +332,51 @@
     </div>
   </div>
 </div>
-
+    
+      <div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:green">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      You have successfully take a prescription!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="../vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="../js/demo/chart-area-demo.js"></script>
+  <script src="../js/demo/chart-pie-demo.js"></script>
   
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
   
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
 
 
-<script src="js/prepisiRecept.js" ></script>
-<script src="js/ucitavanjePodataka.js" ></script>
+<script src="../js/slanjeRecepta.js" ></script>
+<script src="../js/ucitavanjePodataka.js" ></script>
 </body>
 
 </html>

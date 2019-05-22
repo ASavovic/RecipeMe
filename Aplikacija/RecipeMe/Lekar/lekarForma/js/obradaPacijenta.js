@@ -24,7 +24,7 @@ function prikaziTegobe(){
             }
    
     
-   fetch("../php/tegoba.php",fetchData).then(response=>
+   fetch("../../php/tegoba.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -93,7 +93,7 @@ function prikaziPacijenta(){
             }
    
     
-   fetch("../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -127,7 +127,7 @@ function prikaziLekara()
             }
    
     
-   fetch("../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -203,7 +203,7 @@ function ObavestiPacijenta(poruka)
         method: "post",
         body: formData
     }
-    fetch("../php/notifyPatient.php", fetchData)
+    fetch("../../php/notifyPatient.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);
@@ -231,7 +231,7 @@ function ZakaziTerminLekara()
                 body: formData
             }
     
-   fetch("../php/zakaziTermin.php",fetchData).then(response=>
+   fetch("../../php/zakaziTermin.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -248,7 +248,7 @@ function obrisiZahtev(id)
         method: "post",
         body: formData
     }
-    fetch("../php/obrisiTegobePacijenta.php", fetchData)
+    fetch("../../php/obrisiTegobePacijenta.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);
@@ -260,7 +260,7 @@ const historyDugme=document.getElementById("history").onclick=(ev)=>prikaziIstor
 function prikaziIstoriju()
 {
     
-     fetch("../php/vratiDijagnoze.php?username="+pacijentGlobal.korisnickoIme).then(response=>
+     fetch("../../php/vratiDijagnoze.php?username="+pacijentGlobal.korisnickoIme).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)

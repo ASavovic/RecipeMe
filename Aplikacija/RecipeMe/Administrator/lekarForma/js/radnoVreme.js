@@ -14,7 +14,7 @@ prikaziRadnoVreme();
 
 function prikaziRadnoVreme()
 {
-     fetch("../php/radno_vreme.php").then(response=>
+     fetch("../../php/radno_vreme.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -55,7 +55,7 @@ function promeni()
         body: formData
     }
         
-         fetch("../php/radno_vreme_promena.php",fetchData)
+         fetch("../../php/radno_vreme_promena.php",fetchData)
                  .then(response=>
                  {
                     if(!response.ok)

@@ -5,7 +5,7 @@ $(document).ready(function() {
   var data1=[];
   var data2=[];
   var data3=[];
-  var result0=fetch("../php/pacijenti.php").then(response=>
+  var result0=fetch("../../php/pacijenti.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -55,7 +55,7 @@ $(document).ready(function() {
     }).catch(error => console.log(error));
     
    
-  var result= fetch("../php/lekari.php").then(response=>
+  var result= fetch("../../php/lekari.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)

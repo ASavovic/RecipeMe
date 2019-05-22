@@ -19,7 +19,7 @@ prikaziLekare();
 
 function prikaziLekare(){
  
-    fetch("../php/lekari.php").then(response=>
+    fetch("../../php/lekari.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -93,7 +93,7 @@ function promeniSmenuLekara(id,smena,lekar)
         method: "post",
         body: formData
     }
-    fetch("../php/promeniSmenuLekara.php",fetchData).then(response=>
+    fetch("../../php/promeniSmenuLekara.php",fetchData).then(response=>
     {
         if(!response.ok)
             throw new Error(response.statusText);
@@ -126,7 +126,7 @@ function obrisiTermineLekara(korisnik)
         method: "post",
         body: formData
     }
-    fetch("../php/obrisiTermineLekara.php",fetchData).then(response=>
+    fetch("../../php/obrisiTermineLekara.php",fetchData).then(response=>
     {
         if(!response.ok)
             throw new Error(response.statusText);
@@ -150,7 +150,7 @@ function dodeliNoveTermineLekaru(smena,korisnik)
     }
     if(smena == 1)
     {
-        fetch("../php/terminiPrvaSmena.php",fetchData).then(response=>
+        fetch("../../php/terminiPrvaSmena.php",fetchData).then(response=>
         {
             if(!response.ok)
                 throw new Error(response.statusText);
@@ -161,7 +161,7 @@ function dodeliNoveTermineLekaru(smena,korisnik)
     }
     else if(smena == 2)
     {
-        fetch("../php/terminiDrugaSmena.php",fetchData).then(response=>
+        fetch("../../php/terminiDrugaSmena.php",fetchData).then(response=>
         {
             if(!response.ok)
                 throw new Error(response.statusText);

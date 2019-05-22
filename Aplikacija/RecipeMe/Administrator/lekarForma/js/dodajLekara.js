@@ -28,7 +28,7 @@ function dodajLekara(dugme)
         method: "post",
         body: formData
     }
-    fetch("../php/dodajLekara.php", fetchData)
+    fetch("../../php/dodajLekara.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);

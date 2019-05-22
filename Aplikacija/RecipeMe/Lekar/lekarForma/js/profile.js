@@ -26,7 +26,7 @@ function ucitajKorisnika()
                 method:"POST",
                 body: formData
             }
-       fetch("../php/vratiLekara.php",fetchData)
+       fetch("../../php/vratiLekara.php",fetchData)
             .then(response =>
             {
         if(!response.ok)
@@ -99,7 +99,7 @@ function promeniPodatke()
                 body: formData
             }
     
-       fetch("../php/izmeniLekara.php",fetchData)
+       fetch("../../php/izmeniLekara.php",fetchData)
             .then(response =>
             {
         if(!response.ok)

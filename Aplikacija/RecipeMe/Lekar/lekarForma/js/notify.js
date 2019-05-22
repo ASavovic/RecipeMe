@@ -22,7 +22,7 @@ function prikaziPacijente(){
             }
    
     
-   fetch("../php/pacijenti.php",fetchData).then(response=>
+   fetch("../../php/pacijenti.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -87,7 +87,7 @@ function posaljiPorukuPacijentu(pacijent)
         method: "post",
         body: formData
     }
-    fetch("../php/notify.php", fetchData)
+    fetch("../../php/notify.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);

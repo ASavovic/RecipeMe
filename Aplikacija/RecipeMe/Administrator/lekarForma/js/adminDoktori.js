@@ -11,7 +11,7 @@ const tabela=document.getElementById("dataTable");
 prikaziLekare();
 var nizLekara=[];
 function prikaziLekare(){
-   fetch("../php/lekari.php").then(response=>
+   fetch("../../php/lekari.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -69,7 +69,7 @@ function izbrisiLekare(dugme)
 function obrisiLekara(id)
 {
     $('#deleteModal').modal('hide');
-    fetch("../php/obrisiLekara.php?id="+id).then(response=>
+    fetch("../../php/obrisiLekara.php?id="+id).then(response=>
     {
         if(!response.ok)
             throw new Error(response.statusText)

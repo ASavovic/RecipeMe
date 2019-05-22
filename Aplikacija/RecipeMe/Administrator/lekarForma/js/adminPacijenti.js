@@ -11,7 +11,7 @@ const tabela=document.getElementById("dataTable");
 prikaziPacijente();
 var nizPacijenata=[];
 function prikaziPacijente(){
-   fetch("../php/pacijenti.php").then(response=>
+   fetch("../../php/pacijenti.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -70,7 +70,7 @@ function izbrisiPacijente(dugme)
 function obrisiPacijenta(id)
 {
     $('#deleteModal').modal('hide');
-    fetch("../php/obrisipacijenta.php?id="+id).then(response=>
+    fetch("../../php/obrisipacijenta.php?id="+id).then(response=>
     {
         if(!response.ok)
             throw new Error(response.statusText)

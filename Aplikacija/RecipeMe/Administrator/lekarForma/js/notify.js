@@ -13,7 +13,7 @@ var nizLekara=[];
 //tabela.innerHTML="";
 prikaziLekare();
 function prikaziLekare(){
-   fetch("../php/lekari.php").then(response=>
+   fetch("../../php/lekari.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -77,7 +77,7 @@ function posaljiPorukuLekaru(lekar)
         method: "post",
         body: formData
     }
-    fetch("../php/notify.php", fetchData)
+    fetch("../../php/notify.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);

@@ -20,7 +20,7 @@ $(document).ready(function() {
             };
    
     
-   var result = fetch("../php/pacijenti.php",fetchData).then(response=>
+   var result = fetch("../../php/pacijenti.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -150,7 +150,7 @@ $(document).ready(function() {
      body: formData1   
    }
    var data5=[];
-   var result1=fetch("../php/vratiTermine.php",fetchData).then(response=>
+   var result1=fetch("../../php/vratiTermine.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
