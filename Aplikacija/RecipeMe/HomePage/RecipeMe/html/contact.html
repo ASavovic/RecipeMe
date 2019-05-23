@@ -42,39 +42,8 @@
 	          <li class="nav-item"><a href="services.html" class="nav-link font-weight-bold"  style="font-size:18px">Services</a></li>
 	          <li class="nav-item"><a href="doctors.html" class="nav-link font-weight-bold"  style="font-size:18px">Doctors</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold"  style="font-size:18px">Contact</a></li>
-			  
-			  <li class="nav-item border" style=" border-radius: 25px;" >
-			  <div class="dropdown nav-link">
-			  <span id="id1" onclick="myFunction()"  class=" dropdown-toggle font-weight-bold " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px">Log in</span>
-			  <div id="nav-tabs-wrapper" class="dropdown-menu  ">
-			  <a class="dropdown-item" style="font-size:14px" href="#">As Doctor</a>
-			  <a class="dropdown-item" style="font-size:14px"  href="../../../Pacijent/html/logovanjeKorisnika.html">As Patient</a>
-                          </div>
-                          
-		</div>
+                <li  class="nav-item cta " > <a href="../../../Pacijent/html/logovanjeKorisnika.html"  class="nav-link font-weight-bold" id="id1" style=" font-size:18px">Log in</a>
 		</li>
-             
-			
-			<script>
-			function myFunction() {
-				document.getElementById("myDropdown").classList.toggle("show");
-				}
-
-
-			window.onclick = function(event) {
-			if (!event.target.matches('.dropdown-toggle')) {
-			var dropdowns = document.getElementsByClassName("nav nav-tabs nav-tabs-horizontal");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-      }
-    }
-  }
-} 
-});
-</script>
 			
 			
 	        </ul>
@@ -134,9 +103,9 @@
               <p>Follow us on Twitter, Facebook and Instagram.</p>
             </div>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft ">
-              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              <li class="ftco-animate"><a href="#"  aria-label="twitter"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"  aria-label="facebook"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"  aria-label="instagram"><span class="icon-instagram"></span></a></li>
             </ul>
           </div>
           <div class="col-md-2">

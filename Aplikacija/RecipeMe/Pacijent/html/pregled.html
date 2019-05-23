@@ -93,7 +93,7 @@
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="rounded-circle border-0" id="sidebarToggle" aria-label="sidebarToggle"></button>
       </div>
 
     </ul>
@@ -109,44 +109,16 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" aria-label="sidebar toggle top">
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 ">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+          
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
+           
 
            
 
@@ -181,7 +153,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text">Fever</span>
 						</div>
-                                        <select class="form-control" name="temperatura">
+                                        <select class="form-control" name="temperatura" aria-label="fever">
                                             <option value="36">36</option>
                                             <option value="37">37</option>
                                             <option value="38">38</option>
@@ -191,9 +163,9 @@
                                     </div>
                                     <div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text">Pain in throat</span>
+							<span class="input-group-text">Sore throat</span>
 						</div>
-                                         <select class="form-control" name="grlo">
+                                         <select class="form-control" name="grlo" aria-label="Sore throat">
                                             <option value="yes">Yes</option>
                                              <option value="no">No</option>
                                              <option value="periodically">Periodically</option>
@@ -212,7 +184,7 @@
 					</div>
                                      <div id="kasalj" class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text">Sneeze</span>
+							<span class="input-group-text">Sneezing</span>
 						</div>
                                         <label class="radio-inline mt-1 ml-2" style="color:black !important;"><input type="radio" name="kijanje" value="Yes"> Yes</label>
                                         <label class="radio-inline mt-1 ml-2" style="color:black !important;"><input type="radio" name="kijanje" value="No"> No</label>
@@ -220,7 +192,7 @@
 					</div>
                                     <div id="curenje" class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text">Leakage-nose</span>
+							<span class="input-group-text">Nose running</span>
 						</div>
                                         <label class="radio-inline mt-1 ml-2" style="color:black !important;"><input type="radio" name="curenje" value="Yes" > Yes</label>
                                         <label class="radio-inline mt-1 ml-2" style="color:black !important;"><input type="radio" name="curenje" value="No"> No</label>
@@ -230,14 +202,14 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text">Comments</span>
 						</div>
-                                        <textarea class="form-control"  name="komentar"></textarea>
+                                        <textarea class="form-control"  name="komentar" aria-label="comment"></textarea>
                             
 					</div>
                                         <div  class="input-group form-group">
 						<div class="input-group-prepend" >
 							<span class="input-group-text">Doctor</span>
 						</div>
-                                        <select class="form-control" name="doctor">
+                                        <select class="form-control" name="doctor" aria-label="doctor">
                                            
                                         </select>
                                     </div>
@@ -275,7 +247,7 @@
  
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
+  <a class="scroll-to-top rounded" href="#page-top" aria-label="page-top">
     <i class="fas fa-angle-up"></i>
   </a>
 

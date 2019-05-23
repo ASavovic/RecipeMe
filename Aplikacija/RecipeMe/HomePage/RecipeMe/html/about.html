@@ -43,38 +43,11 @@
 	          <li class="nav-item"><a href="doctors.html" class="nav-link font-weight-bold"  style="font-size:18px">Doctors</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold"  style="font-size:18px">Contact</a></li>
 			  
-			  <li class="nav-item border" style=" border-radius: 25px;" >
-			  <div class="dropdown nav-link">
-			  <span id="id1" onclick="myFunction()"  class=" dropdown-toggle font-weight-bold " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px">Log in</span>
-			  <div id="nav-tabs-wrapper" class="dropdown-menu  ">
-			  <a class="dropdown-item" style="font-size:14px" href="#">As Doctor</a>
-			  <a class="dropdown-item" style="font-size:14px"  href="../../../Pacijent/html/logovanjeKorisnika.html">As Patient</a>
-                          </div>
-                          
-		</div>
+		<li  class="nav-item cta " > <a href="../../../Pacijent/html/logovanjeKorisnika.html"  class="nav-link font-weight-bold" id="id1" style=" font-size:18px">Log in</a>
 		</li>
              
 			
-			<script>
-			function myFunction() {
-				document.getElementById("myDropdown").classList.toggle("show");
-				}
 
-
-			window.onclick = function(event) {
-			if (!event.target.matches('.dropdown-toggle')) {
-			var dropdowns = document.getElementsByClassName("nav nav-tabs nav-tabs-horizontal");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-      }
-    }
-  }
-} 
-});
-</script>
 			
 			
 	        </ul>
@@ -339,9 +312,9 @@
               <p>Follow us on Twitter, Facebook and Instagram.</p>
             </div>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft ">
-              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              <li class="ftco-animate"><a href="#"  aria-label="twitter"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"  aria-label="facebook"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"  aria-label="instagram"><span class="icon-instagram"></span></a></li>
             </ul>
           </div>
           <div class="col-md-2">
@@ -381,55 +354,7 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalRequestLabel">Make an Appointment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="#">
-            <div class="form-group">
-              <!-- <label for="appointment_name" class="text-black">Full Name</label> -->
-              <input type="text" class="form-control" id="appointment_name" placeholder="Full Name">
-            </div>
-            <div class="form-group">
-              <!-- <label for="appointment_email" class="text-black">Email</label> -->
-              <input type="text" class="form-control" id="appointment_email" placeholder="Email">
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!-- <label for="appointment_date" class="text-black">Date</label> -->
-                  <input type="text" class="form-control appointment_date" placeholder="Date">
-                </div>    
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!-- <label for="appointment_time" class="text-black">Time</label> -->
-                  <input type="text" class="form-control appointment_time" placeholder="Time">
-                </div>
-              </div>
-            </div>
-            
-
-            <div class="form-group">
-              <!-- <label for="appointment_message" class="text-black">Message</label> -->
-              <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" value="Make an Appointment" class="btn btn-primary">
-            </div>
-          </form>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+  
 
 
   <script src="../js/jquery.min.js"></script>
