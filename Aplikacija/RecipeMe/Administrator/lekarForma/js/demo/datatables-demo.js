@@ -1,6 +1,7 @@
 // Call the dataTables jQuery plugin
- 
-$(document).ready(function() {
+ucitavanjeSvihTabela();
+function ucitavanjeSvihTabela()
+{$(document).ready(function() {
   var data = [];
   var data1=[];
   var data2=[];
@@ -34,7 +35,7 @@ $(document).ready(function() {
            };
            data2.push(obj);
        });
-            $('#dataTable2').DataTable({
+         $('#dataTable2').DataTable({
         "columns":[
             {"data":"Name Surname"},
             {"data":"SSN"},
@@ -67,8 +68,8 @@ $(document).ready(function() {
                "Name": element.ime,
                "Surname": element.prezime,
                "SSN": element.jmbg,
-               "Shift": element.smena,
-               "ChangeShift":"<form><label class='radio-inline mr-2'><input  type='radio' name='"+element.id+"'id='"+element.id+"' value='1'> first</label><label class='radio-inline  mr-2'><input  type='radio' name='"+element.id+"' id='"+element.id+"' value='2'> second</label><label class='radio-inline  mr-2'><input type='radio' name='"+element.id+"'id='"+element.id+"' value='3'> night</label></form>"
+               "Shift": "<label  id='"+element.korisnickoIme+"'>"+element.smena+"</label>",
+               "ChangeShift":"<form><label class='radio-inline  mr-2'><input  type='radio' name='"+element.id+"'id='"+element.id+"' value='1'> first</label><label class='radio-inline  mr-2'><input  type='radio' name='"+element.id+"' id='"+element.id+"' value='2'> second</label></form>"
                 
            };
            data.push(obj);
@@ -97,6 +98,7 @@ $(document).ready(function() {
            data3.push(obj2);
         });
         $('#dataTable').DataTable({
+
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},
@@ -124,6 +126,8 @@ $(document).ready(function() {
         "data": data1
       
   });
+  if(typeof(srediIzgledTabele)=== typeof(Function))
+         srediIzgledTabele();
           $('#dataTable3').DataTable({
         "columns":[
             {"data":"Name"},
@@ -150,8 +154,4 @@ $(document).ready(function() {
 });
 
 
-/*$(document).ready(function() {
-    $('#dataTable').DataTable( {
-        order: [[ 3, 'desc' ], [ 0, 'asc' ]]
-    } );
-} );*/
+}

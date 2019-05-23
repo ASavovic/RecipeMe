@@ -8,14 +8,22 @@ function odjaviSe()
 const tabela=document.getElementById("dataTable");
 const confirmDugme=document.getElementById("confirm");
 confirmDugme.onclick=(ev)=>{azurirajSmeneLekara(ev.target);}
-//console.log(1);
+
 var nizLekara=[];
 var listaLekaraPod=[];
 
-//tabela.innerHTML="";
+
 prikaziLekare();
 
-
+function srediIzgledTabele()
+{
+    
+       const tabela=document.getElementById("dataTable");
+       for(let i=0;i<tabela.rows.length;i++)
+       {
+           tabela.rows[i].classList.add("text-center");
+       }
+}
 
 function prikaziLekare(){
  
@@ -32,25 +40,11 @@ function prikaziLekare(){
 function prikaziPodatke(listaLekara)
 {
       
-
- 
- //var i=0; 
- //let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Id</th><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></thead>\n\
-//<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Vocation</th><th>Shift</th><th>Change Shift</th></tr></tfoot><tbody>";
 listaLekara.lekari.forEach((lekar) =>  {  
         nizLekara[lekar.id]=lekar.smena;
         listaLekaraPod[lekar.id]=lekar;
-       
-       /* innerHTMLTabele += "<tr><td>"+i+"</td><td>"+ lekar.ime +"</td><td>"+ lekar.prezime 
-                + "</td><td>"+lekar.jmbg+"</td><td>"+ lekar.zvanje 
-                + "</td><td>"+Smena(lekar.smena) +"</td><td>"
-                +"<form><label class='radio-inline mr-2'><input  type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='1'> first</label><label class='radio-inline  mr-2'><input  type='radio' name='"+lekar.id+"' id='"+lekar.id+"' value='2'> second</label><label class='radio-inline  mr-2'><input type='radio' name='"+lekar.id+"'id='"+lekar.id+"' value='3'> night</label></form> </td></tr>";
-    i++;*/});
-    //innerHTMLTabele += "</tbody>";   
-   // tabela.innerHTML = innerHTMLTabele;
+       });
     
-    //tabela.innerHTML="";
-    //popuniRadioDugmad(listaLekara);
 }
 
 function popuniRadioDugmad(listaLekara)
@@ -63,6 +57,7 @@ function popuniRadioDugmad(listaLekara)
     });
 }
 
+  
 function azurirajSmeneLekara(rod)
 {
     let pom;
@@ -83,6 +78,7 @@ function azurirajSmeneLekara(rod)
 function promeniSmenuLekara(id,smena,lekar)
 {
     $('#changeModal').modal('hide');
+    document.getElementById(lekar.korisnickoIme).innerHTML=smena;
     const formData = new FormData();
     formData.append("id",id);
     formData.append("ime", lekar.ime);
@@ -98,7 +94,7 @@ function promeniSmenuLekara(id,smena,lekar)
         if(!response.ok)
             throw new Error(response.statusText);
         else return response.json();
-    }).then(listaL=>prikaziPodatke(listaL))
+    }).then(listaL=>{})
             .catch(error=>console.log(error));
     $('#okModal').modal('show');
 
@@ -110,8 +106,8 @@ function Smena(s)
         return "first";
     else if(s==2)
         return "second";
-    else return "night"
-    }
+    
+}
 
 //dodato
 function obrisiTermineLekara(korisnik)

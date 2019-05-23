@@ -36,9 +36,9 @@ function prikaziPodatke(radnoVreme)
 }
 function promeni()
 {
-    if(dugme.value=="Update")
+    if(dugme.innerHTML=="Update")
     {
-        dugme.value="Confirm";
+        dugme.innerHTML="Confirm";
         radni_dan.readOnly=false;
         subota.readOnly=false;
         nedelja.readOnly=false;
@@ -63,8 +63,10 @@ function promeni()
        
                 }).then(()=> prikaziObavestenje())
                 .catch(error => console.log(error));
-       prikaziRadnoVreme();
-       dugme.value="Update";
+       radni_dan.readOnly=true;
+        subota.readOnly=true;
+        nedelja.readOnly=true;
+       dugme.innerHTML="Update";
     }
     
 }
