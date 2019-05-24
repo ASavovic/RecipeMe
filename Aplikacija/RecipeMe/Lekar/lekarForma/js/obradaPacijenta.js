@@ -283,7 +283,7 @@ function prikaziDijagnoze(listaDijagnoza)
     else
     {
        
-        var SortitaneDijagnoze=listaDijagnoza.dijagnoze;//sortirajDijagnoze(listaDijagnoza.dijagnoze);
+        var SortitaneDijagnoze=listaDijagnoza.dijagnoze.reverse();//sortirajDijagnoze(listaDijagnoza.dijagnoze);
         
         if(flag==0)
         {
