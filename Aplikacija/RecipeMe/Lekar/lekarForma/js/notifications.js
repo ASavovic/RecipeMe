@@ -18,7 +18,7 @@ function prikaziObavestenja(lista)
         kontenjerDiv.innerHTML="There is no any new notifications...";
     }
     else{
-       lista.obavestenja.forEach((obavestenje)=>
+        lista.obavestenja.reverse().forEach((obavestenje)=>
         {
             
             let kontenjer=document.createElement("div");
