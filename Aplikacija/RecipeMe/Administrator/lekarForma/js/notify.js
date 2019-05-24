@@ -51,16 +51,26 @@ function posaljiPoruku(dugme)
         //console.log(nizLekara);
      element=document.querySelector("input[name='"+key+"']")
      //console.log(lekar);
-     if(element.checked==true)
+        if(element.checked==true)
+     {
+         brojac++;
+     } 
+     if(element.checked==true && document.getElementById("poruka").value!="")
      {
          posaljiPorukuLekaru(nizLekara[key]);
-         brojac++;
      }   
     }
+   
     if(brojac==0)
     {
         $('#notifyModel').modal('hide');
         $('#warningModal').modal('show');
+    }
+    if(document.getElementById("poruka").value=="")
+    {
+        $('#notifyModel').modal('hide');
+        $('#warningModal1').modal('show');
+        
     }
 }
 function posaljiPorukuLekaru(lekar)

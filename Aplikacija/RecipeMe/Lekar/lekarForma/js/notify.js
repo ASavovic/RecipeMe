@@ -60,16 +60,26 @@ function posaljiPoruku(dugme)
         //console.log(nizLnizPacijenataekara);
      element=document.querySelector("input[name='"+key+"']")
      //console.log(pacijent);
-     if(element.checked==true)
+      if(element.checked==true)
+     {
+         brojac++;
+     }
+     if(element.checked==true && document.getElementById("poruka").value!="")
      {
          posaljiPorukuPacijentu(nizPacijenata[key]);
-         brojac++;
      }   
     }
+     
     if(brojac==0)
     {
         $('#notifyModel').modal('hide');
         $('#warningModal').modal('show');
+    }
+    if(document.getElementById("poruka").value=="")
+    {
+        $('#notifyModel').modal('hide');
+        $('#warningModal1').modal('show');
+        
     }
 }
 
