@@ -120,7 +120,7 @@ function popuniDoktore()
 function popuniPolja(lekari)
 {
     lekari.forEach(lekar => {
-        const el=document.createElement("option");
+        let el=document.createElement("option");
         el.value=lekar.korisnickoIme;
         el.innerHTML=lekar.ime+" "+lekar.prezime;
         doktori.appendChild(el);
