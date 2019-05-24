@@ -28,8 +28,8 @@ if(isset($_POST["ime"]))
           "<br><br>"
          . "Pozdrav,<br>"
          . "3SGroup.";
- $obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0,0,0);
- $baza->ubaciObavestenje($obavestenje);
+ //$obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0,0,0);
+ //$baza->ubaciObavestenje($obavestenje);
  if($mail->send())
      echo "Email sent!";
  else
