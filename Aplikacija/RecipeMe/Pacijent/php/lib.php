@@ -23,6 +23,7 @@ include_once '../../Lekar/php/ListaTermina.php';
 include_once '../../Lekar/php/Termin.php';
 include_once '../../Lekar/php/ListaZakazanihTermina.php';
 include_once '../../Lekar/php/ZakazanTermin.php';
+include_once 'Slika.php';
 
 class PacijentService implements IBolnicaService
 {
@@ -1446,6 +1447,61 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
             print ("Query failed");
         }
     }
+    }
+
+    public function ubaciSliku($slika, $opis) {
+        $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("INSERT INTO slike (slika, opis)"
+                . " VALUES "
+                . "('". $slika. "','$opis');");
+        if ($res) {
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+        
+    }
+
+    public function vratiSveSlike() {
+        
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from slike");
+        if ($res) {
+            $niz = [];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		
+                $slika=new Slika($row["id"], $row["slika"], $row["opis"]);
+                $niz[]=$slika;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+}
     }
 
 }

@@ -1,6 +1,9 @@
 const el=document.getElementById("logIn");
 el.onclick = (ev)=> ucitajKorisnika();
 
+
+
+
 const korisnik={
     username:"",
     password:""
@@ -8,6 +11,8 @@ const korisnik={
 
 function ucitajKorisnika()
 {
+    
+     
     let pom=validacijaKorisnika();
     if(pom==0)
     {

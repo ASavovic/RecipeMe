@@ -1,13 +1,17 @@
-const el=document.getElementById("logIn");
-el.onclick = (ev)=> ucitajKorisnika();
-
-const korisnik={
+var korisnik={
     username:"",
     password:""
 }
+const el=document.getElementById("logIn");
+el.onclick = (ev)=> ucitajKorisnika(ev);
 
-function ucitajKorisnika()
+
+
+
+
+function ucitajKorisnika(ev)
 {
+   
     let pom=validacijaKorisnika();
     if(pom==0)
     {
@@ -38,7 +42,10 @@ function ucitajKorisnika()
         else
             return response.json();
 
-    }).then(pacijent => otvoriNovuStranicu(pacijent))
+    }).then(pacijent => {
+                
+  otvoriNovuStranicu(pacijent);
+    })
     
             .catch(error => console.log(error));
     

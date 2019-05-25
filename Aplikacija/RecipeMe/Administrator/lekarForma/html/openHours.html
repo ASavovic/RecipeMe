@@ -17,7 +17,10 @@
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+   <link href="../css/dropzone.css" rel="stylesheet">
+   <link href="../css/component.css" rel="stylesheet">
   <link href="../../../Pacijent/css/kreiranjeNaloga.css" rel="stylesheet">
+  <script src="../javascript/dropzone.js"></script>
 
 </head>
 
@@ -88,7 +91,7 @@
       <li class="nav-item">
         <a class="nav-link" href="openHours.html">
           <i class="fa fa-edit"></i>
-          <span style="font-size:14px">Opening Hours</span></a>
+          <span style="font-size:14px">Manage Web Page</span></a>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -163,15 +166,15 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Opening Hours</h1>
+          <h1 class="h3 mb-2 text-gray-800">Manage Web Page</h1>
           
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4" style="background-color: white !important; width: 700px;">
+          <div class="card shadow mb-4" style="background-color: white !important; height:30%; width: 100%;">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Opening Hours</h6>
             </div>
-            <div class="card-body">
+            <div class="card-body" >
              
 				
                                   
@@ -208,8 +211,29 @@
 				
       </div>
           </div>
-        </div>
+               <div class="card shadow mb-4" style="background-color: white !important; width: 100%;" style="width: 100%">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Picture and Information about new doctor</h6>
+            </div>
+              <div class="card-body" >
+                    <textarea class="form-control mb-5" cols="40" rows="5" id="opisLekara" placeholder="Enter an description..." ></textarea>
+                    <div class="input-group form-group">
+                    <input id="file" class="inputfile"  name="file"  accept="image/png, image/jpeg" type="file" multiple />
+                    </div>
+                    <form>
+                    <div class="row">
+                             <div class="col-lg-4 offset-lg-8" style="padding-top:10px;">
+                                    <button type="button" class="btn btn-primary mt-2 " id="save" style="color: black !important; background-color: #2f89fc !important; width:250px; float:right;">Save</button>
+                                   </div>
+                    </div>
+                    
+                </form>
                   
+   
+ 
+          </div>
+        </div>
+        </div> 
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -294,6 +318,7 @@
   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
   
     <script src="../js/demo/datatables-demo.js"></script>
+    
 
 </body>
 
