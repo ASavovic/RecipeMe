@@ -3,35 +3,9 @@ const subota=document.querySelector("input[name='subota']");
 const nedelja=document.querySelector("input[name='nedelja']");
 const dugme=document.getElementById("register");
 const logOut=document.getElementById("userDropdown");
-const save=document.getElementById("save");
-var path;
-save.onclick=(ev) => sacuvajPodatkeUBazu();
+
 logOut.onclick=(ev)=>odjaviSe();
-function sacuvajPodatkeUBazu()
-{
-    const file=document.getElementById("file");
-    path=file.value;
-    const lekar=document.getElementById("opisLekara");
-    let opis=lekar.value;
-    
-    const formData=new FormData();
-    formData.append("slika",path);
-    formData.append("opis",opis);
-    
-    const fetchData={
-        method:"POST",
-        body: formData
-    }
-    
-      fetch("../../php/ubaciSliku.php",fetchData).then(response=>
-   {
-       if(!response.ok)
-           throw new Error(response.statusText)
-       else return response.json();
-   }).then(()=>{})
-           .catch(error => console.log(error));
-    
-}
+
 function odjaviSe()
 {
     $("#logoutModal").modal('show');
