@@ -50,7 +50,7 @@ function posaljiTegobe()
    var pacijent = url.searchParams.get("name");
    const formData = new FormData();
    var today = new Date();
-   var datum=today.getDay()+"."+today.getMonth()+"."+today.getFullYear()+".";
+   var datum=today.getDate()+"."+today.getMonth()+"."+today.getFullYear()+".";
    var vreme=today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
    formData.append("pacijent",pacijent);
    formData.append("temperatura",temperatura.value);

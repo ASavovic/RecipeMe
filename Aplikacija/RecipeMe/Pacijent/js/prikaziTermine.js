@@ -11,8 +11,8 @@ var listaTermina;
 var izabraniDoktor;
 var korisnik;
 var korisnik2;
-proveriStatus();
 
+proveriStatus();
 dan.onchange=()=> ucitajSlobodneTermine();
 dugmeProvere.onclick=()=> provera();
 dugmeZakazi.onclick=()=> zakaziTermin();
@@ -158,6 +158,7 @@ function prikaziRezultat(pacijent)
        nabaviTermine();
        prikaziTabeluTermina();
    }
+   
 }
 function nabaviTermine()
 {
@@ -208,9 +209,6 @@ function proveriBrojPreuzetihRecepata()
             throw new Error(response.statusText);
         else
             return response.json();
-      
-           
-
     }).then((pacijent) => ProveriMesec(pacijent))
     .catch(error => console.log(error));
     
@@ -220,7 +218,7 @@ function ProveriMesec(pacijent)
     
     var d = new Date();
     let month=d.getMonth()+1;//getMonth vraca za mesece pocev od 0 zato je +1 u php vraca od 1
-    if(parseInt(pacijent.mesec, 10)!=month)
+    if(parseInt(pacijent.mesec, 10)!==month)
     {
         const formData=new FormData();
     formData.append("username",username);
@@ -230,37 +228,27 @@ function ProveriMesec(pacijent)
         body: formData
     }
      fetch('../php/updatePacijentuMesecIBrPreuzetih.php',fetchData)
-   .then(response => ProveriBrPreuzetih(pacijent))
     .catch(error => console.log(error));
     }
 }
 function ProveriBrPreuzetih(pacijent)
 {
-      const formData=new FormData();
-    formData.append("username",username);
-    const fetchData ={
-        method: "POST",
-        body: formData
-    }
-     fetch('../php/vratiPacijenta.php',fetchData)
-   .then(response =>
-   {
-        if(!response.ok)
-            throw new Error(response.statusText);
-        else
-            return response.json();
-      
-           
-
-    }).then((pacijent) => daLiMozePreuzimaRecepte(pacijent))
-    .catch(error => console.log(error));
-}
-function daLiMozePreuzimaRecepte(pacijent)
-{
     if(pacijent.brojPreuzetih>=6)//5 je max broj recepata koje pacijent moze da preuzme
     {
+        
         div.innerHTML="You have taken a monthly limited number of prescriptions. If you need more prescriptions please visit a doctor. \n\
-By clicking the button below, a request for review is automatically sent. \n\
-You will receive a notification soon for selecting time for an appointment "
+By clicking the button below, a request for review will be automatically sent. \n\
+You will receive a notification soon for selecting time for an appointment ";
+        div2=document.createElement("div");
+        div2.setAttribute("class","col-lg-4 offset-lg-8");
+        div2.setAttribute("style","padding-top:10px;");
+        D=document.createElement("button");
+        D.innerHTML="Send";
+        D.id="noviZahtev";
+        D.setAttribute("class","btn btn-primary  ");
+        D.setAttribute("style","width:250px; float:right;");
+        div2.appendChild(D);
+        div.appendChild(div2);
     }
+    
 }
