@@ -28,16 +28,47 @@ function preuzmiRecept()
     
     var date=new Date();
     let nizVrednosti=korisnik.datum.split("-");
-    if(parseInt(nizVrednosti[2],10)>date.getFullYear() && ((parseInt(nizVrednosti[1],10)+parseInt(korisnik.kontrola,10))%12)>date.getMonth()) 
+    
+    if(parseInt(nizVrednosti[2],10)<=date.getFullYear() &&((parseInt(nizVrednosti[1],10)+parseInt(korisnik.kontrola,10))%12)<=date.getMonth()) 
     {
-           document.getElementById("card").innerHTML="We are sorry, but you need to visit the doctor.";
-           document.getElementById("take").style.display = 'none';
-           return;
+           kartica=document.getElementById("card");
+            kartica=document.getElementById("card");
+         document.getElementById("take").style.display = 'none';
+                 kartica.innerHTML="It is time for your regular control review. You need to visit a doctor soon as possible. \n\
+By clicking the button below, a request for review will be automatically sent. \n\
+You will receive a notification soon for selecting time for an appointment ";
+        div2=document.createElement("div");
+        div2.setAttribute("class","col-lg-4 offset-lg-8");
+        div2.setAttribute("style","padding-top:10px;");
+        D=document.createElement("button");
+        D.innerHTML="Send";
+        D.id="noviZahtev";
+        D.setAttribute("class","btn btn-primary  ");
+        D.setAttribute("style","width:250px; float:right;");
+        div2.appendChild(D);
+        kartica.appendChild(div2);
+        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregledPacijentu("Control Review");
+        document.getElementById("take").style.display = 'none';
+        return;
     }
     else if(korisnik.brojPreuzetih>=korisnik.doza)
     {
-         document.getElementById("card").innerHTML="We are sorry, but you need to wait for new Month.";
+         kartica=document.getElementById("card");
          document.getElementById("take").style.display = 'none';
+                 kartica.innerHTML="You have taken a monthly limited number of prescriptions. If you need more prescriptions please visit a doctor. \n\
+By clicking the button below, a request for review will be automatically sent. \n\
+You will receive a notification soon for selecting time for an appointment ";
+        div2=document.createElement("div");
+        div2.setAttribute("class","col-lg-4 offset-lg-8");
+        div2.setAttribute("style","padding-top:10px;");
+        D=document.createElement("button");
+        D.innerHTML="Send";
+        D.id="noviZahtev";
+        D.setAttribute("class","btn btn-primary  ");
+        D.setAttribute("style","width:250px; float:right;");
+        div2.appendChild(D);
+        kartica.appendChild(div2);
+        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregledPacijentu("Need more doses");
          return;
     }
     
@@ -71,7 +102,7 @@ function azurirajPacijenta(korisnik)
 {
     const formData=new FormData();
     formData.append("name",username);
-    formData.append("broj",korisnik.brojPreuzetih++);
+    formData.append("broj",++korisnik.brojPreuzetih);
     const fetchData={
         method: "POST",
         body: formData
@@ -164,3 +195,39 @@ function  popuniLekara(doktor)
             .catch(error => console.log(error));
 }
 
+function zakaziPregled(comment)
+{
+   
+   $('#sendIt').modal('hide');
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   const formData = new FormData();
+   var today = new Date();
+   var datum=today.getDate()+"."+today.getMonth()+"."+today.getFullYear()+".";
+   var vreme=today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+   formData.append("pacijent",korisnik.korisnickoIme);
+   formData.append("komentar",comment);
+   formData.append("date",datum);
+    formData.append("time",vreme);
+     
+        const fetchData =
+            {
+                method:"POST",
+                body: formData
+            }
+       fetch("../php/updateTegobe.php",fetchData)
+            .then(response =>
+            {
+        if(!response.ok)
+            throw new Error(response.statusText);
+
+    }).catch(error => console.log(error));
+    
+     $('#okModal').modal('show');
+}
+function zakaziPregledPacijentu(comment)
+{
+    $('#send').modal('show');
+  dugmeSlanjePotvrda.onclick=(ev)=>zakaziPregled(comment);
+}
+const dugmeSlanjePotvrda=document.getElementById("sendConfirm");

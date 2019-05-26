@@ -1579,6 +1579,27 @@ public function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,
         }
 }
     }
+    public function updateTegobe($pacijent,$komentar,$date,$time)
+    {
+           $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update tegobe set komentar='$komentar', datum='$date', vreme='$time' where pacijent = '$pacijent'");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
 }
 
 
