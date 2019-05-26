@@ -24,6 +24,8 @@ include_once '../../Lekar/php/Termin.php';
 include_once '../../Lekar/php/ListaZakazanihTermina.php';
 include_once '../../Lekar/php/ZakazanTermin.php';
 include_once 'Slika.php';
+include_once 'Komentar.php';
+
 
 class PacijentService implements IBolnicaService
 {
@@ -1525,6 +1527,58 @@ public function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,
         }
         }
 }
+    public function ubaciKomentar($pacijent, $komentar, $datum, $vreme) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("INSERT INTO komentari (pacijent, komentar, datum, vreme)"
+                . " VALUES "
+                . "('$pacijent','$komentar','$datum','$vreme');");
+        if ($res) {
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
+    public function vratiSveKomenatare($pacijent) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from komentari where not pacijent='$pacijent'");
+        if ($res) {
+            $niz = [];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		
+            $komentar=new Komentar($row["id"], $row["pacijent"], $row["komentar"], $row["datum"],$row["vreme"]);
+            $niz[]=$komentar;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+}
+    }
 }
 
 
