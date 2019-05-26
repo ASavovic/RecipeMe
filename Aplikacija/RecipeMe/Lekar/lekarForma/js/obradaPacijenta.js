@@ -56,17 +56,19 @@ function prikaziPodatke(tegoba)
    temp.disabled=true;
    grlo.innerHTML="<option value ='"+tegoba.bolGrlo+"'>"+tegoba.bolGrlo+"</option>";
    grlo.disabled=true;
-   if(tegoba.kasalj=="no")
+   if(tegoba.kasalj==="Low")
         kasalj[0].checked=true;
+   else if(tegoba.kasalj==="Medium")
+        kasalj[1].checked=true;
    else
        kasalj[2].checked=true;
     kasalj.forEach(d => d.disabled=true);
-   if(tegoba.kijanje=="yes")
+   if(tegoba.kijanje==="Yes")
        kijanje[0].checked=true;
    else
        kijanje[1].checked=true;
    kijanje.forEach(d => d.disabled=true);
-   if(tegoba.curenjeNos=="yes")
+   if(tegoba.curenjeNos=="Yes")
        curenje[0].checked=true;
    else 
        curenje[1].checked=true;

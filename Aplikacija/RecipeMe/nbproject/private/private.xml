@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/wamp64/www/RecipeMe/Pacijent/php/Pacijent.php</file>
+            <file>file:/C:/wamp64/www/RecipeMe/Pacijent/php/vratiPacijenta.php</file>
+            <file>file:/C:/wamp64/www/RecipeMe/Pacijent/php/zakazano.php</file>
+            <file>file:/C:/wamp64/www/RecipeMe/Pacijent/js/prikaziTermine.js</file>
+            <file>file:/C:/wamp64/www/RecipeMe/Pacijent/php/IBolnicaService.php</file>
+            <file>file:/C:/wamp64/www/RecipeMe/Pacijent/php/lib.php</file>
+            <file>file:/C:/wamp64/www/RecipeMe/Pacijent/html/index.html</file>
+        </group>
     </open-files>
 </project-private>

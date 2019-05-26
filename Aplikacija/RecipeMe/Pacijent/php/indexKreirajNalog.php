@@ -13,7 +13,7 @@ if(isset($_POST["jmbg"]))
     
     // novo kreiranje objekata, dodati i novi atributi iz klase
     $pacijent= new Pacijent(0,$_POST["ime"],$_POST["prezime"],$_POST["jmbg"],
-            $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"null","null","null",0,0,"null",0);
+            $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"null","null","null",0,0,"null",0,"null");
     
     $baza->dodajPacijenta($pacijent);
     

@@ -21,10 +21,11 @@ dugme.onclick =(ev)=> preuzmiRecept();
 var korisnik;
 
 popuniRecept();
+
 function preuzmiRecept()
 {
 
-   
+    
     var date=new Date();
     let nizVrednosti=korisnik.datum.split("-");
     if(parseInt(nizVrednosti[2],10)>date.getFullYear() && ((parseInt(nizVrednosti[1],10)+parseInt(korisnik.kontrola,10))%12)>date.getMonth()) 
@@ -58,7 +59,7 @@ function preuzmiRecept()
     }).then(()=>{})
             .catch(error => console.log(error));
    
-   korisnik.brojPreuzetih++;
+   
    azurirajPacijenta(korisnik);
      
      
@@ -70,7 +71,7 @@ function azurirajPacijenta(korisnik)
 {
     const formData=new FormData();
     formData.append("name",username);
-    formData.append("broj",korisnik.brojPreuzetih);
+    formData.append("broj",korisnik.brojPreuzetih++);
     const fetchData={
         method: "POST",
         body: formData
@@ -115,6 +116,7 @@ function popuniRecept()
 }
 function popuniPoljaPacijent(pacijent)
 {
+   
    korisnik=pacijent;
     if(pacijent.hronicniBolesnik==1)
         { 

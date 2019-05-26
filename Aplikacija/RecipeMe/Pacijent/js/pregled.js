@@ -85,11 +85,7 @@ function popuniDoktore()
    var today = new Date();
    var time = today.getHours();
    var smena;
-    if(time>=20)
-    {
-        smena=3;
-    }
-    else if(time>=12)
+    if(time>=12)
     {
         smena=2;
     }

@@ -57,5 +57,6 @@ interface IBolnicaService {
     function vratiZauzeteTermineLekara($username);
     function ubaciSliku($slika,$opis);
     function vratiSveSlike();
+    function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,$brPreuzetih);
     
 }
