@@ -1,6 +1,7 @@
 const profil=document.getElementById("profile");
 const recept=document.querySelector("a[name='recept']");
 const pregled=document.querySelector("a[name='pregled']");
+const comm=document.querySelector("a[name='comm']");
 const dashboard=document.getElementById("dashboard");
 const patient=document.getElementById("patient");
 const ranks=document.querySelector("a[name='ranks']");
@@ -19,12 +20,19 @@ recept.onclick=(ev)=>otvoriRecept();
 dashboard.onclick=(ev)=>otvoriDashboard();
 patient.onclick=(ev)=>otvoriDashboard();
 ranks.onclick=(ev)=>otvoriRank();
+comm.onclick=(ev)=>otvoriKomentare();
 function otvoriRank()
 {
    let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
     window.open("rangiranjeDoktora.html?name="+ url_safe_username,"_self");
     
+}
+function otvoriKomentare()
+{
+    let myu=podesiValue();
+    var url_safe_username = encodeURIComponent(myu); 
+    window.open("komentari.html?name="+ url_safe_username,"_self");
 }
 
 function podesiValue()
