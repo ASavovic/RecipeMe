@@ -1451,7 +1451,7 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
     }
     }
 
-    public function ubaciSliku($slika, $opis) {
+    public function ubaciSliku($doktor,$slika, $opis) {
         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
     if ($con->connect_errno) {
         // u slucaju greske odstampati odgovarajucu poruku
@@ -1459,10 +1459,10 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
     }
     else {
         // $res je rezultat izvrsenja upita
-        
-        $res=$con->query("INSERT INTO slike (slika, opis)"
+        $res1=$con->query("delete  from slike");
+        $res=$con->query("INSERT INTO slike (doktor, slika, opis)"
                 . " VALUES "
-                . "('". $slika. "','$opis');");
+                . "('$doktor','$slika','$opis');");
         if ($res) {
             
         }
@@ -1491,7 +1491,7 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
             while ($row = $res->fetch_assoc()) {
 				
 		
-                $slika=new Slika($row["id"], $row["slika"], $row["opis"]);
+                $slika=new Slika($row["id"],$row["slika"], $row["opis"],$row["doktor"]);
                 $niz[]=$slika;
                 
             }

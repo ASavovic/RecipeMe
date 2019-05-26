@@ -10,15 +10,39 @@ fetch("../../../Pacijent/php/vratiSlike.php")
    
    function prikaziPodatke(slike)
    {
-       let innerHtml=document.getElementById("doktori").innerHTML;
+       let innerHtml=" ";
        slike.forEach(s =>{
-            let element="<div class='col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate'><div class='staff'>\n\
- <div class='img mb-4' style='background-image: url("+s.slika+");'></div>\n\
-<div class='info text-center'><h3><a href='teacher-single.html'>Patricia Jacobson</a></h3>\n\
-<span class='position'>Psychiatrist</span><div class='text'><p>"+s.opis+"</p><ul class='ftco-social'> </ul></div></div></div></div>";
-           innerHtml+=element;
-           document.getElementById("doktori"). innerHTML=innerHtml;
-       });
+         
+          
+           const div=document.createElement("div");
+           div.className="staff";
+           const slika=document.createElement("img");
+           slika.src=s.slika;
+           slika.className="rounded";
+           slika.className="img-thumbnail";
+           slika.style.width="50%";
+           div.appendChild(slika);
+           div.style.width="100%";
+           div.style.textAlign="center";
+           document.getElementById("doktori"). appendChild(div);
+           const divText=document.createElement("div");
+           divText.className="info text-center";
+           const h2=document.createElement("h2");
+           h2.innerHTML="Employee of the month";
+           const p=document.createElement("p");
+           p.innerHTML=s.doktor+"<br>"+s.opis;
+           divText.appendChild(h2);
+           divText.appendChild(p);
+          
+           div.appendChild(divText);
+           //document.getElementById("doktori"). appendChild(divText);
+            
+           
+       }
+
+         
+           
+       );
    
       
    }

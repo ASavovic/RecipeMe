@@ -55,7 +55,7 @@ interface IBolnicaService {
     function unesiOcenu($pacijent,$lekar,$ocena);
     function vratiOcene();
     function vratiZauzeteTermineLekara($username);
-    function ubaciSliku($slika,$opis);
+    function ubaciSliku($doktor,$slika,$opis);
     function vratiSveSlike();
     function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,$brPreuzetih);
     function ubaciKomentar($pacijent,$komentar,$datum,$vreme);

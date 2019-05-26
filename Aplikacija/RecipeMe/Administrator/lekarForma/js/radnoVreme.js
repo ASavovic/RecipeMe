@@ -3,8 +3,63 @@ const subota=document.querySelector("input[name='subota']");
 const nedelja=document.querySelector("input[name='nedelja']");
 const dugme=document.getElementById("register");
 const logOut=document.getElementById("userDropdown");
-
+const doktor=document.getElementById("doktor");
+const opis=document.getElementById("opis");
+const slika=document.getElementById("slika");
+const save=document.getElementById("save");
+const add=document.getElementById("add");
 logOut.onclick=(ev)=>odjaviSe();
+add.onclick=(ev)=>ubaciSliku();
+save.onclick=(ev)=>provera();
+  
+function provera()
+{
+    
+   
+   if(doktor.value=="" || opis.value=="" || slika.files[0].name=="")
+    {
+         $('#warningModal').modal('show');
+    }
+    else
+    {
+        $('#zaposleniMeseca').modal('show');
+    }
+    
+}
+
+function ubaciSliku()
+{
+   // $('#zaposleniMeseca').modal('hide');
+    var file = slika.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file); 
+    setTimeout(function(){
+        var base64 = reader.result;
+     const formData=new FormData();
+    formData.append("doktor",doktor.value);
+    formData.append("opis",opis.value);
+    formData.append("slika",base64);
+      console.log(4,base64);
+      
+    const fetchData={
+        method:"POST",
+        body: formData
+    };
+     fetch("../../php/ubaciSliku.php",fetchData).then(response=>
+   {
+       if(!response.ok)
+           throw new Error(response.statusText)
+      
+   }).then(()=>{})
+           .catch(error => console.log(error));
+   $('#proba').modal('show');},100);
+   
+    
+}
+
+function getBase64(file) {
+   
+}
 
 function odjaviSe()
 {
