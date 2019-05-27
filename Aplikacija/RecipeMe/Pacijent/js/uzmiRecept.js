@@ -24,34 +24,7 @@ popuniRecept();
 
 function preuzmiRecept()
 {
-
-    
-    var date=new Date();
-    let nizVrednosti=korisnik.datum.split("-");
-    
-    if(parseInt(nizVrednosti[2],10)<=date.getFullYear() &&((parseInt(nizVrednosti[1],10)+parseInt(korisnik.kontrola,10))%12)<=date.getMonth()) 
-    {
-           kartica=document.getElementById("card");
-            kartica=document.getElementById("card");
-         document.getElementById("take").style.display = 'none';
-                 kartica.innerHTML="It is time for your regular control review. You need to visit a doctor soon as possible. \n\
-By clicking the button below, a request for review will be automatically sent. \n\
-You will receive a notification soon for selecting time for an appointment ";
-        div2=document.createElement("div");
-        div2.setAttribute("class","col-lg-4 offset-lg-8");
-        div2.setAttribute("style","padding-top:10px;");
-        D=document.createElement("button");
-        D.innerHTML="Send";
-        D.id="noviZahtev";
-        D.setAttribute("class","btn btn-primary  ");
-        D.setAttribute("style","width:250px; float:right;");
-        div2.appendChild(D);
-        kartica.appendChild(div2);
-        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregledPacijentu("Control Review");
-        document.getElementById("take").style.display = 'none';
-        return;
-    }
-    else if(korisnik.brojPreuzetih>=korisnik.doza)
+if(korisnik.brojPreuzetih>=korisnik.doza)
     {
          kartica=document.getElementById("card");
          document.getElementById("take").style.display = 'none';
@@ -68,7 +41,7 @@ You will receive a notification soon for selecting time for an appointment ";
         D.setAttribute("style","width:250px; float:right;");
         div2.appendChild(D);
         kartica.appendChild(div2);
-        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregledPacijentu("Need more doses");
+        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregled("Need more doses");
          return;
     }
     
@@ -198,7 +171,7 @@ function  popuniLekara(doktor)
 function zakaziPregled(comment)
 {
    
-   $('#sendIt').modal('hide');
+   //$('#sendIt').modal('hide');
    var url_string = window.location.href;
    var url = new URL(url_string);
    const formData = new FormData();
@@ -222,12 +195,15 @@ function zakaziPregled(comment)
             throw new Error(response.statusText);
 
     }).catch(error => console.log(error));
-    
-     $('#okModal').modal('show');
+    obavestiPacijentaPregled();
+     //$('#okModal').modal('show');
 }
-function zakaziPregledPacijentu(comment)
+function obavestiPacijentaPregled()
 {
-    $('#send').modal('show');
-  dugmeSlanjePotvrda.onclick=(ev)=>zakaziPregled(comment);
+document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-gray-800'>Prescription</h1><div class='alert alert-success' role='alert'>\n\
+<h4 class='alert-heading'>Well done!</h4>\n\
+<p>Request successfully sent. You will receive a notification soon for selecting time for an appointment.</p><hr>\n\
+<p class='mb-0'>\n\
+Due to overloading the network, it may take a while.\n\
+</p></div>";
 }
-const dugmeSlanjePotvrda=document.getElementById("sendConfirm");
