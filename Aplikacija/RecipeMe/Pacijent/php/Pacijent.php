@@ -18,9 +18,10 @@ class Pacijent {
    public $kontrola;
    public $datum;
    public $brojPreuzetih;
+   public $mesec;
    
    
-   function  __construct($id,$ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$dijagnoza,$medikamenti,$doktor,$doza,$kontrola,$datum,$brPreuzetih)
+   function  __construct($id,$ime,$prezime,$jmbg,$telefon,$email,$korisnickoIme,$sifra,$hronicni,$dijagnoza,$medikamenti,$doktor,$doza,$kontrola,$datum,$brPreuzetih,$mesec)
    {
        $this->id=$id;
        $this->jmbg=$jmbg;
@@ -38,6 +39,7 @@ class Pacijent {
        $this->kontrola=$kontrola;
        $this->datum=$datum;
        $this->brojPreuzetih=$brPreuzetih;
+       $this->mesec=$mesec;
    }
    
 }

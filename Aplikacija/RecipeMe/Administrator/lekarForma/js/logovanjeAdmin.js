@@ -30,7 +30,7 @@ function ucitajKorisnika()
                 method:"POST",
                 body: formData
             }
-    fetch("../php/logovanjeAdministrator.php",fetchData)
+    fetch("../../php/logovanjeAdministrator.php",fetchData)
             .then(response =>
     {
         if(!response.ok)

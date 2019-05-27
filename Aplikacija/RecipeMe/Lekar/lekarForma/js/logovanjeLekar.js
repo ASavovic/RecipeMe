@@ -1,6 +1,11 @@
 const el=document.getElementById("logIn");
 el.onclick = (ev)=> ucitajKorisnika();
 
+sessionStorage.removeItem("name");
+sessionStorage.removeItem("patName");
+
+
+
 const korisnik={
     username:"",
     password:""
@@ -8,6 +13,8 @@ const korisnik={
 
 function ucitajKorisnika()
 {
+    
+     
     let pom=validacijaKorisnika();
     if(pom==0)
     {
@@ -30,7 +37,7 @@ function ucitajKorisnika()
                 method:"POST",
                 body: formData
             }
-    fetch("../php/logovanjeLekar.php",fetchData)
+    fetch("../../php/logovanjeLekar.php",fetchData)
             .then(response =>
     {
         if(!response.ok)
@@ -60,11 +67,9 @@ function otvoriNovuStranicu(admin)
     }
     else
     {
-    let myu=document.querySelector("input[name='username']").value;
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html?name="+ url_safe_username,"_self");
- //window.location.href="index.html";
-        /*window.open("index.html");*/
+        sessionStorage.setItem("name",admin.korisnickoIme);
+        window.open("index.html","_self");
+ 
     }
 }
 

@@ -1,0 +1,25 @@
+.input-group-prepend span{
+width: 50px;
+background-color: #007bff;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+.inputField
+{
+    color:black !important;
+    background-color: #2f89fc !important;
+    position:absolute;
+    z-index:2;
+    top:0;
+    left:0;
+    filter: alpha(opacity=0);
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity:0;
+    
+}

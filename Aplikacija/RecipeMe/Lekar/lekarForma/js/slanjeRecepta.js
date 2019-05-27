@@ -24,11 +24,10 @@ var DoktorGlobal;
 function prikaziDijagnozu()
 {
    const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   
-   var patName= url.searchParams.get("patName");
-    let date=new Date();
+
+  
+   var patName=sessionStorage.getItem("patName");
+   let date=new Date();
    let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
    let doktor=DoktorGlobal.ime+" "+DoktorGlobal.prezime;
    formData.append("pacijent",patName);
@@ -41,7 +40,7 @@ function prikaziDijagnozu()
             }
    
     
-   fetch("../php/vratiDijagnozu.php",fetchData).then(response=>
+   fetch("../../php/vratiDijagnozu.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -57,10 +56,9 @@ function popuniDijagnozu(d)
 }
 function prikaziPacijenta(){
    const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+  
+   var docName=sessionStorage.getItem("name");
+   var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
    
@@ -72,7 +70,7 @@ function prikaziPacijenta(){
             }
    
     
-   fetch("../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -98,10 +96,9 @@ function PodaciPacijenta(pacijent)
 function prikaziLekara()
 {
    const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+ 
+   var docName=sessionStorage.getItem("name");
+   var patName=sessionStorage.getItem("patName");
    
    formData.append("username",docName);
    
@@ -113,7 +110,7 @@ function prikaziLekara()
             }
    
     
-   fetch("../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -151,8 +148,7 @@ function posaljiRecept(dugme)
     }
     else
     {
-    
-    posaljiReceptPacijentu();
+        posaljiReceptPacijentu();
     }
     
     
@@ -193,12 +189,8 @@ Due to overloading the network, it may take a while.\n\
 
 function preview()
 {
-     let myu=podesiVrednost("docName");
-    var url_safe_username = encodeURIComponent(myu);
-    myu=podesiVrednost("patName");
-    var url_safe_username2= encodeURIComponent(myu);
-    //window.open("prepisiRecept.html","_self");
-    window.open("gotovRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
+    
+    window.open("gotovRecept.html","_self");
 }
 function podesiVrednost(string)
 {

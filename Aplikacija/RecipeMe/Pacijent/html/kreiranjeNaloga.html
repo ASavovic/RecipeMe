@@ -1,8 +1,8 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Login Page</title>
+<title>Login Page</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,7 +17,29 @@
 	<!--Custom styles-->
 	<link rel="stylesheet"  type="text/css" href="../css/kreiranjeNaloga.css">
 </head>
-<body>
+<body >
+    
+     <h1 hidden>RecimeMe</h1>
+    <h2 hidden>RecimeMe</h2>
+    	 	  <nav class=" navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+                <a class="navbar-brand" href="pacijent.html" style="font-size:36px; "><span>RecipeMe</span><strong style="font-style: italic; font-family: serif; color: #2f89fc; font-size: 1.75rem">Patient</strong></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="../../HomePage/RecipeMe/index.html" class="nav-link font-weight-bold"  style="font-size:18px">Home</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/about.html" class="nav-link font-weight-bold"  style="font-size:18px">About</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/services.html" class="nav-link font-weight-bold"  style="font-size:18px">Services</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/doctors.html" class="nav-link font-weight-bold"  style="font-size:18px">Doctors</a></li>
+	          <li class="nav-item"><a href="../../HomePage/RecipeMe/contact.html" class="nav-link font-weight-bold "  style="font-size:18px margin-right:0px;">Contact</a></li>
+	
+                 </ul>
+	      </div>
+	    </div>
+	  </nav>
 <div class="container">
      <div id="alert">
                                                 </div>
@@ -38,52 +60,52 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Name" name="ime">
+						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Name" name="ime" aria-label="name">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Surname" name="prezime">
+						<input type="text" class="form-control" pattern="[A-Za-z]{2,}" placeholder="Surname" name="prezime" aria-label="surname">
 					</div>
                                        <div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-mobile" ></i></span>
 						</div>
-						<input  class="form-control" pattern="[0-9]{9,10}" placeholder="Phone number" name="telefon">
+						<input  class="form-control" pattern="[0-9]{9,10}" placeholder="Phone number" name="telefon" aria-label="phone number">
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-key"></i></span>
 						</div>
-						<input  class="form-control" pattern="[0-9]{13}" placeholder="SSN" name="jmbg">
+						<input  class="form-control" pattern="[0-9]{13}" placeholder="SSN" name="jmbg" aria-label="SSN">
 					</div>
                                   <div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 						</div>
-						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" name="email">
+						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" name="email" aria-label="email">
 					</div>
                                          <div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" pattern="[A-Za-z0-9._%+-]{4,}" placeholder="Username" name="korisnickoIme">
+						<input type="text" class="form-control" pattern="[A-Za-z0-9._%+-]{4,}" placeholder="Username" name="korisnickoIme" aria-label="username">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Password" name="sifra">
+						<input type="password" class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Password" name="sifra" aria-label="password">
 					</div>
                                
                                     <div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Confirm password" name="sifra">
+						<input type="password" class="form-control" pattern="[A-Za-z0-9._%+-]{8,}$" placeholder="Confirm password" name="sifra" aria-label="confirm password">
 					</div>
                                     
 						<div class="form-check">
@@ -93,7 +115,7 @@
 								</label>
 							  </div>
  						<div class="form-group">
-                                            <input type="button" value="Register" id="register" class="btn float-right login_btn"/>
+                                            <input type="button" value="Register" id="register" class="btn float-right login_btn" aria-label="register"/>
 					
                                         </div>
 				</form>
@@ -103,6 +125,23 @@
 
 	</div>
 </div>
-    <script src="../js/kreiranjeNaloga.js" type="module"></script>
+    <script src="../js/kreiranjeNaloga.js"></script>
+    <script src="../javascript/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../javascript/popper.min.js"></script>
+  <script src="../javascript/bootstrap.min.js"></script>
+  <script src="../javascript/jquery.easing.1.3.js"></script>
+  <script src="../javascript/jquery.waypoints.min.js"></script>
+  <script src="../javascript/jquery.stellar.min.js"></script>
+  <script src="../javascript/owl.carousel.min.js"></script>
+  <script src="../javascript/jquery.magnific-popup.min.js"></script>
+  <script src="../javascript/aos.js"></script>
+  <script src="../javascript/jquery.animateNumber.min.js"></script>
+  <script src="../javascript/bootstrap-datepicker.js"></script>
+  <script src="../javascript/jquery.timepicker.min.js"></script>
+  <script src="../javascript/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeVa1hULe3G5LCVW3Ji88SdPSxGEw9e3M&sensors=true"></script>
+  <script src="../javascript/google-map.js"></script>
+  <script src="../javascript/main.js"></script>
+
 </body>
 </html>

@@ -9,10 +9,12 @@ var lekarGlobalUsername;
 
 function prikaziTegobe(){
    const formData=new FormData();
-   var url_string = window.location.href;
+  /* var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+   var patName= url.searchParams.get("patName");*/
+    var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
    
@@ -24,7 +26,7 @@ function prikaziTegobe(){
             }
    
     
-   fetch("../php/tegoba.php",fetchData).then(response=>
+   fetch("../../php/tegoba.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -33,7 +35,7 @@ function prikaziTegobe(){
            .catch(error => console.log(error));
    
    pacijentGlobalUsername = patName;
-   lekarGlobalUsername = docName
+   lekarGlobalUsername = docName;
    
 }
 
@@ -45,6 +47,9 @@ const kasalj = document.querySelectorAll("input[name='Coughing']");
 const kijanje = document.querySelectorAll("input[name='kijanje']");
 const curenje = document.querySelectorAll("input[name='curenje']");
 const komentar = document.getElementById("komentar");
+const dugmeAccept=document.getElementById("accept");
+
+dugmeAccept.onclick=(ev) => OdobriTermin();
 
 function prikaziPodatke(tegoba)
 {
@@ -53,17 +58,19 @@ function prikaziPodatke(tegoba)
    temp.disabled=true;
    grlo.innerHTML="<option value ='"+tegoba.bolGrlo+"'>"+tegoba.bolGrlo+"</option>";
    grlo.disabled=true;
-   if(tegoba.kasalj=="no")
+   if(tegoba.kasalj==="Low")
         kasalj[0].checked=true;
+   else if(tegoba.kasalj==="Medium")
+        kasalj[1].checked=true;
    else
        kasalj[2].checked=true;
     kasalj.forEach(d => d.disabled=true);
-   if(tegoba.kijanje=="yes")
+   if(tegoba.kijanje==="Yes")
        kijanje[0].checked=true;
    else
        kijanje[1].checked=true;
    kijanje.forEach(d => d.disabled=true);
-   if(tegoba.curenjeNos=="yes")
+   if(tegoba.curenjeNos=="Yes")
        curenje[0].checked=true;
    else 
        curenje[1].checked=true;
@@ -75,10 +82,13 @@ function prikaziPodatke(tegoba)
 }
 function prikaziPacijenta(){
    const formData=new FormData();
-   var url_string = window.location.href;
+  /* var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+   var patName= url.searchParams.get("patName");*/
+    
+    var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
    
@@ -90,7 +100,7 @@ function prikaziPacijenta(){
             }
    
     
-   fetch("../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -108,11 +118,13 @@ function imeIPrezimePacijenta(pacijent)
 
 function prikaziLekara()
 {
-       const formData=new FormData();
-   var url_string = window.location.href;
+   const formData=new FormData();
+  /* var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+   var patName= url.searchParams.get("patName");*/
+     var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
    
    formData.append("username",docName);
    
@@ -124,7 +136,7 @@ function prikaziLekara()
             }
    
     
-   fetch("../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -146,12 +158,12 @@ recept.onclick = (ev) => otvoriRecept();
 
 function otvoriRecept()
 {
-    let myu=podesiVrednost("docName");
+   /* let myu=podesiVrednost("docName");
     var url_safe_username = encodeURIComponent(myu);
     myu=podesiVrednost("patName");
-    var url_safe_username2= encodeURIComponent(myu);
+    var url_safe_username2= encodeURIComponent(myu);*/
     //window.open("prepisiRecept.html","_self");
-    window.open("prepisiRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
+    window.open("prepisiRecept.html","_self");
     
 }
 
@@ -164,21 +176,26 @@ function podesiVrednost(string)
 }
 
 
-const AcceptDugme=document.getElementById("pregled").onclick=(ev)=>OdobriTermin();
+const AcceptDugme=document.getElementById("pregled").onclick=(ev)=>prikaziModal();
 const DenyModal=document.getElementById("denyConfirm").onclick=(ev)=>OtkaziTermin();
 const DenyDugme=document.getElementById("odbij").onclick=(ev)=>{  $('#denyModalConfirm').modal('show');};
-
+function prikaziModal()
+{
+    $('#acceptModal').modal('show');
+}
 function OdobriTermin()
 {
-    let poruka="Vas zahtev za pregled je odobren. Molimo vas da dodjete u ordinaciju u vasem zakazanom terminu";
+    $('#acceptModal').modal('hide');
+    let poruka="Your review order is accepted. Please log in to your account and select a desired time appointment.";
     ObavestiPacijenta(poruka);
     ZakaziTerminLekara();
+    $('#okModalAccept').modal('show');
 }
 
 function OtkaziTermin()
 {
   $('#denyModalConfirm').modal('hide');
-  let poruka="Vas zahtev za pregled nije odobren. Doktor "+lekarGlobal.ime+" "+lekarGlobal.prezime+" nije <br> u mogucnosti da vas pregleda u tom terminu, molimo vas da pokusate u nekom drugom terminu.";
+  let poruka="Your review order is not accepted. Doctor "+lekarGlobal.ime+" "+lekarGlobal.prezime+" is not <br> available to take a review at that moment, please try for some other time appointment.";
   ObavestiPacijenta(poruka); 
   obrisiZahtev(tegobeGlobal.id);
   $('#denyModal').modal('show');
@@ -186,7 +203,7 @@ function OtkaziTermin()
 
 function ObavestiPacijenta(poruka)
 {
-       const formData = new FormData();
+    const formData = new FormData();
     formData.append("ime", pacijentGlobal.ime);
     formData.append("prezime", pacijentGlobal.prezime);
     formData.append("email", pacijentGlobal.email);
@@ -195,7 +212,7 @@ function ObavestiPacijenta(poruka)
         method: "post",
         body: formData
     }
-    fetch("../php/notifyPatient.php", fetchData)
+    fetch("../../php/notifyPatient.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);
@@ -206,10 +223,12 @@ function ObavestiPacijenta(poruka)
 function ZakaziTerminLekara()
 {
     const formData=new FormData();
-    var url_string = window.location.href;
+   /* var url_string = window.location.href;
     var url = new URL(url_string);
     var docName = url.searchParams.get("docName");
-    var patName= url.searchParams.get("patName");
+    var patName= url.searchParams.get("patName");*/
+     var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
     
     //formData.append("usernDoc", lekarGlobalUsername);
     //formData.append("usernPat", pacijentGlobalUsername);
@@ -223,7 +242,7 @@ function ZakaziTerminLekara()
                 body: formData
             }
     
-   fetch("../php/zakaziTermin.php",fetchData).then(response=>
+   fetch("../../php/zakaziTermin.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -240,7 +259,7 @@ function obrisiZahtev(id)
         method: "post",
         body: formData
     }
-    fetch("../php/obrisiTegobePacijenta.php", fetchData)
+    fetch("../../php/obrisiTegobePacijenta.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);
@@ -252,7 +271,7 @@ const historyDugme=document.getElementById("history").onclick=(ev)=>prikaziIstor
 function prikaziIstoriju()
 {
     
-     fetch("../php/vratiDijagnoze.php?username="+pacijentGlobal.korisnickoIme).then(response=>
+     fetch("../../php/vratiDijagnoze.php?username="+pacijentGlobal.korisnickoIme).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -275,7 +294,7 @@ function prikaziDijagnoze(listaDijagnoza)
     else
     {
        
-        var SortitaneDijagnoze=listaDijagnoza.dijagnoze;//sortirajDijagnoze(listaDijagnoza.dijagnoze);
+        var SortitaneDijagnoze=listaDijagnoza.dijagnoze.reverse();//sortirajDijagnoze(listaDijagnoza.dijagnoze);
         
         if(flag==0)
         {

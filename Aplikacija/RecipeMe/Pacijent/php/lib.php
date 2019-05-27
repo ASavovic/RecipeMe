@@ -7,7 +7,9 @@
  */
 include_once 'IBolnicaService.php';
 include_once 'Pacijent.php';
+include_once 'Ocena.php';
 include_once 'ListaPacijenata.php';
+include_once 'ZakazaniTerminPregled.php';
 include_once '../../Lekar/php/ListaLekara.php';
 include_once '../../Lekar/php/Lekar.php';
 include_once '../../Administrator/php/radnoVreme.php';
@@ -19,6 +21,11 @@ include_once '../../Lekar/php/ListaDijagnoza.php';
 include_once '../../Lekar/php/Listaobavestenja.php';
 include_once '../../Lekar/php/ListaTermina.php';
 include_once '../../Lekar/php/Termin.php';
+include_once '../../Lekar/php/ListaZakazanihTermina.php';
+include_once '../../Lekar/php/ZakazanTermin.php';
+include_once 'Slika.php';
+include_once 'Komentar.php';
+
 
 class PacijentService implements IBolnicaService
 {
@@ -41,10 +48,10 @@ class PacijentService implements IBolnicaService
                 . " VALUES "
                 . "('$p->jmbg', '$p->ime', '$p->prezime', '$p->telefon', '$p->korisnickoIme', "
                 . "'$p->sifra', '$p->email', $p->hronicniBolesnik, '$p->bolest')");*/
-        $res=$con->query("INSERT INTO pacijent (jmbg, ime, prezime, broj_telefona, korisnicko_ime, sifra, email)"
+        $res=$con->query("INSERT INTO pacijent (jmbg, ime, prezime, broj_telefona, korisnicko_ime, sifra, email, brojPreuzetih, mesec)"
                 . " VALUES "
                 . "('$p->jmbg', '$p->ime', '$p->prezime', '$p->telefon', '$p->korisnickoIme', "
-                . "'$p->sifra', '$p->email')");
+                . "'$p->sifra', '$p->email',0,".date("m").")");
         if ($res) {
             
         print("Dobro je proslo");
@@ -73,7 +80,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -103,7 +110,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -134,7 +141,7 @@ class PacijentService implements IBolnicaService
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['bolest'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -165,7 +172,7 @@ class PacijentService implements IBolnicaService
             while ($row = $res->fetch_assoc()) {
 				
 		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 		$niz->dodajPacijenta($pacijent);
 
             }
@@ -552,7 +559,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
             if ($row = $res->fetch_assoc()) {
 				
 				$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -642,7 +649,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
 				
 		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
                                        $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],
-                        $row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                        $row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 		$niz[]=$pacijent;
 
             }
@@ -695,7 +702,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
             while ($row = $res->fetch_assoc()) {
 				
 		$pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
 		$niz->dodajPacijenta($pacijent);
 
             }
@@ -1028,12 +1035,9 @@ public function obrisiTermineLekara($username)
         }
     }
 
-public function dodajTermineLekaraPrvaSmenaPrviDeo($username) {
+public function dodajTermineLekaraPrvaSmena($username) {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
+    if ($con->connect_errno) { print ("Connection error (" . $con->connect_errno . "): $con->connect_error"); }
     else {
         // $res je rezultat izvrsenja upita
         
@@ -1043,49 +1047,20 @@ public function dodajTermineLekaraPrvaSmenaPrviDeo($username) {
                 . "('$username','null','Monday','10:30h - 11:00h',0),('$username','null','Monday','11:00h - 11:30h',0),('$username','null','Monday','11:30h - 12:00h',0),('$username','null','Tuesday','08:00h - 08:30h',0),('$username','null','Tuesday','08:30h - 09:00h',0),"
                 . "('$username','null','Tuesday','09:00h - 09:30h',0),('$username','null','Tuesday','09:30h - 10:00h',0),('$username','null','Tuesday','10:00h - 10:30h',0),('$username','null','Tuesday','10:30h - 11:00h',0),('$username','null','Tuesday','11:00h - 11:30h',0),"
                 . "('$username','null','Tuesday','11:30h - 12:00h',0),('$username','null','Wednesday','08:00h - 08:30h',0),('$username','null','Wednesday','08:30h - 09:00h',0),('$username','null','Wednesday','09:00h - 09:30h',0),('$username','null','Wednesday','09:30h - 10:00h',0),"
-                . "('$username','null','Wednesday','10:00h - 10:30h',0),('$username','null','Wednesday','10:30h - 11:00h',0),('$username','null','Wednesday','11:00h - 11:30h',0),('$username','null','Wednesday','11:30h - 12:00h',0),('$username','null','Thursday','08:00h - 08:30h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
-    }
-    }
-    
-public function dodajTermineLekaraPrvaSmenaDrugiDeo($username) {
-    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
-    else {
-        // $res je rezultat izvrsenja upita
-        
-        $res=$con->query("INSERT INTO termini_pregleda (doktor_username, pacijent_username, dan, termin, flag_zauzeto)"
-                . " VALUES "
+                . "('$username','null','Wednesday','10:00h - 10:30h',0),('$username','null','Wednesday','10:30h - 11:00h',0),('$username','null','Wednesday','11:00h - 11:30h',0),('$username','null','Wednesday','11:30h - 12:00h',0),('$username','null','Thursday','08:00h - 08:30h',0),"
                 . "('$username','null','Thursday','08:30h - 09:00h',0),('$username','null','Thursday','09:00h - 09:30h',0),('$username','null','Thursday','09:30h - 10:00h',0),('$username','null','Thursday','10:00h - 10:30h',0),('$username','null','Thursday','10:30h - 11:00h',0),"
                 . "('$username','null','Thursday','11:00h - 11:30h',0),('$username','null','Thursday','11:30h - 12:00h',0),('$username','null','Friday','08:00h - 08:30h',0),('$username','null','Friday','08:30h - 09:00h',0),('$username','null','Friday','09:00h - 09:30h',0),"
                 . "('$username','null','Friday','09:30h - 10:00h',0),('$username','null','Friday','10:00h - 10:30h',0),('$username','null','Friday','10:30h - 11:00h',0),('$username','null','Friday','11:00h - 11:30h',0),('$username','null','Friday','11:30h - 12:00h',0),"
                 . "('$username','null','Saturday','09:00h - 09:30h',0),('$username','null','Saturday','09:30h - 10:00h',0),('$username','null','Saturday','10:00h - 10:30h',0),('$username','null','Saturday','10:30h - 11:00h',0),('$username','null','Saturday','11:00h - 11:30h',0),"
                 . "('$username','null','Saturday','11:30h - 12:00h',0),('$username','null','Sunday','10:00h - 10:30h',0),('$username','null','Sunday','10:30h - 11:00h',0),('$username','null','Sunday','11:00h - 11:30h',0),('$username','null','Sunday','11:30h - 12:00h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
+        if ($res) { }
+        else { print ("Query failed"); }
     }
     }
     
-public function dodajTermineLekaraDrugaSmenaPrviDeo($username) {
+public function dodajTermineLekaraDrugaSmena($username) {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
+    if ($con->connect_errno) { print ("Connection error (" . $con->connect_errno . "): $con->connect_error"); }
     else {
         // $res je rezultat izvrsenja upita
         
@@ -1095,40 +1070,14 @@ public function dodajTermineLekaraDrugaSmenaPrviDeo($username) {
                 . "('$username','null','Monday','14:30h - 15:00h',0),('$username','null','Monday','15:30h - 16:00h',0),('$username','null','Tuesday','12:00h - 12:30h',0),('$username','null','Tuesday','12:30h - 13:00h',0),('$username','null','Tuesday','13:00h - 13:30h',0),"
                 . "('$username','null','Tuesday','13:30h - 14:00h',0),('$username','null','Tuesday','14:00h - 14:30h',0),('$username','null','Tuesday','14:30h - 15:00h',0),('$username','null','Tuesday','15:00h - 15:30h',0),('$username','null','Tuesday','15:30h - 16:00h',0),"
                 . "('$username','null','Wednesday','12:00h - 12:30h',0),('$username','null','Wednesday','12:30h - 13:00h',0),('$username','null','Wednesday','13:00h - 13:30h',0),('$username','null','Wednesday','13:30h - 14:00h',0),('$username','null','Wednesday','14:00h - 14:30h',0),"
-                . "('$username','null','Wednesday','14:30h - 15:00h',0),('$username','null','Wednesday','15:00h - 15:30h',0),('$username','null','Wednesday','15:30h - 16:00h',0),('$username','null','Thursday','12:00h - 12:30h',0),('$username','null','Thursday','12:30h - 13:00h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
-    }
-    }
-    
-public function dodajTermineLekaraDrugaSmenaDrugiDeo($username) {
-    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
-    if ($con->connect_errno) {
-        // u slucaju greske odstampati odgovarajucu poruku
-        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
-    }
-    else {
-        // $res je rezultat izvrsenja upita
-        
-        $res=$con->query("INSERT INTO termini_pregleda (doktor_username, pacijent_username, dan, termin, flag_zauzeto)"
-                . " VALUES "
+                . "('$username','null','Wednesday','14:30h - 15:00h',0),('$username','null','Wednesday','15:00h - 15:30h',0),('$username','null','Wednesday','15:30h - 16:00h',0),('$username','null','Thursday','12:00h - 12:30h',0),('$username','null','Thursday','12:30h - 13:00h',0),"
                 . "('$username','null','Thursday','13:00h - 13:30h',0),('$username','null','Thursday','13:30h - 14:00h',0),('$username','null','Thursday','14:00h - 14:30h',0),('$username','null','Thursday','14:30h - 15:00h',0),('$username','null','Thursday','15:00h - 15:30h',0),"
                 . "('$username','null','Thursday','15:30h - 16:00h',0),('$username','null','Friday','12:00h - 12:30h',0),('$username','null','Friday','12:30h - 13:00h',0),('$username','null','Friday','13:00h - 13:30h',0),('$username','null','Friday','13:30h - 14:00h',0),"
                 . "('$username','null','Friday','14:00h - 14:30h',0),('$username','null','Friday','14:30h - 15:00h',0),('$username','null','Friday','15:00h - 15:30h',0),('$username','null','Friday','15:30h - 16:00h',0),('$username','null','Saturday','12:00h - 12:30h',0),"
                 . "('$username','null','Saturday','12:30h - 13:00h',0),('$username','null','Saturday','13:00h - 13:30h',0),('$username','null','Saturday','13:30h - 14:00h',0),('$username','null','Saturday','14:00h - 14:30h',0),('$username','null','Saturday','14:30h - 15:00h',0),"
                 . "('$username','null','Sunday','12:00h - 12:30h',0),('$username','null','Sunday','12:30h - 13:00h',0),('$username','null','Sunday','13:00h - 13:30h',0),('$username','null','Sunday','13:30h - 14:00h',0);");
-        if ($res) {
-            
-        }
-        else
-        {
-            print ("Query failed");
-        }
+        if ($res) { }
+        else { print ("Query failed"); }
     }
     }
     
@@ -1207,8 +1156,8 @@ public function vratiSveZakazaneTermine() {
 			// u redosledu u kom ga je vratio db server
             while ($row = $res->fetch_assoc()) {
 				
-		$ztermin=new ZakazanTerminTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
-		$niz->dodajZakazaniTermin($ztermin);
+		$ztermin=new ZakazanTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
+		$niz->dodajZakazanTermin($ztermin);
                 
             }
             // zatvaranje objekta koji cuva rezultat
@@ -1230,20 +1179,20 @@ public function vratiZakazaneTermineLekara($username) {
     }
     else {
         // $res je rezultat izvrsenja upita
-        $res = $con->query("select * from zakazani_pregledi where doktor_username='$username'");
+        $res = $con->query("select * from termini_pregleda where flag_zauzeto=1 and doktor_username='$username'");
         if ($res) {
-            $niz = new ListaZakazanihTermina();
+            $niz = new ListaTermina();
             // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
 			// u redosledu u kom ga je vratio db server
             while ($row = $res->fetch_assoc()) {
 				
-		$ztermin=new ZakazanTerminTermin($row['id'],$row['doktor_username'],$row['pacijent_username']);
-		$niz->dodajZakazaniTermin($ztermin);
+		$termin=new Termin($row['id'],$row['doktor_username'],$row['pacijent_username'], $row['dan'],$row['termin'],$row['flag_zauzeto']);
+		$niz->dodajTermin($termin);
                 
             }
             // zatvaranje objekta koji cuva rezultat
             
-            return $pacijent;
+            return $niz;
         }
         else
         {
@@ -1336,7 +1285,7 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
             if($row = $res->fetch_assoc())
             {
             $pacijent=new Pacijent($row['id'],$row['ime'],$row['prezime'], $row['jmbg'],$row['broj_telefona'],
-                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
+                                       $row['email'],$row['korisnicko_ime'],$row['sifra'],$row['hronicniBolesnik'],$row['dijagnoza'],$row['medikamenti'],$row['doktor'],$row["doza"],$row["kontrola"],$row["datum"],$row["brojPreuzetih"],$row["mesec"]);// TODO: DODATI KOD ZA SMESTANJE PODATAKA U ASOCIJATIVNI NIZ!!!!
             }
             return $pacijent;
         }
@@ -1398,7 +1347,262 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
         }
     }
 
+    public function unesiOcenu($pacijent,$lekar, $ocena) {
+         $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res=$con->query("select * from ocene_lekara where pacijent='$pacijent' and lekar='$lekar';");
+        
+        if($res->num_rows==0)
+        {
+            $res=$con->query("INSERT INTO ocene_lekara (pacijent, lekar, ocena)"
+                . " VALUES "
+                . "('$pacijent','$lekar','$ocena');");
+        }
+        else
+        {
+             $res=$con->query("update  ocene_lekara set ocena='$ocena' where lekar='$lekar' and pacijent='$pacijent'");
+        }
+        if ($res) {
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+        
+    }
+
+    public function vratiOcene() {
+  
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from ocene_lekara");
+        if ($res) {
+            $niz = [];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		
+                $ocena=new Ocena($row["id"],$row["pacijent"],$row["lekar"],$row["ocena"]);
+                $niz[]=$ocena;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
 }
+}
+
+    public function vratiZauzeteTermineLekara($username) {
+           $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from termini_pregleda where doktor_username='$username' and flag_zauzeto='1';");
+        if ($res) {
+            $niz =[];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		$termin=new ZakazaniTerminPregled($row["dan"],$row["termin"]);
+                $korisnik=$row["pacijent_username"];
+                $res1 = $con->query("select * from pacijent where korisnicko_ime='$korisnik';");
+                if($res1)
+                {
+                    if($row = $res1->fetch_assoc())
+                    $termin->setujOstaleVrednosti($row["ime"], $row["prezime"], $row["jmbg"], $row["broj_telefona"], $row["email"]);
+                }
+                else
+                {
+                    print ("Query failed");
+                }
+		$niz[]=$termin;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
+    public function ubaciSliku($doktor,$slika, $opis) {
+        $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res1=$con->query("delete  from slike");
+        $res=$con->query("INSERT INTO slike (doktor, slika, opis)"
+                . " VALUES "
+                . "('$doktor','$slika','$opis');");
+        if ($res) {
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+        
+    }
+
+    public function vratiSveSlike() {
+        
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from slike");
+        if ($res) {
+            $niz = [];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		
+                $slika=new Slika($row["id"],$row["slika"], $row["opis"],$row["doktor"]);
+                $niz[]=$slika;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+}
+    }
+public function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,$brPreuzetih)
+{
+    
+       $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update pacijent set mesec='$mesec', brojPreuzetih=$brPreuzetih where korisnicko_ime = '$username'");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+}
+    public function ubaciKomentar($pacijent, $komentar, $datum, $vreme) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        
+        $res=$con->query("INSERT INTO komentari (pacijent, komentar, datum, vreme)"
+                . " VALUES "
+                . "('$pacijent','$komentar','$datum','$vreme');");
+        if ($res) {
+            
+        }
+        else
+        {
+            print ("Query failed");
+        }
+    }
+    }
+
+    public function vratiSveKomenatare($pacijent) {
+    $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+    else {
+        // $res je rezultat izvrsenja upita
+        $res = $con->query("select * from komentari where not pacijent='$pacijent'");
+        if ($res) {
+            $niz = [];
+            // fetch_assoc() pribavlja jedan po jedan red iz rezulata 
+			// u redosledu u kom ga je vratio db server
+            while ($row = $res->fetch_assoc()) {
+				
+		
+            $komentar=new Komentar($row["id"], $row["pacijent"], $row["komentar"], $row["datum"],$row["vreme"]);
+            $niz[]=$komentar;
+                
+            }
+            // zatvaranje objekta koji cuva rezultat
+            //$res->close();
+            return $niz;
+        }
+        else
+        {
+            print ("Query failed");
+        }
+}
+    }
+    public function updateTegobe($pacijent,$komentar,$date,$time)
+    {
+           $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+            $res = $con->query("update tegobe set komentar='$komentar', datum='$date', vreme='$time' where pacijent = '$pacijent'");
+           
+          
+        if ($res) {
+         
+        }
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+}
+
+
 
 
 

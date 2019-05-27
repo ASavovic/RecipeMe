@@ -4,11 +4,13 @@ var PacijentGlobal;
 var DoktorGlobal;
 function prikaziPacijenta(){
    const formData=new FormData();
-   var url_string = window.location.href;
+   /*var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
    var patName= url.searchParams.get("patName");
-   
+   */
+   var docName=sessionStorage.getItem("name");
+   var patName=sessionStorage.getItem("patName");
    formData.append("username",patName);
    
    
@@ -19,7 +21,7 @@ function prikaziPacijenta(){
             }
    
     
-   fetch("../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiPacijenta.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -50,11 +52,13 @@ function PodaciPacijenta(pacijent)
 function prikaziLekara()
 {
    const formData=new FormData();
-   var url_string = window.location.href;
+  /* var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
    var patName= url.searchParams.get("patName");
-   
+   */
+   var docName=sessionStorage.getItem("name");
+   var patName=sessionStorage.getItem("patName");
    formData.append("username",docName);
    
    
@@ -65,7 +69,7 @@ function prikaziLekara()
             }
    
     
-   fetch("../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
+   fetch("../../../Pacijent/php/vratiLekara.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -133,7 +137,7 @@ function posaljiRecept(dugme)
                 body: formData
             }
    
-    fetch("../php/ubaciPacijentuDijagnozuMedikamente.php",fetchData).then(response=>
+    fetch("../../php/ubaciPacijentuDijagnozuMedikamente.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -161,7 +165,7 @@ function posaljiReceptPacijentu()
       
     };
     
-    fetch('../../Pacijent/php/sendEmail.php',fetchData)
+    fetch('../../../Pacijent/php/sendEmail.php',fetchData)
             .then(response =>{
                 if(!response.ok)
                 throw new Error(response.statusText);
@@ -183,12 +187,12 @@ Due to overloading the network, it may take a while.\n\
 function preview()
 {
    
-    let myu=podesiVrednost("docName");
+   /* let myu=podesiVrednost("docName");
     var url_safe_username = encodeURIComponent(myu);
     myu=podesiVrednost("patName");
-    var url_safe_username2= encodeURIComponent(myu);
-    //window.open("prepisiRecept.html","_self");
-    window.open("gotovRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
+    var url_safe_username2= encodeURIComponent(myu);*/
+    window.open("gotovRecept.html","_self");
+   // window.open("gotovRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
 }
 function podesiVrednost(string)
 {

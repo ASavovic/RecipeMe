@@ -9,10 +9,9 @@ let docUsername;
 prikaziPacijente();
 
 function prikaziPacijente(){
-   const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var username = url.searchParams.get("name");
+  
+  const formData=new FormData();
+   var username = sessionStorage.getItem("name");
    
    formData.append("username",username);
    
@@ -24,7 +23,7 @@ function prikaziPacijente(){
             }
    
     
-   fetch("../php/pacijenti.php",fetchData).then(response=>
+   fetch("../../php/pacijenti.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -35,14 +34,23 @@ function prikaziPacijente(){
    docUsername = username;
 }
   
- var id;   
+ 
+function podesiButton()
+{
+  
+  let nizDugmadi=document.querySelectorAll("button[name='process']");
+  nizDugmadi.forEach(d => 
+  {
+      d.onclick=(ev)=>otvoriNovuStranicu(d);
+  });
+}
+
+
 function prikaziPodatke(listaPacijenata)
 {
-let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></thead>\n\
-<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic Patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></tfoot><tbody>";
 
     listaPacijenata.pacijenti.forEach((pacijent) =>  {  
-        id=1;
+       /* id=1;
 
         let dijagnoza="None";
         if(pacijent.dijagnoza!=null)
@@ -57,20 +65,19 @@ let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><
           <td>"+dijagnoza+"</td>\n\
           <td>"+medikamenti+"<td><button class='btn btn-primary' name='process' id="+pacijent.id+">Process</button>"
                 +"</td></tr>";
-        
+        */
        
       
     });
-    innerHTMLTabele += "</tbody>";   
+    /*innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
-    id++;
+    id++;*/
     
     nizPacijenata = listaPacijenata;
-   
-  let nizDugmadi=document.querySelectorAll("button[name='process']");
-  nizDugmadi.forEach(d => 
-  {d.onclick=(ev)=>otvoriNovuStranicu(d);});
+    
+  
 }
+
 
 function otvoriNovuStranicu(korisnik)
 {
@@ -87,14 +94,16 @@ function otvoriNovuStranicu(korisnik)
     else
     {
         let patUsername;
-        let myu = korisnik.id
+        let myu = korisnik.id;
         nizPacijenata.pacijenti.forEach((pacijent) =>  {
             if(pacijent.id == myu)
                 patUsername = pacijent.korisnickoIme;
         });
-        var url_safe_username = encodeURIComponent(docUsername);
-        var url_safe_username2 = encodeURIComponent(patUsername);
-        window.open("obradaPacijenta.html?docName="+ url_safe_username + "&patName="+ url_safe_username2,"_self");
+        var url_safe_username = sessionStorage.getItem("name");
+        sessionStorage.setItem("patName",patUsername);
+        window.open("obradaPacijenta.html","_self");
+       // var url_safe_username2 = encodeURIComponent(patUsername);
+       // window.open("obradaPacijenta.html?docName="+ url_safe_username + "&patName="+ url_safe_username2,"_self");
         //window.location.href="index.html";
         /*window.open("index.html");*/
     }

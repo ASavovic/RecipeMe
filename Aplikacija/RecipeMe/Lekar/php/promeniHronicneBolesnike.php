@@ -25,10 +25,10 @@ echo json_encode($pacijenti);
  $mail->setFrom($_POST["email"],"RecipeMe");
  $mail->addAddress($_POST["email"]);
  $mail->Subject="Notification";
- $mail->Body="Postovani ".$_POST["ime"]." ".$_POST["prezime"]."<br><br>"
-          ."Vase stanje hronicnog pacijenta je sada: ".$_POST["smena"].
+ $mail->Body="Dear ".$_POST["ime"]." ".$_POST["prezime"].",<br><br>"
+          ."Your status of a chronic patient is now: ".$_POST["smena"].
           "<br><br>"
-          ."Pozdrav,<br>"
+          ."Best regards,<br>"
           ."3SGroup.";
  //$obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0,0,0);
  //$baza->ubaciObavestenje($obavestenje);
