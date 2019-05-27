@@ -12,9 +12,7 @@ const email=document.getElementById("email");
 const dijagnoza=document.getElementById("dijagnoza");
 const medikamenti=document.getElementById("medikamenti");
 //logovani korisnik
-var url_string = window.location.href;
-var url = new URL(url_string);
-var username = url.searchParams.get("name");
+var username = sessionStorage.getItem("name");
 //dugme
 const dugme=document.getElementById("take");
 dugme.onclick =(ev)=> preuzmiRecept();

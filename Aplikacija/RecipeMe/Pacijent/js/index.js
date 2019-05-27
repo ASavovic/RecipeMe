@@ -25,14 +25,14 @@ function otvoriRank()
 {
    let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("rangiranjeDoktora.html?name="+ url_safe_username,"_self");
+    window.open("rangiranjeDoktora.html","_self");
     
 }
 function otvoriKomentare()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("komentari.html?name="+ url_safe_username,"_self");
+    window.open("komentari.html","_self");
 }
 
 function podesiValue()
@@ -46,32 +46,32 @@ function otvoriProfil()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("profil.html?name="+ url_safe_username,"_self");
+    window.open("profil.html","_self");
 }
 function otvoriPregled()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("pregled.html?name="+ url_safe_username,"_self");
+    window.open("pregled.html","_self");
     
 }
 function otvoriRecept()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("recept.html?name="+ url_safe_username,"_self");
+    window.open("recept.html","_self");
 }
 
 function otvoriDashboard()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html?name="+ url_safe_username,"_self");
+    window.open("index.html","_self");
 }
 function otvoriIndex()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html?name="+ url_safe_username,"_self");
+    window.open("index.html","_self");
 }
 

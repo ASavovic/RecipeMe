@@ -4,9 +4,7 @@ const termin=document.getElementById("termin");
 const dugmeProvere=document.getElementById("zakazi");
 const dugmeZakazi=document.getElementById("zakaziTermin");
 
-var url_string = window.location.href;
-var url = new URL(url_string);
-var username = url.searchParams.get("name");
+var username = sessionStorage.getItem("name");
 var listaTermina;
 var izabraniDoktor;
 var korisnik;
