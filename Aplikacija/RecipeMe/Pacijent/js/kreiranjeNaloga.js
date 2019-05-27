@@ -132,7 +132,7 @@ function proveriObjekat(korisnici,formData)
 function notifyKorisnik(){
     let innerHtml="<div  class='alert alert-success' role='alert' >\n\
                   <strong>Well done!</strong>\n\
-                   You successfully create medical account!<a href='logovanjeKorisnika.html' class='alert-link'> Go Back!.\n\
+                   You have successfully created a medical account!<a href='logovanjeKorisnika.html' class='alert-link'> Go Back!.\n\
                   <div  class='loader' > Loading...</div></a>";
   
           el.innerHTML=innerHtml;

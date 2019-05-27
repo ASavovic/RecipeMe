@@ -179,7 +179,7 @@ function prikaziModal()
 function OdobriTermin()
 {
     $('#acceptModal').modal('hide');
-    let poruka="Vas zahtev za pregled je odobren. Molimo Vas da se ulogujete i izaberite zeljeni termin.";
+    let poruka="Your review order is accepted. Please log in to your account and select a desired time appointment.";
     ObavestiPacijenta(poruka);
     ZakaziTerminLekara();
     $('#okModalAccept').modal('show');
@@ -188,7 +188,7 @@ function OdobriTermin()
 function OtkaziTermin()
 {
   $('#denyModalConfirm').modal('hide');
-  let poruka="Vas zahtev za pregled nije odobren. Doktor "+lekarGlobal.ime+" "+lekarGlobal.prezime+" nije <br> u mogucnosti da vas pregleda u tom terminu, molimo vas da pokusate u nekom drugom terminu.";
+  let poruka="Your review order is not accepted. Doctor "+lekarGlobal.ime+" "+lekarGlobal.prezime+" is not <br> available to take a review at that moment, please try for some other time appointment.";
   ObavestiPacijenta(poruka); 
   obrisiZahtev(tegobeGlobal.id);
   $('#denyModal').modal('show');
