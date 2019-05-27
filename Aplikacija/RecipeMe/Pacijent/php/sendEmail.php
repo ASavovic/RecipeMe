@@ -37,14 +37,14 @@ file_put_contents($file_name, $file);
  $mail->addAddress($_POST["email"]);
  $mail->AddAttachment($file_name); 
  $mail->Subject="Prescription";
- $mail->Body = 'Dear,<br>'
-         . ' the prescription is attached.<br>'
-         . ' Regards,<br>'
-         . ' RecipeMe.';
+ $mail->Body = "Dear,<br><br>"
+         . "The prescription is attached.<br><br>"
+         . "Best regards,<br>"
+         . "RecipeMe.";
 
  if($mail->send())
  {
-     echo "Uspehhhhh!!!";
+     echo "Email sent!";
  }
  else
      echo "Wrong!".$mail->ErrorInfo;

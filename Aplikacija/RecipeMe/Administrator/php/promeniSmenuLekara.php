@@ -25,11 +25,11 @@ echo json_encode($lekari);
  $mail->isHTML(true);
  $mail->setFrom($_POST["email"],"RecipeMe");
  $mail->addAddress($_POST["email"]);
- $mail->Subject="Nortification";
- $mail->Body="Postovani dr. ".$_POST["ime"]." ".$_POST["prezime"]."<br><br>"
-          ."Od sutra radite u ".$_POST["smena"].". "."smeni.".
+ $mail->Subject="Notification";
+ $mail->Body="Dear Doctor ".$_POST["ime"]." ".$_POST["prezime"].",<br><br>"
+          ."From tomorrow you are in ".$_POST["smena"].". "."shift.".
           "<br><br>"
-         . "Pozdrav,<br>"
+         . "Best regards,<br>"
          . "3SGroup.";
  $obavestenje=new Obavestenje(0, $_POST["id"], $mail->Body, 0,0,0);
  $baza->ubaciObavestenje($obavestenje);

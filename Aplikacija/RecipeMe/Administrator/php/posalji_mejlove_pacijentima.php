@@ -19,13 +19,13 @@ if($_POST["radni_dan"] && $_POST["subota"] && $_POST["nedelja"] && $_POST["ime"]
     $mail->isHTML(true);
     $mail->setFrom($_POST["email"],"RecipeMe");
     $mail->addAddress($_POST["email"]);
-    $mail->Subject="Nortification";
-    $mail->Body="Postovani ".$_POST["ime"]." ".$_POST["prezime"]."<br><br>"
-        ."Nase novo radno vreme je:"."<br><br>"
-        ."Radnim danima: " .$_POST["radni_dan"]."<br><br>"
-        ."Subotom: " .$_POST["subota"]."<br><br>"
-        ."Nedeljom: " .$_POST["nedelja"]."<br><br>"
-        . "Pozdrav,<br>"
+    $mail->Subject="Notification";
+    $mail->Body="Dear ".$_POST["ime"]." ".$_POST["prezime"].",<br><br>"
+        ."Our new working time from now is:"."<br><br>"
+        ."Working days: " .$_POST["radni_dan"]."<br><br>"
+        ."On Saturdays: " .$_POST["subota"]."<br><br>"
+        ."On Sundays: " .$_POST["nedelja"]."<br><br>"
+        . "Best regards,<br>"
         . "3SGroup.";
     
     if($mail->send())
