@@ -14,10 +14,8 @@ register.onclick=(ev)=>promeniPodatke();
 function ucitajKorisnika()
 {
         const formData = new FormData();
-       
-        var url_string = window.location.href;
-        var url = new URL(url_string);
-        var username = url.searchParams.get("name");
+
+        var username=sessionStorage.getItem("name");
     
         formData.append("username",username);
      

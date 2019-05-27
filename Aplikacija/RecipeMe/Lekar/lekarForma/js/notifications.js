@@ -1,6 +1,4 @@
-var url_string = window.location.href;
-var url = new URL(url_string);
-var name = url.searchParams.get("name");
+var name=sessionStorage.getItem("name");
 fetch("../../php/vratiObavestenja.php?username="+name).then(response=>
 {
     if(!response.ok)
