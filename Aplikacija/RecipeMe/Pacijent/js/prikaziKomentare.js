@@ -41,7 +41,7 @@ function prikaziObavestenja(lista)
             zaglavlje.appendChild(naslov);
             
             let datum=document.createElement("small");
-            datum.innerHTML="Date: "+obavestenje.datum+"<br>Time: "+obavestenje.datum;
+            datum.innerHTML="Date: "+obavestenje.datum+"<br>Time: "+obavestenje.vreme;
             zaglavlje.appendChild(datum);
             
             let dugme=document.createElement("button");
