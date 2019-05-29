@@ -168,7 +168,7 @@ function posaljiReceptPacijentu()
       
     };
     
-    fetch('../../Pacijent/php/sendEmail.php',fetchData)
+    fetch('../../../Pacijent/php/sendEmail.php',fetchData)
             .then(response =>{
                 if(!response.ok)
                 throw new Error(response.statusText);
