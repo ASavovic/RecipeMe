@@ -8,8 +8,9 @@ prikaziPacijente();
 
 function prikaziPacijente(){
    const formData=new FormData();
-   
-   var username = sessionStorage.getItem("name");
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var username = url.searchParams.get("name");
    
    formData.append("username",username);
    

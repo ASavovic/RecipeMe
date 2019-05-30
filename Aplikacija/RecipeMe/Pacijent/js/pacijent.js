@@ -3,8 +3,9 @@ document.body.onload = myFunction();
 
 function myFunction(){
         
-
-    var name = sessionStorage.getItem("name");
+    var url_string =window.location.href;
+    var url = new URL(url_string);
+    var name = url.searchParams.get("name");
     console.log(name);
             fetch("../php/indexPacijent.php?name="+name)
             .then(response =>

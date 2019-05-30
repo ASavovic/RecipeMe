@@ -1,8 +1,6 @@
 const el=document.getElementById("logIn");
 el.onclick = (ev)=> ucitajKorisnika();
 
-sessionStorage.removeItem("name");
-sessionStorage.removeItem("patName");
 
 
 
@@ -67,9 +65,11 @@ function otvoriNovuStranicu(admin)
     }
     else
     {
-        sessionStorage.setItem("name",admin.korisnickoIme);
-        window.open("index.html","_self");
- 
+    let myu=document.querySelector("input[name='username']").value;
+    var url_safe_username = encodeURIComponent(myu); 
+    window.open("index.html?name="+ url_safe_username,"_self");
+ //window.location.href="index.html";
+        /*window.open("index.html");*/
     }
 }
 

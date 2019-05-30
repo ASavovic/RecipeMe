@@ -9,9 +9,10 @@ let docUsername;
 prikaziPacijente();
 
 function prikaziPacijente(){
-  
-  const formData=new FormData();
-   var username = sessionStorage.getItem("name");
+   const formData=new FormData();
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var username = url.searchParams.get("name");
    
    formData.append("username",username);
    
@@ -48,6 +49,8 @@ function podesiButton()
 
 function prikaziPodatke(listaPacijenata)
 {
+//let innerHTMLTabele = "<thead  class='rounded-top' style=' text-align:center;'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></thead>\n\
+//<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>SSN</th><th>Phone number</th><th>E-mail</th><th>Chronic Patient</th><th>Diagnosis</th><th>Medicines</th><th>Process</th></tr></tfoot><tbody>";
 
     listaPacijenata.pacijenti.forEach((pacijent) =>  {  
        /* id=1;
@@ -94,16 +97,14 @@ function otvoriNovuStranicu(korisnik)
     else
     {
         let patUsername;
-        let myu = korisnik.id;
+        let myu = korisnik.id
         nizPacijenata.pacijenti.forEach((pacijent) =>  {
             if(pacijent.id == myu)
                 patUsername = pacijent.korisnickoIme;
         });
-        var url_safe_username = sessionStorage.getItem("name");
-        sessionStorage.setItem("patName",patUsername);
-        window.open("obradaPacijenta.html","_self");
-       // var url_safe_username2 = encodeURIComponent(patUsername);
-       // window.open("obradaPacijenta.html?docName="+ url_safe_username + "&patName="+ url_safe_username2,"_self");
+        var url_safe_username = encodeURIComponent(docUsername);
+        var url_safe_username2 = encodeURIComponent(patUsername);
+        window.open("obradaPacijenta.html?docName="+ url_safe_username + "&patName="+ url_safe_username2,"_self");
         //window.location.href="index.html";
         /*window.open("index.html");*/
     }

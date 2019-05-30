@@ -11,7 +11,10 @@ function unesiKomentar()
     }
     else
     {
-         var username =sessionStorage.getItem("name");
+       var url_string = window.location.href;
+       var url = new URL(url_string);
+       var username = url.searchParams.get("name");
+       
         const formData=new FormData();
         formData.append("pacijent",username);
         formData.append("komentar",opis.value);

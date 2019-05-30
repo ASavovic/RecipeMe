@@ -24,10 +24,11 @@ var DoktorGlobal;
 function prikaziDijagnozu()
 {
    const formData=new FormData();
-
-  
-   var patName=sessionStorage.getItem("patName");
-   let date=new Date();
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   
+   var patName= url.searchParams.get("patName");
+    let date=new Date();
    let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
    let doktor=DoktorGlobal.ime+" "+DoktorGlobal.prezime;
    formData.append("pacijent",patName);
@@ -56,9 +57,10 @@ function popuniDijagnozu(d)
 }
 function prikaziPacijenta(){
    const formData=new FormData();
-  
-   var docName=sessionStorage.getItem("name");
-   var patName=sessionStorage.getItem("patName");
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var docName = url.searchParams.get("docName");
+   var patName= url.searchParams.get("patName");
    
    formData.append("username",patName);
    
@@ -96,9 +98,10 @@ function PodaciPacijenta(pacijent)
 function prikaziLekara()
 {
    const formData=new FormData();
- 
-   var docName=sessionStorage.getItem("name");
-   var patName=sessionStorage.getItem("patName");
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var docName = url.searchParams.get("docName");
+   var patName= url.searchParams.get("patName");
    
    formData.append("username",docName);
    
@@ -168,7 +171,7 @@ function posaljiReceptPacijentu()
       
     };
     
-    fetch('../../../Pacijent/php/sendEmail.php',fetchData)
+    fetch('../../Pacijent/php/sendEmail.php',fetchData)
             .then(response =>{
                 if(!response.ok)
                 throw new Error(response.statusText);
@@ -189,8 +192,12 @@ Due to overloading the network, it may take a while.\n\
 
 function preview()
 {
-    
-    window.open("gotovRecept.html","_self");
+     let myu=podesiVrednost("docName");
+    var url_safe_username = encodeURIComponent(myu);
+    myu=podesiVrednost("patName");
+    var url_safe_username2= encodeURIComponent(myu);
+    //window.open("prepisiRecept.html","_self");
+    window.open("gotovRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
 }
 function podesiVrednost(string)
 {

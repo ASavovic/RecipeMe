@@ -5,7 +5,7 @@ var korisnik={
 const el=document.getElementById("logIn");
 el.onclick = (ev)=> ucitajKorisnika(ev);
 
-sessionStorage.removeItem("name");
+
 
 
 
@@ -65,13 +65,12 @@ function otvoriNovuStranicu(pacijent)
         tmp.style.visibility="inherit";
         tmp.style.textAlign="center"; 
        
-       
     }
     else
     {
-        sessionStorage.setItem("name",pacijent.korisnickoIme);
-    
-        window.open("../html/pacijent.html","_self");
+    let myu=document.querySelector("input[name='username']").value;
+    var url_safe_username = encodeURIComponent(myu); 
+    window.open("../html/pacijent.html?name="+ url_safe_username ,"_self");
     }
 }
 

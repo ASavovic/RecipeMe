@@ -1,4 +1,6 @@
-var name = sessionStorage.getItem("name");
+var url_string = window.location.href;
+var url = new URL(url_string);
+var name = url.searchParams.get("name");
 
 
 fetch("../php/vratiKomentare.php?username="+name).then(response=>

@@ -35,43 +35,43 @@ function otvoriTermine()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("zakazaniTermini.html","_self");
+    window.open("zakazaniTermini.html?name="+ url_safe_username,"_self");
     
 }
 function otvoriProfil()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("profile.html","_self");
+    window.open("profile.html?name="+ url_safe_username,"_self");
 }
 function otvoriPatients()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("patients.html","_self");
+    window.open("patients.html?name="+ url_safe_username,"_self");
     
 }
 function otvoriNotifications()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("notifications.html","_self");
+    window.open("notifications.html?name="+ url_safe_username,"_self");
 }
 function otvoriNotify()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("notify.html","_self");
+    window.open("notify.html?name="+ url_safe_username,"_self");
 }
 function otvoriDashboard()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html","_self");
+    window.open("index.html?name="+ url_safe_username,"_self");
 }
 function otvoriIndex()
 {
     let myu=podesiValue();
     var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html","_self");
+    window.open("index.html?name="+ url_safe_username,"_self");
 }

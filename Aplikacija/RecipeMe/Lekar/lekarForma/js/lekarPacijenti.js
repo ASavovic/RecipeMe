@@ -10,8 +10,9 @@ prikaziPacijente();
 
 function prikaziPacijente(){
    const formData=new FormData();
-  
-   var username = sessionStorage.getItem("name");
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var username = url.searchParams.get("name");
    
    formData.append("username",username);
    
@@ -155,10 +156,9 @@ function azurirajHronicneBolesnike(ev)
         const medikamenti=document.getElementById("medikamenti"+idPacijenta); 
         const doza=document.getElementById("doza"+idPacijenta);
         const kontrola=document.getElementById("kontrola"+idPacijenta); 
-        /*var url_string = window.location.href;
-        var url = new URL(url_string);*/
-       // var username = url.searchParams.get("name");
-       var username=sessionStorage.getItem("name");
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var username = url.searchParams.get("name");
         
         const formData=new FormData();
         let pom=0;

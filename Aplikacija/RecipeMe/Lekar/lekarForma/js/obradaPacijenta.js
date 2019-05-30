@@ -9,12 +9,10 @@ var lekarGlobalUsername;
 
 function prikaziTegobe(){
    const formData=new FormData();
-  /* var url_string = window.location.href;
+   var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");*/
-    var docName=sessionStorage.getItem("name");
-    var patName=sessionStorage.getItem("patName");
+   var patName= url.searchParams.get("patName");
    
    formData.append("username",patName);
    
@@ -35,7 +33,7 @@ function prikaziTegobe(){
            .catch(error => console.log(error));
    
    pacijentGlobalUsername = patName;
-   lekarGlobalUsername = docName;
+   lekarGlobalUsername = docName
    
 }
 
@@ -82,13 +80,10 @@ function prikaziPodatke(tegoba)
 }
 function prikaziPacijenta(){
    const formData=new FormData();
-  /* var url_string = window.location.href;
+   var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");*/
-    
-    var docName=sessionStorage.getItem("name");
-    var patName=sessionStorage.getItem("patName");
+   var patName= url.searchParams.get("patName");
    
    formData.append("username",patName);
    
@@ -118,13 +113,11 @@ function imeIPrezimePacijenta(pacijent)
 
 function prikaziLekara()
 {
-   const formData=new FormData();
-  /* var url_string = window.location.href;
+       const formData=new FormData();
+   var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");*/
-     var docName=sessionStorage.getItem("name");
-    var patName=sessionStorage.getItem("patName");
+   var patName= url.searchParams.get("patName");
    
    formData.append("username",docName);
    
@@ -158,12 +151,12 @@ recept.onclick = (ev) => otvoriRecept();
 
 function otvoriRecept()
 {
-   /* let myu=podesiVrednost("docName");
+    let myu=podesiVrednost("docName");
     var url_safe_username = encodeURIComponent(myu);
     myu=podesiVrednost("patName");
-    var url_safe_username2= encodeURIComponent(myu);*/
+    var url_safe_username2= encodeURIComponent(myu);
     //window.open("prepisiRecept.html","_self");
-    window.open("prepisiRecept.html","_self");
+    window.open("prepisiRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
     
 }
 
@@ -223,12 +216,10 @@ function ObavestiPacijenta(poruka)
 function ZakaziTerminLekara()
 {
     const formData=new FormData();
-   /* var url_string = window.location.href;
+    var url_string = window.location.href;
     var url = new URL(url_string);
     var docName = url.searchParams.get("docName");
-    var patName= url.searchParams.get("patName");*/
-     var docName=sessionStorage.getItem("name");
-    var patName=sessionStorage.getItem("patName");
+    var patName= url.searchParams.get("patName");
     
     //formData.append("usernDoc", lekarGlobalUsername);
     //formData.append("usernPat", pacijentGlobalUsername);
