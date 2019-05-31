@@ -9,10 +9,12 @@ var lekarGlobalUsername;
 
 function prikaziTegobe(){
    const formData=new FormData();
-   var url_string = window.location.href;
+  /* var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+   var patName= url.searchParams.get("patName");*/
+    var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
    
@@ -33,7 +35,7 @@ function prikaziTegobe(){
            .catch(error => console.log(error));
    
    pacijentGlobalUsername = patName;
-   lekarGlobalUsername = docName
+   lekarGlobalUsername = docName;
    
 }
 
@@ -76,14 +78,18 @@ function prikaziPodatke(tegoba)
   komentar.innerText=tegoba.komentar;
   komentar.disabled=true;
    tegobeGlobal=tegoba;
+   
    //console.log(tegoba);
 }
 function prikaziPacijenta(){
    const formData=new FormData();
-   var url_string = window.location.href;
+  /* var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+   var patName= url.searchParams.get("patName");*/
+    
+    var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
    
@@ -113,11 +119,13 @@ function imeIPrezimePacijenta(pacijent)
 
 function prikaziLekara()
 {
-       const formData=new FormData();
-   var url_string = window.location.href;
+   const formData=new FormData();
+  /* var url_string = window.location.href;
    var url = new URL(url_string);
    var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+   var patName= url.searchParams.get("patName");*/
+     var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
    
    formData.append("username",docName);
    
@@ -151,12 +159,12 @@ recept.onclick = (ev) => otvoriRecept();
 
 function otvoriRecept()
 {
-    let myu=podesiVrednost("docName");
+   /* let myu=podesiVrednost("docName");
     var url_safe_username = encodeURIComponent(myu);
     myu=podesiVrednost("patName");
-    var url_safe_username2= encodeURIComponent(myu);
+    var url_safe_username2= encodeURIComponent(myu);*/
     //window.open("prepisiRecept.html","_self");
-    window.open("prepisiRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
+    window.open("prepisiRecept.html?id="+tegobeGlobal.id,"_self");
     
 }
 
@@ -182,6 +190,7 @@ function OdobriTermin()
     let poruka="Your review order is accepted. Please log in to your account and select a desired time appointment.";
     ObavestiPacijenta(poruka);
     ZakaziTerminLekara();
+    obrisiZahtev(tegobeGlobal.id);
     $('#okModalAccept').modal('show');
 }
 
@@ -192,8 +201,15 @@ function OtkaziTermin()
   ObavestiPacijenta(poruka); 
   obrisiZahtev(tegobeGlobal.id);
   $('#denyModal').modal('show');
+  
+ 
 }
-
+document.getElementById("ok").onclick=(ev)=>otvoriDashboard();
+document.getElementById("ok1").onclick=(ev)=>otvoriDashboard();
+function otvoriDashboard()
+{
+     window.open("../html/index.html","_self");
+}
 function ObavestiPacijenta(poruka)
 {
     const formData = new FormData();
@@ -216,10 +232,12 @@ function ObavestiPacijenta(poruka)
 function ZakaziTerminLekara()
 {
     const formData=new FormData();
-    var url_string = window.location.href;
+   /* var url_string = window.location.href;
     var url = new URL(url_string);
     var docName = url.searchParams.get("docName");
-    var patName= url.searchParams.get("patName");
+    var patName= url.searchParams.get("patName");*/
+     var docName=sessionStorage.getItem("name");
+    var patName=sessionStorage.getItem("patName");
     
     //formData.append("usernDoc", lekarGlobalUsername);
     //formData.append("usernPat", pacijentGlobalUsername);
@@ -256,6 +274,7 @@ function obrisiZahtev(id)
         throw new Error(response.statusText);
     }
     }).catch(error => console.log(error)); 
+    
 }
 
 const historyDugme=document.getElementById("history").onclick=(ev)=>prikaziIstoriju();

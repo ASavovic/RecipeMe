@@ -114,40 +114,12 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 ">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+          
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
+           
 
            
 
@@ -216,15 +188,19 @@
               
           </div>
           <div>
-                      <textarea class="form-control" cols="40" rows="5" id="poruka" placeholder="Enter the email here.." ></textarea>
+                      <textarea class="form-control" cols="40" rows="5" id="poruka" placeholder="Enter the message here.." ></textarea>
 		</div>
-              </div>
-              <div class="form-group">
-                  <input type="button" value="Send" data-toggle="modal" data-target="#notifyModel" class="btn float-right login_btn" style="background-color: #4e73df; color:black; margin: 5px; margin-right: 20px; width:100px; height: 50px;">
-					
-               </div>
+              
+             
+         <div class="row">
+               <div class="col-lg-4 offset-lg-8" style="padding-top:10px;">
+                                   
+                 <button type="button" class="btn btn-primary mb-5 "  value="Send" data-toggle="modal" data-target="#notifyModel" style="width:250px; float:right; ">Send</button>
+                     </div>
+         </div>
       </div>
-          
+         </div>
+         
 
   
         <!-- /.container-fluid -->
@@ -339,7 +315,7 @@
         </button>
       </div>
       <div class="modal-body">
-      You need to enter the email!
+      You need to enter the message!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" style="background-color: red" data-dismiss="modal">OK</button>

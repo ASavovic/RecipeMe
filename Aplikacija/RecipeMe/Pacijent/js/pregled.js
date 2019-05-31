@@ -45,9 +45,7 @@ function posaljiTegobe()
 {
    $('#send').modal('hide');
    
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var pacijent = url.searchParams.get("name");
+   var pacijent = sessionStorage.getItem("name");
    const formData = new FormData();
    var today = new Date();
    var datum=today.getDate()+"."+today.getMonth()+"."+today.getFullYear()+".";

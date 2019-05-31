@@ -137,9 +137,7 @@ function izracunavanjeOcenaLekara()
       
    function unesiOcenu(rating)
    {
-       var url_string = window.location.href;
-       var url = new URL(url_string);
-       var username = url.searchParams.get("name");
+      var username = sessionStorage.getItem("name");
     
        const formData = new FormData();
        formData.append("pacijent",username);

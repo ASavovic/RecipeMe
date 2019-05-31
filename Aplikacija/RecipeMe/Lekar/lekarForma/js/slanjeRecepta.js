@@ -13,8 +13,6 @@ const dijagnoza = document.getElementById("dijagnoza");
 const medikamenti = document.getElementById("medikamenti"); 
 posaljiDugme.onclick=(ev)=>posaljiReceptPacijentu(ev);
 
-
-
 prikaziPacijenta();
 prikaziLekara();
 
@@ -23,44 +21,18 @@ var DoktorGlobal;
 
 function prikaziDijagnozu()
 {
-   const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   
-   var patName= url.searchParams.get("patName");
-    let date=new Date();
-   let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
-   let doktor=DoktorGlobal.ime+" "+DoktorGlobal.prezime;
-   formData.append("pacijent",patName);
-   formData.append("doktor",doktor);
-   formData.append("datum",datum);
-   const fetchData =
-            {
-                method:"POST",
-                body: formData
-            }
-   
-    
-   fetch("../../php/vratiDijagnozu.php",fetchData).then(response=>
-   {
-       if(!response.ok)
-           throw new Error(response.statusText)
-       else return response.json();
-   }).then((dijagnoza)=>popuniDijagnozu(dijagnoza))
-           .catch(error => console.log(error));
+  let diagnosis=podesiVrednost("diagnosis");
+  let medicines=podesiVrednost("medicines");
+  dijagnoza.innerHTML="Diagnosis: "+diagnosis;
+  medikamenti.innerHTML="Medicines: "+medicines;
     
 }
-function popuniDijagnozu(d)
-{
-    dijagnoza.innerHTML="Diagnosis: "+d.dijagnoza;
-    medikamenti.innerHTML="Medicines: "+d.medikamenti;
-}
+
 function prikaziPacijenta(){
    const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+  
+   var docName=sessionStorage.getItem("name");
+   var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
    
@@ -89,19 +61,22 @@ function PodaciPacijenta(pacijent)
     imePacijenta.innerHTML="Name: "+pacijent.ime;
     prezimePacijenta.innerHTML="Surname: "+pacijent.prezime;
     jmbgPacijenta.innerHTML="SSN: "+pacijent.jmbg;
-    telefonPacijenta.innerHTML="Contact: "+pacijent.telefon;
+    //telefonPacijenta.innerHTML="Contact: "+pacijent.telefon;
     emailPacijenta.innerHTML="Email: "+pacijent.email;
-    naslov.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>"+pacijent.jmbg;
+    //naslov.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>"+pacijent.jmbg;
+    naslov.style.font="24px";
+    let barkod=pacijent.jmbg+Math.random();
+    JsBarcode("#barcode",barkod);
+
     
 }
 
 function prikaziLekara()
 {
    const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
+ 
+   var docName=sessionStorage.getItem("name");
+   var patName=sessionStorage.getItem("patName");
    
    formData.append("username",docName);
    
@@ -162,7 +137,7 @@ function posaljiReceptPacijentu()
    
     let content=$('#sendDiv').html();
     const formData=new FormData();
-    formData.append("naziv","RecipeMe_Prescription_01_"+Math.random());
+    formData.append("naziv","RecipeMe_Prescription_"+Math.random());
     formData.append("email",PacijentGlobal.email);
     formData.append("data",content);
     const fetchData={
@@ -171,7 +146,7 @@ function posaljiReceptPacijentu()
       
     };
     
-    fetch('../../Pacijent/php/sendEmail.php',fetchData)
+    fetch('../../../Pacijent/php/sendEmail.php',fetchData)
             .then(response =>{
                 if(!response.ok)
                 throw new Error(response.statusText);
@@ -187,17 +162,32 @@ document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-g
 <p class='mb-0'>\n\
 Due to overloading the network, it may take a while.\n\
 </p></div>";
- document.getElementById("sendDiv").innerHTML="";
+ //document.getElementById("sendDiv").innerHTML="";
+ for (let i = 0; i < 500000; ++i) { };
+ var id=podesiVrednost("id");
+ obrisiZahtev(id);
 }
-
+function obrisiZahtev(id)
+{
+    const formData = new FormData();
+    formData.append("id", id);
+    const fetchData = {
+        method: "post",
+        body: formData
+    }
+    fetch("../../php/obrisiTegobePacijenta.php", fetchData)
+    .then(response => {
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    }).then(()=>{ window.open("../html/index.html","_self");}).catch(error => console.log(error)); 
+   
+    
+}
 function preview()
 {
-     let myu=podesiVrednost("docName");
-    var url_safe_username = encodeURIComponent(myu);
-    myu=podesiVrednost("patName");
-    var url_safe_username2= encodeURIComponent(myu);
-    //window.open("prepisiRecept.html","_self");
-    window.open("gotovRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
+    
+    window.open("gotovRecept.html","_self");
 }
 function podesiVrednost(string)
 {

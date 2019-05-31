@@ -23,6 +23,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
+   <script src="../js/JsBarcode.all.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -170,7 +171,7 @@
         
            <p>Email: info.recipeme@gmail.com</p>
            <p>Contact: +381 64 857 6383</p>
-           <p>Adress: Bulevar Nikole Tesle 48 <br> 18000 Niš, Serbia</p>
+           <p>Adress: Bulevar Nikole Tesle 48, 18000 Niš</p>
          
       </div>
       </div>
@@ -183,7 +184,7 @@
               <p id="ime">Name: ime_pacijenta</p>
               <p id="prezime">Surname: prezime_pacijenta</p>
               <p id="jmbg">SSN: jmbg</p>
-              <p id="telefon">Contact: telefon</p>
+            
               <p id="email">Email: email</p>
         
       </div> 
@@ -215,14 +216,22 @@
       </div>
       </div>
               
-                       
+           <div style="margin-top: 0px; text-align: right;">
+              
+              <img id="barcode" style="height: 90px;"/>
+              </div>
+          </div>               
   </div> 
-         </div>
-          <!-- DataTales Example -->
-          <button  id="take" class="btn btn-primary float-right mb-2">Take</button>
+        
+         <div class="row">
+            <div class="col-lg-4 offset-lg-8" style="padding-top:10px;">
+                                   
+          <button type="button" class="btn btn-primary mb-5 " style="width:250px; float:right; " id="take">Take</button>
+            </div>
         </div> 
 
       </div>
+    </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->

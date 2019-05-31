@@ -14,9 +14,7 @@ function ucitajKorisnika()
 {
         const formData = new FormData();
        
-        var url_string = window.location.href;
-        var url = new URL(url_string);
-        var username = url.searchParams.get("name");
+        var username = sessionStorage.getItem("name");
     
         formData.append("username",username);
      
@@ -57,7 +55,7 @@ function popuniPolja(pacijent)
 }
 function izmeniPacijenta()
 {
-    if(dugme.value==="Edit")
+    if(dugme.innerHTML=="Edit")
     { 
     ime.readOnly=false;
     prezime.readOnly=false;
@@ -67,7 +65,7 @@ function izmeniPacijenta()
     
     telefon.readOnly=false;
     password.readOnly=false;
-    dugme.value="Confirm";
+    dugme.innerHTML="Confirm";
     
     
     }
@@ -106,7 +104,7 @@ function promeniPodatke()
     }).then(()=>zamrzniPolja())
             .catch(error => console.log(error));
    
-    dugme.value="Edit";
+    dugme.innerHTML="Edit";
 }
 function zamrzniPolja()
 {

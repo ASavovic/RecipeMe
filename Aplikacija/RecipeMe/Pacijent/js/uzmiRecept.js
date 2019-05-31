@@ -12,20 +12,19 @@ const email=document.getElementById("email");
 const dijagnoza=document.getElementById("dijagnoza");
 const medikamenti=document.getElementById("medikamenti");
 //logovani korisnik
-var url_string = window.location.href;
-var url = new URL(url_string);
-var username = url.searchParams.get("name");
+var username = sessionStorage.getItem("name");
 //dugme
 const dugme=document.getElementById("take");
 dugme.onclick =(ev)=> preuzmiRecept();
 var korisnik;
+
 popuniRecept();
 
-function proveraPreuzetih()
+function preuzmiRecept()
 {
-    if(korisnik.brojPreuzetih>=korisnik.doza)
+if(korisnik.brojPreuzetih>=korisnik.doza)
     {
-         var kartica=document.getElementById("card");
+         kartica=document.getElementById("card");
          document.getElementById("take").style.display = 'none';
                  kartica.innerHTML="You have taken a monthly limited number of prescriptions. If you need more prescriptions please visit a doctor. \n\
 By clicking the button below, a request for review will be automatically sent. \n\
@@ -43,10 +42,6 @@ You will receive a notification soon for selecting time for an appointment ";
         document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregled("Need more doses");
          return;
     }
-}
-function preuzmiRecept()
-{
-
     
     let content=$('#sendDiv').html();
     const formData=new FormData();
@@ -127,17 +122,17 @@ function popuniPoljaPacijent(pacijent)
    korisnik=pacijent;
     if(pacijent.hronicniBolesnik==1)
         { 
-             proveraPreuzetih();
-
              ime.innerHTML="Name: "+pacijent.ime;
              prezime.innerHTML="Surname: "+pacijent.prezime;
              jmbg.innerHTML="SSN: "+pacijent.jmbg;
-             telefon.innerHTML="Contact: "+pacijent.telefon;
+            
              email.innerHTML="Email: "+pacijent.email;
              dijagnoza.innerHTML="Diagnosis: "+pacijent.dijagnoza;
              medikamenti.innerHTML="Medicines: "+pacijent.medikamenti;
              medikamenti.readOnly=true;
              popuniLekara(pacijent.doktor);
+             let barkod=pacijent.jmbg+Math.random();
+             JsBarcode("#barcode",barkod);
         }
         else
             {
