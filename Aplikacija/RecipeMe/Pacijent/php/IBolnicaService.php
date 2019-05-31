@@ -40,10 +40,8 @@ interface IBolnicaService {
     function vratiSveTermine();
     function vratiTermineLekara($username);
     function obrisiTermineLekara($username);
-    function dodajTermineLekaraPrvaSmenaPrviDeo($username);
-    function dodajTermineLekaraPrvaSmenaDrugiDeo($username);
-    function dodajTermineLekaraDrugaSmenaPrviDeo($username);
-    function dodajTermineLekaraDrugaSmenaDrugiDeo($username);
+    function dodajTermineLekaraPrvaSmena($username);
+    function dodajTermineLekaraDrugaSmena($username);
     function vratiSveSlobodneTermine();
     function vratiSveSlobodneTermineLekara($username);
     function vratiSveZakazaneTermine();
@@ -54,5 +52,14 @@ interface IBolnicaService {
     function proveraZakazaniTermin($pacijent);
     function vratiDoktorId($pacijent);
     function zakaziTermin($pacijent,$doktor,$dan,$termin);
+    function unesiOcenu($pacijent,$lekar,$ocena);
+    function vratiOcene();
+    function vratiZauzeteTermineLekara($username);
+    function ubaciSliku($doktor,$slika,$opis);
+    function vratiSveSlike();
+    function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,$brPreuzetih);
+    function ubaciKomentar($pacijent,$komentar,$datum,$vreme);
+    function vratiSveKomenatare($pacijent);
+    function updateTegobe($pacijent,$komentar,$date,$time);
     
 }

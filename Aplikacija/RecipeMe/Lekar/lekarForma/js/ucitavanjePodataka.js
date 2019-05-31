@@ -25,39 +25,34 @@ function podesiValue()
 }
 function otvoriProfil()
 {
-    let myu=podesiValue();
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("profile.html?name="+ url_safe_username,"_self");
+   
+    window.open("profile.html","_self");
 }
 function otvoriPatients()
 {
-    let myu=podesiValue();
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("patients.html?name="+ url_safe_username,"_self");
+    
+    window.open("patients.html","_self");
     
 }
 function otvoriNotifications()
 {
-    let myu=podesiValue();
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("notifications.html?name="+ url_safe_username,"_self");
+    
+    window.open("notifications.html","_self");
 }
 function otvoriNotify()
 {
-    let myu=podesiValue();
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("notify.html?name="+ url_safe_username,"_self");
+   
+ 
+    window.open("notify.html","_self");
 }
 function otvoriDashboard()
 {
-    let myu=podesiValue();
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html?name="+ url_safe_username,"_self");
+
+    window.open("index.html","_self");
 }
 function otvoriIndex()
 {
-    let myu=podesiValue();
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("index.html?name="+ url_safe_username,"_self");
+ 
+    window.open("index.html","_self");
 }
 

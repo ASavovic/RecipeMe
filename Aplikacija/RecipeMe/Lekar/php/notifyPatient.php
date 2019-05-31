@@ -20,11 +20,10 @@ if(isset($_POST["ime"]))
  $mail->isHTML(true);
  $mail->setFrom($_POST["email"],"RecipeMe");
  $mail->addAddress($_POST["email"]);
- $mail->Subject="Notification";
- $mail->Body="Postovani ".$_POST["ime"]." ".$_POST["prezime"]."<br><br>"
-          .$_POST["txtPoruke"].
-          "<br><br>"
-         . "Pozdrav,<br>"
+ $mail->Subject="Review Notification";
+ $mail->Body="Dear ".$_POST["ime"]." ".$_POST["prezime"].",<br><br>"
+         .$_POST["txtPoruke"]."<br><br>"
+         . "Best regards,<br>"
          . "3SGroup.";
   if($mail->send())
      echo "Email sent!";

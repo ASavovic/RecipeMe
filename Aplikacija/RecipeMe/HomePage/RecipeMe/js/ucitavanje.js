@@ -6,7 +6,7 @@ prikaziRadnoVreme();
 
 function prikaziRadnoVreme()
 {
-     fetch("../../Administrator/php/radno_vreme.php").then(response=>
+     fetch("../../../Administrator/php/radno_vreme.php").then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)

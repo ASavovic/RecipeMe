@@ -1,7 +1,5 @@
-var url_string = window.location.href;
-var url = new URL(url_string);
-var name = url.searchParams.get("name");
-fetch("../php/vratiObavestenja.php?username="+name).then(response=>
+var name=sessionStorage.getItem("name");
+fetch("../../php/vratiObavestenja.php?username="+name).then(response=>
 {
     if(!response.ok)
         throw new Error(response.statusText)
@@ -18,7 +16,7 @@ function prikaziObavestenja(lista)
         kontenjerDiv.innerHTML="There is no any new notifications...";
     }
     else{
-       lista.obavestenja.forEach((obavestenje)=>
+        lista.obavestenja.reverse().forEach((obavestenje)=>
         {
             
             let kontenjer=document.createElement("div");
@@ -68,7 +66,7 @@ function prikaziObavestenja(lista)
 }
 function ponistenoObavestenje(dugme)
 {
-    fetch("../php/ponistiObavestenje.php?username="+name+"&id="+dugme.value).then(response=>
+    fetch("../../php/ponistiObavestenje.php?username="+name+"&id="+dugme.value).then(response=>
 {
     if(!response.ok)
         throw new Error(response.statusText)

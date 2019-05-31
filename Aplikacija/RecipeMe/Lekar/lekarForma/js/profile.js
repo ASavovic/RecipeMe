@@ -14,10 +14,8 @@ register.onclick=(ev)=>promeniPodatke();
 function ucitajKorisnika()
 {
         const formData = new FormData();
-       
-        var url_string = window.location.href;
-        var url = new URL(url_string);
-        var username = url.searchParams.get("name");
+
+        var username=sessionStorage.getItem("name");
     
         formData.append("username",username);
      
@@ -26,7 +24,7 @@ function ucitajKorisnika()
                 method:"POST",
                 body: formData
             }
-       fetch("../php/vratiLekara.php",fetchData)
+       fetch("../../php/vratiLekara.php",fetchData)
             .then(response =>
             {
         if(!response.ok)
@@ -99,7 +97,7 @@ function promeniPodatke()
                 body: formData
             }
     
-       fetch("../php/izmeniLekara.php",fetchData)
+       fetch("../../php/izmeniLekara.php",fetchData)
             .then(response =>
             {
         if(!response.ok)

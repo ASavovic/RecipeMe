@@ -1,13 +1,17 @@
-const el=document.getElementById("logIn");
-el.onclick = (ev)=> ucitajKorisnika();
-
-const korisnik={
+var korisnik={
     username:"",
     password:""
 }
+const el=document.getElementById("logIn");
+el.onclick = (ev)=> ucitajKorisnika(ev);
 
-function ucitajKorisnika()
+sessionStorage.removeItem("name");
+
+
+
+function ucitajKorisnika(ev)
 {
+   
     let pom=validacijaKorisnika();
     if(pom==0)
     {
@@ -38,7 +42,10 @@ function ucitajKorisnika()
         else
             return response.json();
 
-    }).then(pacijent => otvoriNovuStranicu(pacijent))
+    }).then(pacijent => {
+                
+  otvoriNovuStranicu(pacijent);
+    })
     
             .catch(error => console.log(error));
     
@@ -58,12 +65,13 @@ function otvoriNovuStranicu(pacijent)
         tmp.style.visibility="inherit";
         tmp.style.textAlign="center"; 
        
+       
     }
     else
     {
-    let myu=document.querySelector("input[name='username']").value;
-    var url_safe_username = encodeURIComponent(myu); 
-    window.open("../html/pacijent.html?name="+ url_safe_username ,"_self");
+        sessionStorage.setItem("name",pacijent.korisnickoIme);
+    
+        window.open("../html/pacijent.html","_self");
     }
 }
 

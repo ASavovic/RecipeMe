@@ -13,7 +13,7 @@ if(isset($_POST["jmbg"]))
     
     // novo kreiranje objekata, dodati i novi atributi iz klase
     $pacijent= new Pacijent(0,$_POST["ime"],$_POST["prezime"],$_POST["jmbg"],
-            $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"null","null","null",0,0,"null",0);
+            $_POST["telefon"],$_POST["email"],$_POST["korisnickoIme"],$_POST["sifra"],0,"null","null","null",0,0,"null",0,"null");
     
     $baza->dodajPacijenta($pacijent);
     
@@ -29,12 +29,12 @@ if(isset($_POST["jmbg"]))
  $mail->isHTML(true);
  $mail->setFrom($_POST["email"],"RecipeMe");
  $mail->addAddress($_POST["email"]);
- $mail->Subject="Uspesna Registracija";
- $mail->Body="Postovani,<br><br>"
-         . "Uspesno ste kreirali nalog na RecipeMe sajtu.<br>"
-         . "Vas Username je ".$_POST["korisnickoIme"].".<br>"
-         . "Hvala na poverenju!<br><br>"
-         . "Pozdrav,<br>"
+ $mail->Subject="Registration Successful!";
+ $mail->Body="Dear,<br><br>"
+         . "You have successfully registered your RecipeMe account.<br><br>"
+         . "Your Username is ".$_POST["korisnickoIme"].".<br><br>"
+         . "Thank you for your trust!<br><br>"
+         . "Best regards,<br>"
          . "3SGroup.";
  
  if($mail->send())

@@ -8,9 +8,8 @@ prikaziPacijente();
 
 function prikaziPacijente(){
    const formData=new FormData();
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var username = url.searchParams.get("name");
+   
+   var username = sessionStorage.getItem("name");
    
    formData.append("username",username);
    
@@ -22,7 +21,7 @@ function prikaziPacijente(){
             }
    
     
-   fetch("../php/pacijenti.php",fetchData).then(response=>
+   fetch("../../php/pacijenti.php",fetchData).then(response=>
    {
        if(!response.ok)
            throw new Error(response.statusText)
@@ -35,11 +34,11 @@ function prikaziPacijente(){
     var id;
 function prikaziPodatke(listaPacijenata)
 {
-    let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></thead>\n\
-    <tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></tfoot><tbody>";
+    //let innerHTMLTabele = "<thead class='rounded-top' style='background-color:#4e73df; color:white; text-align:center;'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></thead>\n\
+    //<tfoot style='text-align:center'><tr><th>Name</th><th>Surname</th><th>Phone number</th><th>E-mail</th><th>Disease</th><th>Chronic patient</th><th>Check Patient</th></tr></tfoot><tbody>";
     listaPacijenata.pacijenti.forEach((pacijent) =>  {
         nizPacijenata[pacijent.id]=pacijent;
-        id=1;
+        /*id=1;
         innerHTMLTabele += "<tr id='"+id+"'><td>"+ pacijent.ime +"</td><td>"+ pacijent.prezime 
                 + "</td><td>"+pacijent.telefon+"</td><td>"+ pacijent.email 
                 + "</td><td>"+pacijent.bolest
@@ -48,7 +47,8 @@ function prikaziPodatke(listaPacijenata)
     innerHTMLTabele += "</tbody>";   
     tabela.innerHTML = innerHTMLTabele;
     id++;
-    //tabela.innerHTML="";
+    //tabela.innerHTML="";*/
+    });
 }
 
 function posaljiPoruku(dugme)
@@ -59,16 +59,26 @@ function posaljiPoruku(dugme)
         //console.log(nizLnizPacijenataekara);
      element=document.querySelector("input[name='"+key+"']")
      //console.log(pacijent);
-     if(element.checked==true)
+      if(element.checked==true)
+     {
+         brojac++;
+     }
+     if(element.checked==true && document.getElementById("poruka").value!="")
      {
          posaljiPorukuPacijentu(nizPacijenata[key]);
-         brojac++;
      }   
     }
+     
     if(brojac==0)
     {
         $('#notifyModel').modal('hide');
         $('#warningModal').modal('show');
+    }
+    if(document.getElementById("poruka").value=="")
+    {
+        $('#notifyModel').modal('hide');
+        $('#warningModal1').modal('show');
+        
     }
 }
 
@@ -86,7 +96,7 @@ function posaljiPorukuPacijentu(pacijent)
         method: "post",
         body: formData
     }
-    fetch("../php/notify.php", fetchData)
+    fetch("../../php/notify.php", fetchData)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);

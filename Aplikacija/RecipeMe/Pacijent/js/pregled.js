@@ -5,20 +5,50 @@ const kasalj=document.querySelector("input[name='kasalj']");
 const kijanje=document.querySelector("input[name='kijanje']");
 const curenje=document.querySelector("input[name='curenje']");
 const komentar=document.querySelector("textarea[name='komentar']");
-
+const dugmeSlanjePotvrda=document.getElementById("sendConfirm");
 const dugme=document.getElementById("Send");
 
-dugme.onclick = (ev) => posaljiTegobe();
-popuniDoktore();
 
+dugme.onclick=(ev)=>prikaziModal();
+dugmeSlanjePotvrda.onclick=(ev)=>posaljiTegobe(ev);
+
+popuniDoktore();
+function validacijaZahteva()
+{
+    if(doktori.value==null)
+        return false;
+    if(temperatura.value==null)
+        return false;
+    if(grlo.value==null)
+        return false;
+    if(document.querySelector("input[name='kasalj']:checked")==null)
+        return false;
+    if(document.querySelector("input[name='kijanje']:checked")==null)
+        return false;
+    if(document.querySelector("input[name='curenje']:checked")==null)
+        return false;
+    if(komentar.value==null)
+        return false;
+    if(doktori.value==null)
+        return false;
+    return true;
+}
+function prikaziModal()
+{
+    let pom=validacijaZahteva();
+    if(!pom)
+        $('#upozorenje').modal('show');
+    else
+        $('#send').modal('show');
+}
 function posaljiTegobe()
 {
-   var url_string = window.location.href;
-   var url = new URL(url_string);
-   var pacijent = url.searchParams.get("name");
+   $('#send').modal('hide');
+   
+   var pacijent = sessionStorage.getItem("name");
    const formData = new FormData();
    var today = new Date();
-   var datum=today.getDay()+"."+today.getMonth()+"."+today.getFullYear()+".";
+   var datum=today.getDate()+"."+today.getMonth()+"."+today.getFullYear()+".";
    var vreme=today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
    formData.append("pacijent",pacijent);
    formData.append("temperatura",temperatura.value);
@@ -53,11 +83,7 @@ function popuniDoktore()
    var today = new Date();
    var time = today.getHours();
    var smena;
-    if(time>=20)
-    {
-        smena=3;
-    }
-    else if(time>=12)
+    if(time>=12)
     {
         smena=2;
     }
@@ -88,7 +114,7 @@ function popuniDoktore()
 function popuniPolja(lekari)
 {
     lekari.forEach(lekar => {
-        const el=document.createElement("option");
+        let el=document.createElement("option");
         el.value=lekar.korisnickoIme;
         el.innerHTML=lekar.ime+" "+lekar.prezime;
         doktori.appendChild(el);
