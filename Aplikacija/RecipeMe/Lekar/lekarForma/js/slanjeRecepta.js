@@ -13,6 +13,15 @@ const dijagnoza = document.getElementById("dijagnoza");
 const medikamenti = document.getElementById("medikamenti"); 
 posaljiDugme.onclick=(ev)=>posaljiReceptPacijentu(ev);
 
+var qrcode = new QRCode("qrCode", {
+    text: "https://www.zdravlje.gov.rs/",
+    width: 50,
+    height: 50,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+});
+
 prikaziPacijenta();
 prikaziLekara();
 
@@ -57,13 +66,15 @@ function prikaziPacijenta(){
 
 function PodaciPacijenta(pacijent)
 {
+    let date=new Date();
+    let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
     PacijentGlobal=pacijent;
     imePacijenta.innerHTML="Name: "+pacijent.ime;
     prezimePacijenta.innerHTML="Surname: "+pacijent.prezime;
     jmbgPacijenta.innerHTML="SSN: "+pacijent.jmbg;
     //telefonPacijenta.innerHTML="Contact: "+pacijent.telefon;
-    emailPacijenta.innerHTML="Email: "+pacijent.email;
-    //naslov.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>"+pacijent.jmbg;
+    //emailPacijenta.innerHTML="Email: "+pacijent.email;
+    naslov.innerHTML="Name Surname: "+pacijent.ime+" "+pacijent.prezime+"<br>Date: "+datum;
     naslov.style.font="24px";
     let barkod=pacijent.jmbg+Math.random();
     JsBarcode("#barcode",barkod);
@@ -163,12 +174,11 @@ document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-g
 Due to overloading the network, it may take a while.\n\
 </p></div>";
  //document.getElementById("sendDiv").innerHTML="";
- for (let i = 0; i < 500000; ++i) { };
- var id=podesiVrednost("id");
- obrisiZahtev(id);
+ setTimeout(obrisiZahtev,1500);
 }
-function obrisiZahtev(id)
+function obrisiZahtev()
 {
+    var id=podesiVrednost("id");
     const formData = new FormData();
     formData.append("id", id);
     const fetchData = {

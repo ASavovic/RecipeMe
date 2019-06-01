@@ -11,12 +11,21 @@ const email=document.getElementById("email");
 //dijagnoza
 const dijagnoza=document.getElementById("dijagnoza");
 const medikamenti=document.getElementById("medikamenti");
+const naslov=document.getElementById("naslov");
 //logovani korisnik
 var username = sessionStorage.getItem("name");
 //dugme
 const dugme=document.getElementById("take");
 dugme.onclick =(ev)=> preuzmiRecept();
 var korisnik;
+var qrcode = new QRCode("qrCode", {
+    text: "https://www.zdravlje.gov.rs/",
+    width: 50,
+    height: 50,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+});
 
 popuniRecept();
 
@@ -24,6 +33,8 @@ function preuzmiRecept()
 {
 if(korisnik.brojPreuzetih>=korisnik.doza)
     {
+             naslov.innerHTML="Notification";
+ document.getElementById("qrCode").innerHTML=" ";
          kartica=document.getElementById("card");
          document.getElementById("take").style.display = 'none';
                  kartica.innerHTML="You have taken a monthly limited number of prescriptions. If you need more prescriptions please visit a doctor. \n\
@@ -88,6 +99,7 @@ function azurirajPacijenta(korisnik)
 } 
 function obavestiPacijenta()
 {
+
 document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-gray-800'>Prescription</h1><div class='alert alert-success' role='alert'>\n\
 <h4 class='alert-heading'>Well done!</h4>\n\
 <p>You will soon receive a precsription on the email.</p><hr>\n\
@@ -118,6 +130,10 @@ function popuniRecept()
 }
 function popuniPoljaPacijent(pacijent)
 {
+   const formData=new FormData();
+   let date=new Date();
+   let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
+   naslov.innerHTML="Name Surname: "+pacijent.ime+" "+pacijent.prezime+"<br> Date: "+datum;
    
    korisnik=pacijent;
     if(pacijent.hronicniBolesnik==1)
@@ -126,7 +142,7 @@ function popuniPoljaPacijent(pacijent)
              prezime.innerHTML="Surname: "+pacijent.prezime;
              jmbg.innerHTML="SSN: "+pacijent.jmbg;
             
-             email.innerHTML="Email: "+pacijent.email;
+             //email.innerHTML="Email: "+pacijent.email;
              dijagnoza.innerHTML="Diagnosis: "+pacijent.dijagnoza;
              medikamenti.innerHTML="Medicines: "+pacijent.medikamenti;
              medikamenti.readOnly=true;
@@ -200,6 +216,7 @@ function zakaziPregled(comment)
 }
 function obavestiPacijentaPregled()
 {
+
 document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-gray-800'>Prescription</h1><div class='alert alert-success' role='alert'>\n\
 <h4 class='alert-heading'>Well done!</h4>\n\
 <p>Request successfully sent. You will receive a notification soon for selecting time for an appointment.</p><hr>\n\
