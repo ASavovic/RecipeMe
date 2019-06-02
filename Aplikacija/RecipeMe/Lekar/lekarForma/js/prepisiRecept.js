@@ -99,13 +99,7 @@ function prikaziModal()
 }
 function posaljiRecept(dugme)
 {
-    if(PacijentGlobal.brojPreuzetih > 100)
-    {
-        // ako se predje limit sa brojem poslatih recepata 
-        // da iskoci neko upozorenje Lekaru i da se pacijentu posalje neki mail mora da se smisli sta i kako 
-    }
-    else
-    {
+    
     let dijagnozaText=dijagnoza.value;
     let medikamentiText=medikamenti.value;
     const formData=new FormData();
@@ -138,7 +132,7 @@ function posaljiRecept(dugme)
    }).
            then(()=>{preview()}).catch(error => console.log(error));   
     
-    }
+    
    
     
     

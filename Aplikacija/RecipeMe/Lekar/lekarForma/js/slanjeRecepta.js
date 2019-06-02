@@ -67,7 +67,7 @@ function prikaziPacijenta(){
 function PodaciPacijenta(pacijent)
 {
     let date=new Date();
-    let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
+    let datum=date.getFullYear()+"-"+"0"+(date.getMonth()+1)+"-"+date.getDate();
     PacijentGlobal=pacijent;
     imePacijenta.innerHTML="Name: "+pacijent.ime;
     prezimePacijenta.innerHTML="Surname: "+pacijent.prezime;

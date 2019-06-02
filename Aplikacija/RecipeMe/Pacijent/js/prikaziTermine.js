@@ -271,7 +271,7 @@ You will receive a notification soon for selecting time for an appointment ";
         D.setAttribute("style","width:250px; float:right;");
         div2.appendChild(D);
         div.appendChild(div2);
-        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregled(pacijent,"Control Review");
+        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregled(pacijent,"I am a chronic patient and it is time for my control review");
        // document.getElementById("take").style.display = 'none';
         return;
     }
@@ -289,15 +289,21 @@ function zakaziPregled(korisnik,comment)
    var vreme=today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
    formData.append("pacijent",korisnik.korisnickoIme);
    formData.append("komentar",comment);
+   formData.append("temperatura","36");
+   formData.append("grlo","no");
+   formData.append("kasalj","Low");
+   formData.append("kijanje","No");
+   formData.append("curenje","No");
+   formData.append("doktor",korisnik.doktor);
    formData.append("date",datum);
-    formData.append("time",vreme);
+   formData.append("time",vreme);
      
         const fetchData =
             {
                 method:"POST",
                 body: formData
             }
-       fetch("../php/updateTegobe.php",fetchData)
+       fetch("../php/unesiTegobe.php",fetchData)
             .then(response =>
             {
         if(!response.ok)
