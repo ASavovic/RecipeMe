@@ -717,7 +717,7 @@ public function promeniHronicneBolesnike($id,$hronicni)
     }
 
 }
-public function vratiTegobuKorisnika($username)
+public function vratiTegobuKorisnika($username,$doktor)
 {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
     if ($con->connect_errno) {
@@ -726,7 +726,7 @@ public function vratiTegobuKorisnika($username)
     }
     else {
         // $res je rezultat izvrsenja upita
-        $res = $con->query("select * from tegobe where pacijent='$username' ");
+        $res = $con->query("select * from tegobe where pacijent='$username' and doktorId='$doktor'");
         if ($res) {
             $tegoba = null;
             // fetch_assoc() pribavlja jedan po jedan red iz rezulata 

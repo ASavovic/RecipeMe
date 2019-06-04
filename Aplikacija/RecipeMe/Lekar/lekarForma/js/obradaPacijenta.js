@@ -17,6 +17,7 @@ function prikaziTegobe(){
     var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
+   formData.append("doktor",docName);
    
    
     const fetchData =
