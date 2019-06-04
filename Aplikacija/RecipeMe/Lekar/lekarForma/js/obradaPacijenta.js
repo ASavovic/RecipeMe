@@ -17,6 +17,7 @@ function prikaziTegobe(){
     var patName=sessionStorage.getItem("patName");
    
    formData.append("username",patName);
+   formData.append("doktor",docName);
    
    
     const fetchData =
@@ -78,6 +79,7 @@ function prikaziPodatke(tegoba)
   komentar.innerText=tegoba.komentar;
   komentar.disabled=true;
    tegobeGlobal=tegoba;
+   
    //console.log(tegoba);
 }
 function prikaziPacijenta(){
@@ -163,7 +165,7 @@ function otvoriRecept()
     myu=podesiVrednost("patName");
     var url_safe_username2= encodeURIComponent(myu);*/
     //window.open("prepisiRecept.html","_self");
-    window.open("prepisiRecept.html","_self");
+    window.open("prepisiRecept.html?id="+tegobeGlobal.id,"_self");
     
 }
 
@@ -189,6 +191,7 @@ function OdobriTermin()
     let poruka="Your review order is accepted. Please log in to your account and select a desired time appointment.";
     ObavestiPacijenta(poruka);
     ZakaziTerminLekara();
+    obrisiZahtev(tegobeGlobal.id);
     $('#okModalAccept').modal('show');
 }
 
@@ -199,8 +202,15 @@ function OtkaziTermin()
   ObavestiPacijenta(poruka); 
   obrisiZahtev(tegobeGlobal.id);
   $('#denyModal').modal('show');
+  
+ 
 }
-
+document.getElementById("ok").onclick=(ev)=>otvoriDashboard();
+document.getElementById("ok1").onclick=(ev)=>otvoriDashboard();
+function otvoriDashboard()
+{
+     window.open("../html/index.html","_self");
+}
 function ObavestiPacijenta(poruka)
 {
     const formData = new FormData();
@@ -265,6 +275,7 @@ function obrisiZahtev(id)
         throw new Error(response.statusText);
     }
     }).catch(error => console.log(error)); 
+    
 }
 
 const historyDugme=document.getElementById("history").onclick=(ev)=>prikaziIstoriju();

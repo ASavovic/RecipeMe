@@ -12,7 +12,10 @@ confirmDugme.onclick=(ev)=>{azurirajSmeneLekara(ev.target);}
 var nizLekara=[];
 var listaLekaraPod=[];
 
+	
 
+ 
+//tabela.page( 'next' ).draw( 'page' );
 prikaziLekare();
 
 function srediIzgledTabele()
@@ -63,10 +66,12 @@ function azurirajSmeneLekara(rod)
     let pom;
     for(const key in nizLekara)
     {
-        pom=document.querySelector("input[name='"+key+"']:checked").value;
-        if(nizLekara[key]!=pom)
+        pom=document.querySelector("input[name='"+key+"']");
+       // pom=document.querySelector("input[name='"+key+"']:checked").value;
+        if(pom!=null && nizLekara[key]!=document.querySelector("input[name='"+key+"']:checked").value)
         {
-            promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,pom,listaLekaraPod[key]);
+            let p=document.querySelector("input[name='"+key+"']:checked").value;
+            promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,p,listaLekaraPod[key]);
             //dodato
             obrisiTermineLekara(listaLekaraPod[key]);
             dodeliNoveTermineLekaru(pom,listaLekaraPod[key]);

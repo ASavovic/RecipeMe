@@ -13,7 +13,14 @@ const dijagnoza = document.getElementById("dijagnoza");
 const medikamenti = document.getElementById("medikamenti"); 
 posaljiDugme.onclick=(ev)=>posaljiReceptPacijentu(ev);
 
-
+var qrcode = new QRCode("qrCode", {
+    text: "https://www.zdravlje.gov.rs/",
+    width: 50,
+    height: 50,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+});
 
 prikaziPacijenta();
 prikaziLekara();
@@ -23,37 +30,13 @@ var DoktorGlobal;
 
 function prikaziDijagnozu()
 {
-   const formData=new FormData();
+  let diagnosis=podesiVrednost("diagnosis");
+  let medicines=podesiVrednost("medicines");
+  dijagnoza.innerHTML="Diagnosis: "+diagnosis;
+  medikamenti.innerHTML="Medicines: "+medicines;
+    
+}
 
-  
-   var patName=sessionStorage.getItem("patName");
-   let date=new Date();
-   let datum=date.getFullYear()+"-"+"0"+date.getMonth()+"-"+date.getDate();
-   let doktor=DoktorGlobal.ime+" "+DoktorGlobal.prezime;
-   formData.append("pacijent",patName);
-   formData.append("doktor",doktor);
-   formData.append("datum",datum);
-   const fetchData =
-            {
-                method:"POST",
-                body: formData
-            }
-   
-    
-   fetch("../../php/vratiDijagnozu.php",fetchData).then(response=>
-   {
-       if(!response.ok)
-           throw new Error(response.statusText)
-       else return response.json();
-   }).then((dijagnoza)=>popuniDijagnozu(dijagnoza))
-           .catch(error => console.log(error));
-    
-}
-function popuniDijagnozu(d)
-{
-    dijagnoza.innerHTML="Diagnosis: "+d.dijagnoza;
-    medikamenti.innerHTML="Medicines: "+d.medikamenti;
-}
 function prikaziPacijenta(){
    const formData=new FormData();
   
@@ -83,13 +66,19 @@ function prikaziPacijenta(){
 
 function PodaciPacijenta(pacijent)
 {
+    let date=new Date();
+    let datum=date.getFullYear()+"-"+"0"+(date.getMonth()+1)+"-"+date.getDate();
     PacijentGlobal=pacijent;
     imePacijenta.innerHTML="Name: "+pacijent.ime;
     prezimePacijenta.innerHTML="Surname: "+pacijent.prezime;
     jmbgPacijenta.innerHTML="SSN: "+pacijent.jmbg;
-    telefonPacijenta.innerHTML="Contact: "+pacijent.telefon;
-    emailPacijenta.innerHTML="Email: "+pacijent.email;
-    naslov.innerHTML=pacijent.ime+" "+pacijent.prezime+"<br>"+pacijent.jmbg;
+    //telefonPacijenta.innerHTML="Contact: "+pacijent.telefon;
+    //emailPacijenta.innerHTML="Email: "+pacijent.email;
+    naslov.innerHTML="Name Surname: "+pacijent.ime+" "+pacijent.prezime+"<br>Date: "+datum;
+    naslov.style.font="24px";
+    let barkod=pacijent.jmbg+Math.random();
+    JsBarcode("#barcode",barkod);
+
     
 }
 
@@ -159,7 +148,7 @@ function posaljiReceptPacijentu()
    
     let content=$('#sendDiv').html();
     const formData=new FormData();
-    formData.append("naziv","RecipeMe_Prescription_01_"+Math.random());
+    formData.append("naziv","RecipeMe_Prescription_"+Math.random());
     formData.append("email",PacijentGlobal.email);
     formData.append("data",content);
     const fetchData={
@@ -168,7 +157,7 @@ function posaljiReceptPacijentu()
       
     };
     
-    fetch('../../Pacijent/php/sendEmail.php',fetchData)
+    fetch('../../../Pacijent/php/sendEmail.php',fetchData)
             .then(response =>{
                 if(!response.ok)
                 throw new Error(response.statusText);
@@ -184,9 +173,27 @@ document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-g
 <p class='mb-0'>\n\
 Due to overloading the network, it may take a while.\n\
 </p></div>";
- document.getElementById("sendDiv").innerHTML="";
+ //document.getElementById("sendDiv").innerHTML="";
+ setTimeout(obrisiZahtev,1500);
 }
-
+function obrisiZahtev()
+{
+    var id=podesiVrednost("id");
+    const formData = new FormData();
+    formData.append("id", id);
+    const fetchData = {
+        method: "post",
+        body: formData
+    }
+    fetch("../../php/obrisiTegobePacijenta.php", fetchData)
+    .then(response => {
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    }).then(()=>{ window.open("../html/index.html","_self");}).catch(error => console.log(error)); 
+   
+    
+}
 function preview()
 {
     

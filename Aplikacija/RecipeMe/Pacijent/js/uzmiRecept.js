@@ -11,38 +11,27 @@ const email=document.getElementById("email");
 //dijagnoza
 const dijagnoza=document.getElementById("dijagnoza");
 const medikamenti=document.getElementById("medikamenti");
+const naslov=document.getElementById("naslov");
 //logovani korisnik
 var username = sessionStorage.getItem("name");
 //dugme
 const dugme=document.getElementById("take");
 dugme.onclick =(ev)=> preuzmiRecept();
 var korisnik;
+var qrcode = new QRCode("qrCode", {
+    text: "https://www.zdravlje.gov.rs/",
+    width: 50,
+    height: 50,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+});
 
 popuniRecept();
 
 function preuzmiRecept()
 {
-if(korisnik.brojPreuzetih>=korisnik.doza)
-    {
-         kartica=document.getElementById("card");
-         document.getElementById("take").style.display = 'none';
-                 kartica.innerHTML="You have taken a monthly limited number of prescriptions. If you need more prescriptions please visit a doctor. \n\
-By clicking the button below, a request for review will be automatically sent. \n\
-You will receive a notification soon for selecting time for an appointment ";
-        div2=document.createElement("div");
-        div2.setAttribute("class","col-lg-4 offset-lg-8");
-        div2.setAttribute("style","padding-top:10px;");
-        D=document.createElement("button");
-        D.innerHTML="Send";
-        D.id="noviZahtev";
-        D.setAttribute("class","btn btn-primary  ");
-        D.setAttribute("style","width:250px; float:right;");
-        div2.appendChild(D);
-        kartica.appendChild(div2);
-        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregled("Need more doses");
-         return;
-    }
-    
+   
     let content=$('#sendDiv').html();
     const formData=new FormData();
     formData.append("naziv",korisnik.korisnickoIme+Math.random());
@@ -88,6 +77,7 @@ function azurirajPacijenta(korisnik)
 } 
 function obavestiPacijenta()
 {
+
 document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-gray-800'>Prescription</h1><div class='alert alert-success' role='alert'>\n\
 <h4 class='alert-heading'>Well done!</h4>\n\
 <p>You will soon receive a precsription on the email.</p><hr>\n\
@@ -118,22 +108,32 @@ function popuniRecept()
 }
 function popuniPoljaPacijent(pacijent)
 {
+   const formData=new FormData();
+   let date=new Date();
+   let datum=date.getFullYear()+"-"+"0"+(date.getMonth()+1)+"-"+date.getDate();
+   naslov.innerHTML="Name Surname: "+pacijent.ime+" "+pacijent.prezime+"<br> Date: "+datum;
    
    korisnik=pacijent;
     if(pacijent.hronicniBolesnik==1)
         { 
+             if(proveriDaLiJeDozvoljenoPreuzimanjeRecepta())
+                 return;
              ime.innerHTML="Name: "+pacijent.ime;
              prezime.innerHTML="Surname: "+pacijent.prezime;
              jmbg.innerHTML="SSN: "+pacijent.jmbg;
-             telefon.innerHTML="Contact: "+pacijent.telefon;
-             email.innerHTML="Email: "+pacijent.email;
+            
+             //email.innerHTML="Email: "+pacijent.email;
              dijagnoza.innerHTML="Diagnosis: "+pacijent.dijagnoza;
              medikamenti.innerHTML="Medicines: "+pacijent.medikamenti;
              medikamenti.readOnly=true;
              popuniLekara(pacijent.doktor);
+             let barkod=pacijent.jmbg+Math.random();
+             JsBarcode("#barcode",barkod);
         }
         else
             {
+                 naslov.innerHTML="Notification";
+                document.getElementById("qrCode").innerHTML=" ";
                 document.getElementById("card").innerHTML="We are sorry but you do not have the status of a chronic patient."
                
                 document.getElementById("take").style.display = 'none';
@@ -178,15 +178,21 @@ function zakaziPregled(comment)
    var vreme=today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
    formData.append("pacijent",korisnik.korisnickoIme);
    formData.append("komentar",comment);
+   formData.append("temperatura","36");
+   formData.append("grlo","no");
+   formData.append("kasalj","Low");
+   formData.append("kijanje","No");
+   formData.append("curenje","No");
+   formData.append("doktor",korisnik.doktor);
    formData.append("date",datum);
-    formData.append("time",vreme);
+   formData.append("time",vreme);
      
         const fetchData =
             {
                 method:"POST",
                 body: formData
             }
-       fetch("../php/updateTegobe.php",fetchData)
+       fetch("../php/unesiTegobe.php",fetchData)
             .then(response =>
             {
         if(!response.ok)
@@ -198,10 +204,37 @@ function zakaziPregled(comment)
 }
 function obavestiPacijentaPregled()
 {
+
 document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-gray-800'>Prescription</h1><div class='alert alert-success' role='alert'>\n\
 <h4 class='alert-heading'>Well done!</h4>\n\
 <p>Request successfully sent. You will receive a notification soon for selecting time for an appointment.</p><hr>\n\
 <p class='mb-0'>\n\
 Due to overloading the network, it may take a while.\n\
 </p></div>";
+}
+function proveriDaLiJeDozvoljenoPreuzimanjeRecepta()
+{
+    if(korisnik.brojPreuzetih>=korisnik.doza)
+    {
+             naslov.innerHTML="Notification";
+ document.getElementById("qrCode").innerHTML=" ";
+         kartica=document.getElementById("card");
+         document.getElementById("take").style.display = 'none';
+                 kartica.innerHTML="You have taken a monthly limited number of prescriptions. If you need more prescriptions please visit a doctor. \n\
+By clicking the button below, a request for review will be automatically sent. \n\
+You will receive a notification soon for selecting time for an appointment ";
+        div2=document.createElement("div");
+        div2.setAttribute("class","col-lg-4 offset-lg-8");
+        div2.setAttribute("style","padding-top:10px;");
+        D=document.createElement("button");
+        D.innerHTML="Send";
+        D.id="noviZahtev";
+        D.setAttribute("class","btn btn-primary  ");
+        D.setAttribute("style","width:250px; float:right;");
+        div2.appendChild(D);
+        kartica.appendChild(div2);
+        document.getElementById("noviZahtev").onclick=(ev)=>zakaziPregled("I am a chronic patient and i need more doses of my therapy");
+         return true;
+    }
+    return false;
 }

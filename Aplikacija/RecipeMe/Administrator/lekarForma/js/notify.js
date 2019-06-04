@@ -51,11 +51,11 @@ function posaljiPoruku(dugme)
         //console.log(nizLekara);
      element=document.querySelector("input[name='"+key+"']")
      //console.log(lekar);
-        if(element.checked==true)
+     if(element.checked==true)
      {
          brojac++;
      } 
-     if(element.checked==true && document.getElementById("poruka").value!="")
+     if(element!=null && element.checked==true && document.getElementById("poruka").value!="")
      {
          posaljiPorukuLekaru(nizLekara[key]);
      }   
@@ -108,5 +108,14 @@ function ocistiCheckboxove()
      document.getElementById("poruka").value="";
     
  }
-    
 }
+function srediIzgledTabele()
+{
+    
+       const tabela=document.getElementById("dataTable3");
+       for(let i=0;i<tabela.rows.length;i++)
+       {
+           tabela.rows[i].classList.add("text-center");
+       }
+} 
+

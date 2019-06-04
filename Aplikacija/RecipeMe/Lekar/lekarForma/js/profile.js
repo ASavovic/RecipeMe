@@ -6,7 +6,7 @@ const email=document.querySelector("input[name='email']");
 const korisnickoIme=document.querySelector("input[name='korisnickoIme']");
 const sifra=document.querySelector("input[name='sifra']");
 const titula=document.querySelector("select[name='titula']");
-const dugme=document.querySelector("input[name='Update']");
+const dugme=document.querySelector("button[name='Update']");
 const register=document.getElementById("register");
 ucitajKorisnika();
 dugme.onclick=(ev)=> izmeniLekara();
@@ -58,7 +58,7 @@ function popuniPolja(lekar)
 }
 function izmeniLekara()
 {
-    if(dugme.value=="Update")
+    if(dugme.innerHTML=="Update")
     { 
     ime.readOnly=false;
     prezime.readOnly=false;
@@ -68,7 +68,7 @@ function izmeniLekara()
     
     sifra.readOnly=false;
     titula.disabled=false;
-    dugme.value="Confirm";
+    dugme.innerHTML="Confirm";
     
     }
     else
@@ -107,7 +107,7 @@ function promeniPodatke()
     }).then(()=>zamrzniPolja())
             .catch(error => console.log(error));
     zamrzniPolja();
-    dugme.value="Update";
+    dugme.innerHTML="Update";
 }
 function zamrzniPolja()
 {
@@ -118,6 +118,6 @@ function zamrzniPolja()
     email.readOnly=true;
     
     sifra.readOnly=true;
-    titula.readOnly=true;
+    titula.disabled=true;
     $('#okModal').modal('show');
 }

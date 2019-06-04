@@ -2,13 +2,10 @@ prikaziPacijenta();
 prikaziLekara();
 var PacijentGlobal;
 var DoktorGlobal;
+var id=podesiVrednost("id");
 function prikaziPacijenta(){
    const formData=new FormData();
-   /*var url_string = window.location.href;
-   var url = new URL(url_string);
-   var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
-   */
+ 
    var docName=sessionStorage.getItem("name");
    var patName=sessionStorage.getItem("patName");
    formData.append("username",patName);
@@ -52,11 +49,7 @@ function PodaciPacijenta(pacijent)
 function prikaziLekara()
 {
    const formData=new FormData();
-  /* var url_string = window.location.href;
-   var url = new URL(url_string);
-   var docName = url.searchParams.get("docName");
-   var patName= url.searchParams.get("patName");
-   */
+
    var docName=sessionStorage.getItem("name");
    var patName=sessionStorage.getItem("patName");
    formData.append("username",docName);
@@ -106,13 +99,7 @@ function prikaziModal()
 }
 function posaljiRecept(dugme)
 {
-    if(PacijentGlobal.brojPreuzetih > 100)
-    {
-        // ako se predje limit sa brojem poslatih recepata 
-        // da iskoci neko upozorenje Lekaru i da se pacijentu posalje neki mail mora da se smisli sta i kako 
-    }
-    else
-    {
+    
     let dijagnozaText=dijagnoza.value;
     let medikamentiText=medikamenti.value;
     const formData=new FormData();
@@ -143,9 +130,9 @@ function posaljiRecept(dugme)
            throw new Error(response.statusText)
        
    }).
-           then(()=>preview()).catch(error => console.log(error));   
+           then(()=>{preview()}).catch(error => console.log(error));   
     
-    }
+    
    
     
     
@@ -182,17 +169,17 @@ document.getElementById("notificationDiv").innerHTML=" <h1 class='h3 mb-2 text-g
 Due to overloading the network, it may take a while.\n\
 </p></div>";
  document.getElementById("sendDiv").innerHTML="";
+ 
 }
 
 function preview()
 {
    
-   /* let myu=podesiVrednost("docName");
-    var url_safe_username = encodeURIComponent(myu);
-    myu=podesiVrednost("patName");
-    var url_safe_username2= encodeURIComponent(myu);*/
-    window.open("gotovRecept.html","_self");
-   // window.open("gotovRecept.html?docName="+ url_safe_username+ "&patName="+ url_safe_username2,"_self");
+
+    let dijagnozaText=dijagnoza.value;
+    let medikamentiText=medikamenti.value;
+    window.open("gotovRecept.html?diagnosis="+dijagnozaText+"&medicines="+medikamentiText+"&id="+id,"_self");
+  
 }
 function podesiVrednost(string)
 {

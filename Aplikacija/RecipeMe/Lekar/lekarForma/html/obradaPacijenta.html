@@ -17,7 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../../../Pacijent/css/zakazivanjePregleda.css" rel="stylesheet">
+  <link href="../css/lekar.css" rel="stylesheet">
 
 </head>
 
@@ -116,40 +116,12 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 ">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+         
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
+           
 
            
 
@@ -200,7 +172,7 @@
                                     </div>
                                     <div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text text-white">Pain in throat</span>
+							<span class="input-group-text text-white">Sore throat</span>
 						</div>
                                          <select class="form-control" id="grlo">
                                             <option value="yes">Yes</option>
@@ -217,11 +189,11 @@
                                         <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="Coughing" value="Low"  > Low</label>
                                         <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="Coughing" value="Medium"> Medium</label>
                                         <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="Coughing" value="Strong"> Strong</label> 
-                                       
+                                        <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="Coughing" value="None"> None</label> 
 					</div>
                                      <div id="kasalj" class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text text-white">Sneeze</span>
+							<span class="input-group-text text-white">Sneezing</span>
 						</div>
 
                                         <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="kijanje" value="Yes"> Yes</label>
@@ -230,7 +202,7 @@
 					</div>
                                     <div id="curenje" class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text text-white">Leakage-nose</span>
+							<span class="input-group-text text-white">Nose running</span>
 						</div>
 
                                         <label style="color:black !important;" class="radio-inline mt-1  ml-2"><input type="radio" name="curenje" value="Yes"> Yes</label>
@@ -411,7 +383,7 @@
       You have successfully accept request!
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-secondary" style="background-color: green" id="ok1">OK</button>
         
       </div>
     </div>
@@ -432,7 +404,7 @@
       You have successfully send deny-mail to patient!
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" style="background-color: green" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-secondary" style="background-color: green" id="ok">OK</button>
         
       </div>
     </div>

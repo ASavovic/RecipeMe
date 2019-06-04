@@ -50,6 +50,7 @@ confirmDugme.onclick=(ev)=>{izbrisiLekare(ev.target);}
 
 function izbrisiLekare(dugme)
 {
+   
     let element;
     let brojac=0;
    
@@ -59,7 +60,7 @@ function izbrisiLekare(dugme)
      element=document.querySelector("input[name='"+key+"']")
 
      
-     if(element.checked==true)
+     if(element!=null && element.checked==true)
      {
          obrisiLekara(key);
          brojac++;

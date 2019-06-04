@@ -55,7 +55,7 @@ function popuniPolja(pacijent)
 }
 function izmeniPacijenta()
 {
-    if(dugme.value==="Edit")
+    if(dugme.innerHTML=="Edit")
     { 
     ime.readOnly=false;
     prezime.readOnly=false;
@@ -65,7 +65,7 @@ function izmeniPacijenta()
     
     telefon.readOnly=false;
     password.readOnly=false;
-    dugme.value="Confirm";
+    dugme.innerHTML="Confirm";
     
     
     }
@@ -104,7 +104,7 @@ function promeniPodatke()
     }).then(()=>zamrzniPolja())
             .catch(error => console.log(error));
    
-    dugme.value="Edit";
+    dugme.innerHTML="Edit";
 }
 function zamrzniPolja()
 {

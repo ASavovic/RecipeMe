@@ -58,7 +58,7 @@ function izbrisiPacijente(dugme)
        
      element=document.querySelector("input[name='"+key+"']")
      
-     if(element.checked==true)
+     if(element!=null && element.checked==true)
      {
          obrisiPacijenta(key);
          brojac++;
