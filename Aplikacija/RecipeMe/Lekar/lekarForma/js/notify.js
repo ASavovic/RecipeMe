@@ -59,7 +59,7 @@ function posaljiPoruku(dugme)
         //console.log(nizLnizPacijenataekara);
      element=document.querySelector("input[name='"+key+"']")
      //console.log(pacijent);
-      if(element.checked==true)
+      if(element!=null && element.checked==true)
      {
          brojac++;
      }

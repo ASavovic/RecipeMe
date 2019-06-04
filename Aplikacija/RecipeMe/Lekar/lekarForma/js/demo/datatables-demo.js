@@ -88,6 +88,7 @@ $(document).ready(function() {
        });
        $('#dataTable').DataTable(
           {
+              "pageLength": 25,
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},
@@ -106,6 +107,7 @@ $(document).ready(function() {
    
     $('#dataTable1').DataTable(
           {
+              "pageLength": 25,
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},
@@ -122,6 +124,7 @@ $(document).ready(function() {
     });
      $('#dataTable2').DataTable(
           {
+              "pageLength": 25,
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},
@@ -174,6 +177,7 @@ $(document).ready(function() {
        });
         $('#dataTable5').DataTable(
           {
+              "pageLength": 25,
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},

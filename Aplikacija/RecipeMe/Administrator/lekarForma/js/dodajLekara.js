@@ -6,8 +6,45 @@ function odjaviSe()
     $("#logoutModal").modal('show');
 }
 const confirmDugme=document.getElementById("register");
-confirmDugme.onclick=(ev)=>{dodajLekara(ev.target);}
+//confirmDugme.onclick=(ev)=>{dodajLekara(ev.target);}
+confirmDugme.onclick=(ev)=>{proveriUsername();}
 
+
+function proveriUsername()
+{
+    const formData = new FormData();
+    formData.append("username",document.querySelector("input[name='korisnickoIme']").value );
+     const fetchData = {
+        method: "post",
+        body: formData
+    };
+    
+     fetch("../../../Lekar/php/vratiLekara.php", fetchData)
+    .then(response => {
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    else
+        return response.json();
+    
+    
+    }).then((lekar)=>obavestiUsername(lekar)).catch(error => console.log(error));  
+  
+    
+}
+function obavestiUsername(lekar)
+{
+    if(lekar!=null)
+    {
+       
+        const korisnickoIme=document.querySelector("input[name='korisnickoIme']");
+        $('#addModal').modal('hide');
+        pocrveni(korisnickoIme);
+        
+    }
+    else
+        dodajLekara();
+}
 function dodajLekara(dugme)
 {
     let prom = validacijaDodavanja();

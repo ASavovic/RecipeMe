@@ -132,6 +132,8 @@ function popuniPoljaPacijent(pacijent)
         }
         else
             {
+                 naslov.innerHTML="Notification";
+                document.getElementById("qrCode").innerHTML=" ";
                 document.getElementById("card").innerHTML="We are sorry but you do not have the status of a chronic patient."
                
                 document.getElementById("take").style.display = 'none';

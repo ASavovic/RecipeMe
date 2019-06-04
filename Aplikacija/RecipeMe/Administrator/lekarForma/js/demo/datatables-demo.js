@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
-ucitavanjeSvihTabela();
-function ucitavanjeSvihTabela()
-{$(document).ready(function() {
+//ucitavanjeSvihTabela();
+//function ucitavanjeSvihTabela()
+$(document).ready(function() {
   var data = [];
   var data1=[];
   var data2=[];
@@ -35,7 +35,8 @@ function ucitavanjeSvihTabela()
            };
            data2.push(obj);
        });
-         $('#dataTable2').DataTable({
+       var table=  $('#dataTable2').DataTable({
+        "pageLength": 25,  
         "columns":[
             {"data":"Name Surname"},
             {"data":"SSN"},
@@ -51,7 +52,10 @@ function ucitavanjeSvihTabela()
       
   });
 
-       
+      if(typeof(srediIzgledTabele)=== typeof(Function))
+         srediIzgledTabele(); 
+    
+     
    
     }).catch(error => console.log(error));
     
@@ -97,8 +101,8 @@ function ucitavanjeSvihTabela()
            };
            data3.push(obj2);
         });
-        $('#dataTable').DataTable({
-
+       var tabela= $('#dataTable').DataTable({
+         "pageLength": 25,
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},
@@ -109,9 +113,15 @@ function ucitavanjeSvihTabela()
         "data": data
       
   });
+ 
   if(typeof (popuniRadioDugmad)=== typeof (Function))
      popuniRadioDugmad(response);
-   $('#dataTable1').DataTable({
+  if(typeof(srediIzgledTabele)=== typeof(Function))
+         srediIzgledTabele();
+  
+ 
+  var table= $('#dataTable1').DataTable({
+      "pageLength": 25,
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},
@@ -128,7 +138,9 @@ function ucitavanjeSvihTabela()
   });
   if(typeof(srediIzgledTabele)=== typeof(Function))
          srediIzgledTabele();
+     
           $('#dataTable3').DataTable({
+        "pageLength": 25,
         "columns":[
             {"data":"Name"},
             {"data":"Surname"},
@@ -139,6 +151,9 @@ function ucitavanjeSvihTabela()
         "data": data3
       
   });
+    if(typeof(srediIzgledTabele)=== typeof(Function))
+         srediIzgledTabele();
+     
   
        })
            .catch(error => console.log(error));
@@ -154,4 +169,3 @@ function ucitavanjeSvihTabela()
 });
 
 
-}
