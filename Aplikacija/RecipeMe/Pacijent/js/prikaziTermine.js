@@ -77,7 +77,7 @@ function posaljiMejl(pacijent)
     formData.append("email",pacijent.email);
     formData.append("ime",pacijent.ime);
     formData.append("prezime",pacijent.prezime);
-    let textPoruke="Uspesno ste zakazali termin "+dan.value+" - "+termin.value+".";
+    let textPoruke="You have successfully scheduled a review appointment: " + dan.value + " - " + termin.value + ".";
     formData.append("txtPoruke",textPoruke);
     const fetchData ={
         method: "POST",
