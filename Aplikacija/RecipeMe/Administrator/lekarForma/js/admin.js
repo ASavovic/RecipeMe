@@ -74,7 +74,7 @@ function azurirajSmeneLekara(rod)
             promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,p,listaLekaraPod[key]);
             //dodato
             obrisiTermineLekara(listaLekaraPod[key]);
-            dodeliNoveTermineLekaru(pom,listaLekaraPod[key]);
+            dodeliNoveTermineLekaru(p,listaLekaraPod[key]);
         }
     }
         
