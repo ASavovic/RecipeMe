@@ -76,6 +76,7 @@ function dodajLekara(dugme)
    
     }
     }).then(()=> dodeliSmenuLekaru()).catch(error => console.log(error));  
+    $('#okModal').modal('show');
    
 }
 
@@ -110,7 +111,7 @@ function dodeliSmenuLekaru()
     })
             .catch(error=>console.log(error));
       
-    $('#okModal').modal('show');
+    
     ocistiPolja();
  
 
