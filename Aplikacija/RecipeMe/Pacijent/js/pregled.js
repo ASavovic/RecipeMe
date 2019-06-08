@@ -116,7 +116,7 @@ function popuniPolja(lekari)
     lekari.forEach(lekar => {
         let el=document.createElement("option");
         el.value=lekar.korisnickoIme;
-        el.innerHTML=lekar.ime+" "+lekar.prezime;
+        el.innerHTML=lekar.ime+" "+lekar.prezime+" ("+lekar.zvanje+")";
         doktori.appendChild(el);
     });
 }
