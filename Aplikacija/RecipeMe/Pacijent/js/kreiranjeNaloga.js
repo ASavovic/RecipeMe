@@ -1,5 +1,5 @@
 let users=[];
-fetch("../php/indexProveraUsername.php")
+/*fetch("../php/indexProveraUsername.php")
             .then(response => 
             {
                 
@@ -12,7 +12,7 @@ fetch("../php/indexProveraUsername.php")
             }).then((korisnici) => {users=korisnici})
             .catch(error => console.log(error));
 console.log(users);
-
+*/
 
 let korisnik = {
     ime:"",
@@ -29,20 +29,83 @@ const el=document.getElementById("alert");
 
 //podesavanje event-a
 dugme.onclick = (ev) => kreirajNalog();
-
-function postojiKorisnik(){
+function proveriPostojanjeKorisnika()
+{
+    fetch("../php/indexProveraUsername.php")
+            .then(response => 
+            {
+                
+                    if(!response.ok)
+                        throw new Error(response.statusText);
+                    else
+                        return response.json();
+               
+ 
+            }).then((korisnici) => 
+               
+                postojiKorisnik(korisnici)
+            )
+            .catch(error => console.log(error));
     
+}
+function postojiKorisnik(korisnici){
+    
+    users=korisnici;
     let indikator=1;
     let pom=users.pacijenti.filter(x => x.korisnickoIme==korisnik.korisnickoIme);
     if(pom.length!=0)
         indikator=0;
-    return indikator;
+   // return indikator;
+   if(indikator==1)
+   {
+    el.innerHTML="<div  class='alert alert-success' role='alert' >\n\
+                  <strong>This</strong>\n\
+                   may take a little time. Please<a href='#' class='alert-link'> wait!\n\
+                 <div class='loader' >Loading...</div></a>";
+            
+   
+    el.style.visibility="inherit";
+    el.style.textAlign="center";
+    const formData = new FormData();
+    
+    formData.append("ime",korisnik.ime);
+    formData.append("prezime",korisnik.prezime);
+    formData.append("jmbg",korisnik.jmbg);
+    formData.append("telefon",korisnik.telefon);
+    formData.append("email",korisnik.email);
+    formData.append("korisnickoIme",korisnik.korisnickoIme);
+    formData.append("sifra",korisnik.sifra);
+       
+     const fetchData =
+            {
+                method:"POST",
+                body: formData
+            }
+         fetch("../php/indexKreirajNalog.php",fetchData)
+            .then(response =>
+             {
+                if(!response.ok)
+                    throw new Error(response.statusText);
+
+             }).then(()=>notifyKorisnik())
+                .catch(error => console.log(error));
+   }
+   else
+   {
+          let innerHtml="<div class='alert alert-danger' role='alert'><strong>Username already exists!</strong></div>";
+          el.innerHTML=innerHtml;
+          el.style.visibility="inherit";
+          el.style.textAlign="center";
+          const korisnickoIme=document.querySelector("input[name='korisnickoIme']");
+          pocrveni(korisnickoIme);
+   }
  
         
 }
 
 function kreirajNalog()
 {
+    el.innerHTML="";
     let prom=validacija();
     if(prom==0)
     {
@@ -55,7 +118,7 @@ function kreirajNalog()
         exit;
     }
     
-    const formData = new FormData();
+    /*const formData = new FormData();
     
     formData.append("ime",korisnik.ime);
     formData.append("prezime",korisnik.prezime);
@@ -64,11 +127,11 @@ function kreirajNalog()
     formData.append("email",korisnik.email);
     formData.append("korisnickoIme",korisnik.korisnickoIme);
     formData.append("sifra",korisnik.sifra);
+    */
     
-    
-    let pom=postojiKorisnik();
-   
-   if(pom!=1)
+    //let pom=proveriPostojanjeKorisnika();
+   proveriPostojanjeKorisnika();
+   /*if(pom!=1)
     {
          let innerHtml="<div class='alert alert-danger' role='alert'><strong>Username already exists!</strong></div>";
           el.innerHTML=innerHtml;
@@ -93,7 +156,7 @@ function kreirajNalog()
 
              }).then(()=>notifyKorisnik())
                 .catch(error => console.log(error));
-     }
+     }*/
     
 }
 function postojiUsername(formData){
@@ -132,9 +195,9 @@ function proveriObjekat(korisnici,formData)
 function notifyKorisnik(){
     let innerHtml="<div  class='alert alert-success' role='alert' >\n\
                   <strong>Well done!</strong>\n\
-                   You have successfully created a medical account!<a href='logovanjeKorisnika.html' class='alert-link'> Go Back!.\n\
-                  <div  class='loader' > Loading...</div></a>";
-  
+                   You have successfully created a medical account!<a href='logovanjeKorisnika.html' class='alert-link'> Go Back!\n\
+                 </a>";
+        
           el.innerHTML=innerHtml;
           el.style.visibility="inherit";
           el.style.textAlign="center";
