@@ -9,6 +9,7 @@ class ZakazaniTerminPregled
     public $email;
     public $dan;
     public $termin;
+    public $id;
     
     function __construct($dan,$termin) {
         $this->dan=$dan;

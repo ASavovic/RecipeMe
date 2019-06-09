@@ -62,5 +62,6 @@ interface IBolnicaService {
     function vratiSveKomenatare($pacijent);
     function updateTegobe($pacijent,$komentar,$date,$time);
     function dodajSmenuLekara($username,$smena);
+    function obrisiTerminPacijenta($id);
     
 }

@@ -171,7 +171,8 @@ $(document).ready(function() {
                    "Phone":t.telefon,
                    "Email":t.email,
                    "Day":t.dan,
-                   "Appointment":t.termin
+                   "Appointment":t.termin,
+                   "Done":"<button class='btn btn-primary' id='"+t.id+"'>Done</button>"
                    };
                data5.push(obj5);
        });
@@ -187,12 +188,14 @@ $(document).ready(function() {
             
            
             {"data":"Day"},
-            {"data":"Appointment"}
+            {"data":"Appointment"},
+            {"data":"Done"}
            
         ],
         "data": data5
     });
-       
+       if(typeof(dodeliFunkcijeDugmicima)==typeof(Function))
+           dodeliFunkcijeDugmicima();
        }).catch(error=>console.log(error));
            
      

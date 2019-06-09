@@ -1431,6 +1431,7 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
             while ($row = $res->fetch_assoc()) {
 				
 		$termin=new ZakazaniTerminPregled($row["dan"],$row["termin"]);
+                $termin->id=$row["id"];
                 $korisnik=$row["pacijent_username"];
                 $res1 = $con->query("select * from pacijent where korisnicko_ime='$korisnik';");
                 if($res1)
@@ -1611,6 +1612,27 @@ public function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,
             $this->dodajTermineLekaraPrvaSmena ($username);
         else
             $this->dodajTermineLekaraDrugaSmena ($username);
+    }
+
+    public function obrisiTerminPacijenta($id) {
+          $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+          $res = $con->query("delete from termini_pregleda where id=$id");
+          if($res) 
+          {
+              
+          }
+        
+        else
+        {
+            print ("Query failed");
+        }
+        }
     }
 
 }
