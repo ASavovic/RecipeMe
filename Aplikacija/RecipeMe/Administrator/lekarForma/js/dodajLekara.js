@@ -73,11 +73,11 @@ function dodajLekara(dugme)
     .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);
+   
     }
-    }).catch(error => console.log(error));  
+    }).then(()=> dodeliSmenuLekaru()).catch(error => console.log(error));  
     $('#okModal').modal('show');
-    
-    ocistiPolja();
+   
 }
 
 let korisnik = {
@@ -91,6 +91,31 @@ let korisnik = {
     zvanje:""
     };
 
+function dodeliSmenuLekaru()
+{
+   
+   
+    const formData = new FormData();
+    
+    formData.append("korisnickoIme",document.querySelector("input[name='korisnickoIme']").value)
+    formData.append("smena",document.querySelector("select[name='smena']").value)
+     const fetchData = {
+        method: "post",
+        body: formData
+    }
+    fetch("../../php/dodajSmenuLekara.php",fetchData).then(response=>
+    {
+        if(!response.ok)
+            throw new Error(response.statusText);
+       
+    })
+            .catch(error=>console.log(error));
+      
+    
+    ocistiPolja();
+ 
+
+}
 function validacijaDodavanja()
 {
     let ind=1;

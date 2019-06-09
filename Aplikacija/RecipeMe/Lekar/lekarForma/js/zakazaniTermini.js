@@ -160,3 +160,23 @@
             });
         });
     });
+function dodeliFunkcijeDugmicima()
+{
+    let nizDugmadi=document.querySelectorAll("button");
+    nizDugmadi.forEach(d => {
+        d.onclick=(ev) => obrisiZakazaniTermin(d);
+    });
+}
+
+function obrisiZakazaniTermin(d)
+{
+    fetch("../../php/obrisiTermin.php?id="+d.id).then(response=>
+   {
+       if(!response.ok)
+           throw new Error(response.statusText)
+      
+   }).then(()=>{
+       location.reload();
+   })
+           .catch(error => console.log(error));
+}

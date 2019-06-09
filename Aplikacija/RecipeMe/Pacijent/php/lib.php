@@ -29,16 +29,16 @@ include_once 'Komentar.php';
 
 class PacijentService implements IBolnicaService
 {
-    const db_host="localhost";
+    /*const db_host="localhost";
     const db_username="root";
     const db_password="";
-    const db_name="recipeme";
+    const db_name="recipeme";*/
     
-    // NAPOMENA: OVAJ DEO KODA SLUZI ZA REMOTE BAZU I MOGUCE JE CE NAKON ISTEKA BAZE BITI PROMENJENI PODACI, KOJI CE BITI ZAMENJENI NOVIM USERNAME-om I PASSWORD-om!!!
-    /*const db_host="sql7.freemysqlhosting.net";
-    const db_username="sql7294504";
-    const db_password="dytXfiuHnJ";
-    const db_name="sql7294504";*/
+    // NAPOMENA: OVAJ DEO KODA SLUZI ZA REMOTE BAZU I MOGUCE JE DA CE NAKON ISTEKA BAZE BITI PROMENJENI PODACI, KOJI CE BITI ZAMENJENI NOVIM USERNAME-om I PASSWORD-om!!!
+    const db_host="sql7.freemysqlhosting.net";
+    const db_username="sql7295007";
+    const db_password="Lru7aZkeIK";
+    const db_name="sql7295007";
     
     public function dodajPacijenta(Pacijent $p) {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
@@ -1431,6 +1431,7 @@ public function zakaziTerminLekaraIPacijenta($lekar,$pacijent) {
             while ($row = $res->fetch_assoc()) {
 				
 		$termin=new ZakazaniTerminPregled($row["dan"],$row["termin"]);
+                $termin->id=$row["id"];
                 $korisnik=$row["pacijent_username"];
                 $res1 = $con->query("select * from pacijent where korisnicko_ime='$korisnik';");
                 if($res1)
@@ -1605,6 +1606,35 @@ public function vratiKorisnikaupdatePacijentuMesecIBrPreuzetih($username,$mesec,
         }
         }
     }
+
+    public function dodajSmenuLekara($username, $smena) {
+        if($smena==1)
+            $this->dodajTermineLekaraPrvaSmena ($username);
+        else
+            $this->dodajTermineLekaraDrugaSmena ($username);
+    }
+
+    public function obrisiTerminPacijenta($id) {
+          $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
+    if ($con->connect_errno) {
+        // u slucaju greske odstampati odgovarajucu poruku
+        print ("Connection error (" . $con->connect_errno . "): $con->connect_error");
+    }
+   else {
+            // $res je rezultat izvrsenja upita
+          $res = $con->query("delete from termini_pregleda where id=$id");
+          if($res) 
+          {
+              
+          }
+        
+        else
+        {
+            print ("Query failed");
+        }
+        }
+    }
+
 }
 
 

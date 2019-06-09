@@ -24,6 +24,7 @@ $(document).ready(function() {
        $('#dataTable').DataTable(
                {
                     "pageLength": 25,
+            "ordering":false,
              "columns":[
             {"data":"Name"},
             {"data":"Surname"},

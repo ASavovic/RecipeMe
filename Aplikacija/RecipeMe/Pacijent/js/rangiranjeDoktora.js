@@ -30,7 +30,7 @@ function prikaziPodatke(listaLekara)
     
 });
 
-nizVrednosti.sort();
+//nizVrednosti.sort();
 nizVrednosti.forEach(x => ratings[x]="0.0");
 izracunavanjeOcenaLekara();
 
@@ -83,7 +83,7 @@ function izracunavanjeOcenaLekara()
     const starsTotal = 5;
 
     // Run getRatings when DOM loads
-    document.addEventListener('DOMContentLoaded', getRatings);
+   // document.addEventListener('DOMContentLoaded', getRatings);
 
     // Form Elements
     const productSelect = document.getElementById('product-select');
@@ -104,17 +104,15 @@ function izracunavanjeOcenaLekara()
 
     // Rating control change
     ratingControl.addEventListener('blur', (e) => {
-     const rating = e.target.value;
-     unesiOcenu(rating);
-     
-      // Make sure 5 or under
-      if (rating > 5) {
-        alert('Please rate 1 - 5');
+const rating = e.target.value;
+    
+        unesiOcenu(rating);
+        izracunavanjeOcenaLekara();
+        // Make sure 5 or under
+        if (rating > 5) {
+         alert('Please rate 1 - 5');
         return;
-      }
-     // ratings[product] = rating;
-    izracunavanjeOcenaLekara();
-      //getRatings();
+        }
   });
   
   ratingControl.addEventListener('keypress', (e) => {
@@ -131,7 +129,7 @@ function izracunavanjeOcenaLekara()
         }
      // ratings[product] = rating;
 
-      getRatings();
+     // getRatings();
   }
   });
       
@@ -174,10 +172,12 @@ function izracunavanjeOcenaLekara()
         // Round to nearest 10
         const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
 
-        // Set width of stars-inner to percentage
+        // Set width of stars-inner to percentage\
+        if(document.querySelector(`.${rating} .stars-inner`)!=null)
         document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
 
         // Add number rating
+        if(document.querySelector(`.${rating} .number-rating`)!=null)
         document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
       }
     }

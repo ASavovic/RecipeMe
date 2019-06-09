@@ -63,7 +63,19 @@ function popuniRadioDugmad(listaLekara)
   
 function azurirajSmeneLekara(rod)
 {
+     $('#changeModal').modal('hide');
     let pom;
+    for(const key in nizLekara)
+    {
+        pom=document.querySelector("input[name='"+key+"']:checked");
+        if(pom!=null && nizLekara[key]!=document.querySelector("input[name='"+key+"']:checked").value)
+        {
+            let p=document.querySelector("input[name='"+key+"']:checked").value;
+            promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,p,listaLekaraPod[key]);
+        }
+    }
+   $('#okModal').modal('show');
+   /* let pom;
     for(const key in nizLekara)
     {
         pom=document.querySelector("input[name='"+key+"']");
@@ -74,15 +86,15 @@ function azurirajSmeneLekara(rod)
             promeniSmenuLekara(document.querySelector("input[name='"+key+"']:checked").id,p,listaLekaraPod[key]);
             //dodato
             obrisiTermineLekara(listaLekaraPod[key]);
-            dodeliNoveTermineLekaru(pom,listaLekaraPod[key]);
+            dodeliNoveTermineLekaru(p,listaLekaraPod[key]);
         }
-    }
+    }*/
         
 }
 
 function promeniSmenuLekara(id,smena,lekar)
 {
-    $('#changeModal').modal('hide');
+   
     document.getElementById(lekar.korisnickoIme).innerHTML=smena;
     const formData = new FormData();
     formData.append("id",id);
@@ -98,10 +110,10 @@ function promeniSmenuLekara(id,smena,lekar)
     {
         if(!response.ok)
             throw new Error(response.statusText);
-        else return response.json();
-    }).then(listaL=>{})
+        //else return response.json();
+    }).then(()=>obrisiTermineLekara(smena,lekar))
             .catch(error=>console.log(error));
-    $('#okModal').modal('show');
+  
 
 }
 
@@ -115,7 +127,7 @@ function Smena(s)
 }
 
 //dodato
-function obrisiTermineLekara(korisnik)
+function obrisiTermineLekara(smena,korisnik)
 {
     $('#changeModal').modal('hide');
     const formData = new FormData();
@@ -131,10 +143,10 @@ function obrisiTermineLekara(korisnik)
     {
         if(!response.ok)
             throw new Error(response.statusText);
-        else return response.json();
-    }).then(listaL=>console.log(listaL))
+        //else return response.json();
+    }).then(()=> dodeliNoveTermineLekaru(smena,korisnik))
             .catch(error=>console.log(error));
-    $('#okModal').modal('show');
+  
 
 }
 
@@ -158,7 +170,7 @@ function dodeliNoveTermineLekaru(smena,korisnik)
             else return response.json();
         }).then(listaL=>prikaziPodatke(listaL))
         .catch(error=>console.log(error));
-        $('#okModal').modal('show');
+        //$('#okModal').modal('show');
     }
     else if(smena == 2)
     {
@@ -169,6 +181,6 @@ function dodeliNoveTermineLekaru(smena,korisnik)
             else return response.json();
         }).then(listaL=>prikaziPodatke(listaL))
         .catch(error=>console.log(error));
-        $('#okModal').modal('show');
+        //$('#okModal').modal('show');
     }
 }
