@@ -29,17 +29,17 @@ include_once 'Komentar.php';
 
 class PacijentService implements IBolnicaService
 {
-    const db_host="localhost";
+    /*const db_host="localhost";
     const db_username="root";
     const db_password="";
-    const db_name="recipeme";
+    const db_name="recipeme";*/
     
     // NAPOMENA: OVAJ DEO KODA SLUZI ZA REMOTE BAZU I MOGUCE JE DA CE NAKON ISTEKA BAZE BITI PROMENJENI PODACI, KOJI CE BITI ZAMENJENI NOVIM USERNAME-om I PASSWORD-om!!!
-    /*const db_host="sql7.freemysqlhosting.net";
-    const db_username="sql7294504";
-    const db_password="dytXfiuHnJ";
-    const db_name="sql7294504";
-    */
+    const db_host="sql7.freemysqlhosting.net";
+    const db_username="sql7295007";
+    const db_password="Lru7aZkeIK";
+    const db_name="sql7295007";
+    
     public function dodajPacijenta(Pacijent $p) {
     $con = new mysqli(self::db_host, self::db_username, self::db_password, self::db_name);
     if ($con->connect_errno) {
