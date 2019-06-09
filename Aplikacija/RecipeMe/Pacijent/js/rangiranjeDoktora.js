@@ -83,7 +83,7 @@ function izracunavanjeOcenaLekara()
     const starsTotal = 5;
 
     // Run getRatings when DOM loads
-    document.addEventListener('DOMContentLoaded', getRatings);
+   // document.addEventListener('DOMContentLoaded', getRatings);
 
     // Form Elements
     const productSelect = document.getElementById('product-select');
@@ -104,17 +104,15 @@ function izracunavanjeOcenaLekara()
 
     // Rating control change
     ratingControl.addEventListener('blur', (e) => {
-     const rating = e.target.value;
-     unesiOcenu(rating);
-     
-      // Make sure 5 or under
-      if (rating > 5) {
-        alert('Please rate 1 - 5');
+const rating = e.target.value;
+    
+        unesiOcenu(rating);
+        izracunavanjeOcenaLekara();
+        // Make sure 5 or under
+        if (rating > 5) {
+         alert('Please rate 1 - 5');
         return;
-      }
-     // ratings[product] = rating;
-    izracunavanjeOcenaLekara();
-      //getRatings();
+        }
   });
   
   ratingControl.addEventListener('keypress', (e) => {
@@ -131,7 +129,7 @@ function izracunavanjeOcenaLekara()
         }
      // ratings[product] = rating;
 
-      getRatings();
+     // getRatings();
   }
   });
       
