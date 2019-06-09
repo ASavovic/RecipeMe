@@ -30,7 +30,7 @@ function prikaziPodatke(listaLekara)
     
 });
 
-nizVrednosti.sort();
+//nizVrednosti.sort();
 nizVrednosti.forEach(x => ratings[x]="0.0");
 izracunavanjeOcenaLekara();
 
@@ -174,10 +174,12 @@ function izracunavanjeOcenaLekara()
         // Round to nearest 10
         const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
 
-        // Set width of stars-inner to percentage
+        // Set width of stars-inner to percentage\
+        if(document.querySelector(`.${rating} .stars-inner`)!=null)
         document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
 
         // Add number rating
+        if(document.querySelector(`.${rating} .number-rating`)!=null)
         document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
       }
     }
